@@ -200,7 +200,7 @@ a new measurement. Their corpus was not rerun here.
 Curtis White / CurtisAccelerate. The row rule on this hardware is
 [DeepSeekv41-Flash-EXL3-TC-MoE](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE).
 
-## Special thanks
+## Attribution -- Special Thanks!
 
 DeepSeek, for the 1017 checkpoint.
 
