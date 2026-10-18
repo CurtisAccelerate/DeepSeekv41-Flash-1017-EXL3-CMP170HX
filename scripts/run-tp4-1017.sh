@@ -4,6 +4,13 @@
 # CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE. This script does not
 # build an image and does not install extra Python.
 #
+# Measured image:
+#   sha256:55d2bd9a6664aea2540e3f8e373d784b88420d35c3cedefc9f03923cd687b6f5
+# Host all-reduce and the sm80 package:
+#   Morrowmake/vllm-cmp170hx @ 18305948acba3f4c4d912cdd56f2202d2ebd94e8
+# GLM 5.3 pin 819146023f rejects DSpark on the V1 runner.
+# This launch sets DSV41_DSPARK_V1=1.
+#
 # DSV41_MODEL_DIR is the hybrid checkpoint: official 1017 tensors, LibertAI
 # routed experts for layers 0-39, and quantization_config.json from this repo.
 # DSV41_ARENA_CACHE_DIR is where the first launch writes the EXL3 arenas.

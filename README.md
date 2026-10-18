@@ -42,6 +42,20 @@ image as the kernel recipe, and the same EXL3 plugin. The only build is
 the tensor-core `.so` from
 [DeepSeekv41-Flash-EXL3-TC-MoE](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE).
 
+The measured run used local image
+`sha256:55d2bd9a6664aea2540e3f8e373d784b88420d35c3cedefc9f03923cd687b6f5`.
+Host all-reduce and the sm80 package mounted beside it are
+[vllm-cmp170hx](https://github.com/Morrowmake/vllm-cmp170hx) at
+`18305948acba3f4c4d912cdd56f2202d2ebd94e8`.
+
+`819146023f` is the GLM 5.3 recipe pin. That tree rejects
+`VLLM_USE_V2_MODEL_RUNNER=0` with DSpark. This serve sets
+`DSV41_DSPARK_V1=1` and runs DSpark on the V1 runner.
+
+SM80 attention for this model is
+[sm80vllm](https://github.com/PixelML/sm80vllm) branch `sm80`
+(`DeepseekV4AmpereMLAAttention`).
+
 1. Build `out/_dsv41_tc_moe_C.abi3.so` with that repo's
    `vllm_exl3/tc_moe/build_standalone.py`, against the PyTorch in the image
    you already serve this model with.
