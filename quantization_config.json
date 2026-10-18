@@ -1,0 +1,16 @@
+{
+  "quant_method": "exl3",
+  "bits": 4,
+  "codebook": "mul1",
+  "scope": "dsv41_main_routed_experts_only",
+  "mtp_experts": "source",
+  "mtp_experts_start_layer": 40,
+  "mtp_expert_dtype": "fp4",
+  "non_routed_quantization": {
+    "quant_method": "deepseek_v4_fp8",
+    "activation_scheme": "dynamic",
+    "weight_block_size": [32, 32],
+    "scale_fmt": "ue8m0",
+    "expert_dtype": "fp4"
+  }
+}

@@ -1,0 +1,216 @@
+# DeepSeek V4.1 Flash 1017 — EXL3 routed experts on CMP 170HX
+
+Curtis White ([CurtisAccelerate](https://github.com/CurtisAccelerate)).
+
+180.4 tok/s structured, 137.1 code, 96.6 prose. Eight users aggregate
+621, 376, and 283.
+
+Routed experts only, layers 0–39, are LibertAI EXL3 2.9. Attention, shared
+experts, the head, the draft, and Engram stay the official FP8 checkpoint.
+Measured on 4× CMP 170HX at 140 W.
+
+This repository is that weight selection and these measurements. It does
+not contain the weight files. Licenses are in [NOTICE.md](NOTICE.md).
+
+## What you need
+
+4× CMP 170HX, 64 GB each, sm_80, tensor parallel 4, 140 W, peer access off.
+This run filled about 62.5 GB of each card.
+
+The host this was measured on has 378 GB of RAM visible to the OS. That is
+the machine, not a minimum. While this serve is up it is using about 289 GB,
+and 89 GB is still free. Shared memory is 265 GB, which is the Engram pin.
+Engram does not go on the GPUs. A 256 GB host does not fit that pin.
+
+Two packs:
+
+- [deepseek-ai/DeepSeek-V4.1-Flash-1017](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017).
+  FP8 weights, FP4 experts. Take attention, shared experts, the head, the
+  draft (including its FP4 experts), and the Engram weight and scale.
+  Engram is shards 47 and 48. The 1017 release replaced those tables.
+- [LibertAIDAI/DeepSeek-V4.1-Flash-1017-EXL3-2.9bpw](https://huggingface.co/LibertAIDAI/DeepSeek-V4.1-Flash-1017-EXL3-2.9bpw).
+  Take only the main routed experts, layers 0–39. Leave its attention,
+  head, and draft behind. The pack does not contain the 1017 Engram tables.
+
+Put [quantization_config.json](quantization_config.json) on the hybrid
+checkpoint. Do not copy the previous pack's config onto it.
+
+## Run
+
+No new container image, and no extra Python. 1017 uses the same serving
+image as the kernel recipe, and the same EXL3 plugin. The only build is
+the tensor-core `.so` from
+[DeepSeekv41-Flash-EXL3-TC-MoE](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE).
+
+1. Build `out/_dsv41_tc_moe_C.abi3.so` with that repo's
+   `vllm_exl3/tc_moe/build_standalone.py`, against the PyTorch in the image
+   you already serve this model with.
+2. Make one checkpoint directory. Official 1017 tensors for attention,
+   shared experts, the head, the draft, and Engram. LibertAI tensors for
+   layers 0–39 routed experts only. Copy `quantization_config.json` into
+   that directory.
+3. The compressor projection is BF16. The image must build that linear
+   with no quant config. Passing this config into it packs the weight into
+   the wrong shape.
+4. Launch with [scripts/run-tp4-1017.sh](scripts/run-tp4-1017.sh). Set
+   `DSV41_IMAGE` to that existing image, `DSV41_MODEL_DIR` to the hybrid
+   directory, and the same plugin, hook, `.so`, and Morrowmake host-allreduce
+   files the kernel script takes. Set `DSV41_ARENA_CACHE_DIR` to a directory
+   on fast disk.
+
+The script turns on `VLLM_EXL3_ARENA_CACHE`. The first start writes the
+arenas. A later start reads them. The loader skips the write if less than
+4 GiB would remain free. One layer file is about 1.1 GiB. Decode does not
+use the disk cache. It only shortens the next load.
+
+`--max-model-len 262144` is the cap for these numbers. The weights address
+1,048,576. The kernel repo's `scripts/run-tp4-tcmoe.sh` is the same launch
+for the previous checkpoint. It did not document the arena cache. It does
+now, when `DSV41_ARENA_CACHE_DIR` is set.
+
+Serve flags for this measurement: `--tensor-parallel-size 4`,
+`--max-model-len 262144`, `--max-num-seqs 8`, `--max-num-batched-tokens 2048`,
+`--gpu-memory-utilization 0.97`, `--kv-cache-dtype fp8_ds_mla`, Engram
+`cpu_offload`, prefix caching, `--async-scheduling`, DSpark depth 5, CUDA
+graph mode `FULL_AND_PIECEWISE` with capture sizes
+`1,2,3,4,6,8,12,18,24,30,36,42,48`.
+
+```
+VLLM_USE_V2_MODEL_RUNNER=0
+DSV41_DSPARK_V1=1
+VLLM_EXL3_COOP=1
+VLLM_HOST_ALLREDUCE=1
+NCCL_P2P_DISABLE=1
+VLLM_EXL3_TC_MOE_V2=1
+VLLM_EXL3_TC_MOE_PREFILL=1
+VLLM_EXL3_TC_PREFILL_ROWS=2048
+VLLM_EXL3_MOE_TP_ALIGN=128
+VLLM_EXL3_MOE_TP_ROTATE=1
+TORCH_CUDA_ARCH_LIST=8.0
+```
+
+The MoE kernels and the row rule are in
+[DeepSeekv41-Flash-EXL3-TC-MoE](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE).
+They run the experts. They do not choose which file an attention weight
+comes from.
+
+## Weight split
+
+LibertAI supplies `layers.0`–`layers.39` routed experts only. Expert width
+is on the trellis: most of those layers are 3-bit, and layers 18–22 are
+2-bit. The `bits` field in the config is not that width.
+
+Attention, shared experts, the head, the draft, and Engram weight plus
+scale come from the official checkpoint. There is no second conversion and
+no Engram table from the previous model. Using the published 1017 table
+means the lookup keys match the checkpoint they were trained with.
+LibertAI's own check with Engram switched off jumps code perplexity from
+1.91 to 4.16 and prose from 6.45 to 9.06.
+
+## Reader
+
+[quantization_config.json](quantization_config.json) is the switch. The
+EXL3 reader already branches on these keys. Two of them differ from its
+defaults:
+
+| Key | 1017 | If you leave the default |
+|---|---|---|
+| `head_bits` | omitted | when it is set, attention and the draft are built as EXL3 |
+| `mtp_experts` | `source` | `exl3`, which quantizes the draft experts |
+
+`mtp_experts_start_layer` is 40, so draft experts stay official FP4.
+`scope` is `dsv41_main_routed_experts_only`. Do not set `non_routed_exl3`.
+Attention, shared experts, the head, and Engram then stay on
+`deepseek_v4_fp8`.
+
+## Benchmarks
+
+140 W, thinking off, temperature 0, same prompts as the previous 140 W
+sweep. Median of three warmed runs versus the previous Mia EXL3 3.0 bpw
+serve, median of five. Decode is per stream after the first token.
+
+| | 1017 | Previous 140 W |
+|---|---:|---:|
+| Structured tok/s | 180.4 | 178.6 |
+| Code tok/s | 137.1 | 138.7 |
+| Prose tok/s | 96.6 | 84.9 |
+
+The cycle is about 34 ms. Structured keeps 5.97 tokens per step. Prose
+keeps 3.31, versus about 3.12 on the previous shipped prose cell
+(91 tok/s). The prose gain is more accepted draft tokens, not a faster
+step.
+
+Aggregate is every completion token divided by the wall time of the batch.
+Decode is the per-stream rate beside it. Code stopped at 95 tokens on
+every stream, so its one-user aggregate includes startup. Structured and
+prose ran to 400.
+
+| Users | Structured | Code | Prose |
+|---:|---:|---:|---:|
+| 1 | 156.5 / 180.8 | 93.4 / 137.2 | 89.5 / 95.9 |
+| 2 | 248.0 / 155.3 | 127.6 / 112.7 | 133.6 / 71.3 |
+| 4 | 419.2 / 114.2 | 173.2 / 83.0 | 187.8 / 50.0 |
+| 8 | 621.1 / 85.1 | 376.1 / 62.8 | 282.5 / 37.2 |
+
+Each cell is aggregate / decode. The previous structured eight-user
+aggregate on the 140 W sweep was 564.7.
+
+Long context on `/v1/completions`, 128 output tokens, median of three,
+versus the previous 140 W curve. Each cell is prefill tok/s, decode tok/s,
+and wall time.
+
+| Prompt | 1017 | Previous 140 W |
+|---:|---|---|
+| 2,048 | 1,523 / 150.3 / 2.19 s | 1,570 / 149.2 / 2.16 s |
+| 8,192 | 1,531 / 148.2 / 6.21 s | 1,528 / 146.8 / 6.22 s |
+| 32,768 | 1,526 / 148.4 / 22.33 s | 1,519 / 148.5 / 22.42 s |
+| 65,536 | 1,460 / 150.5 / 45.73 s | 1,453 / 149.9 / 45.94 s |
+| 131,072 | 1,330 / 163.9 / 99.37 s | 1,329 / 156.5 / 99.48 s |
+
+## Context
+
+262,144 is the cap this serve was launched with, the same cap as the
+previous measurement. It is not a property of the weights. The checkpoint
+addresses 1,048,576 tokens, YaRN ×16 from 65,536.
+
+The KV pool on this run is 1,534,065 tokens, 5.85 windows of 262,144,
+versus 616,916 and about 2.4 windows on the previous quant. Eight chats
+fit at about 192k each. One chat cannot spend the whole pool. Vision is on
+(32-layer tower, hidden 1024). The drafter stays text-only.
+
+## Needles
+
+9/9. The needle code was `cobalt-heron-4417`, depths 10 / 50 / 90. Prompt
+lengths on this run were 30,225, 120,967, and 241,425. The previous grid
+was 9/9 at 32,706, 131,010, and 261,505.
+
+## Accuracy
+
+LibertAI measured their full-trunk 2.9 bpw pack, which also quantizes
+attention and a 6-bit head, on unpublished held-out text (32×2048). Code
+was 1.9094 against 1.8749 unquantized (+1.8%). Prose was 6.4520 against
+6.4277 (+0.4%).
+
+This serve quantizes only the routed experts, so it should sit closer to
+the unquantized column than that 2.9 bpw row. That is an expectation, not
+a new measurement. Their corpus was not rerun here.
+
+## Credits
+
+Curtis White / CurtisAccelerate, for this recipe and these measurements.
+
+DeepSeek, for the 1017 checkpoint.
+
+LibertAI, for the EXL3 2.9 expert pack. The quant is theirs.
+
+Morrowmake, for the tensor-core EXL3 MoE kernels and the host-staged
+all-reduce in [vllm-cmp170hx](https://github.com/Morrowmake/vllm-cmp170hx),
+and for the published CMP 170HX recipe those kernels were written for.
+
+Mia-AiLab, for the EXL3 3.0 bpw checkpoint this serve is compared with.
+
+Turboderp, for the EXL3 format in
+[exllamav3](https://github.com/turboderp-org/exllamav3).
+
+The row rule on this hardware is
+[DeepSeekv41-Flash-EXL3-TC-MoE](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE).
