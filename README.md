@@ -197,7 +197,10 @@ a new measurement. Their corpus was not rerun here.
 
 ## Credits
 
-Curtis White / CurtisAccelerate, for this recipe and these measurements.
+Curtis White / CurtisAccelerate. The row rule on this hardware is
+[DeepSeekv41-Flash-EXL3-TC-MoE](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE).
+
+## Special thanks
 
 DeepSeek, for the 1017 checkpoint.
 
@@ -211,6 +214,3 @@ Mia-AiLab, for the EXL3 3.0 bpw checkpoint this serve is compared with.
 
 Turboderp, for the EXL3 format in
 [exllamav3](https://github.com/turboderp-org/exllamav3).
-
-The row rule on this hardware is
-[DeepSeekv41-Flash-EXL3-TC-MoE](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE).
