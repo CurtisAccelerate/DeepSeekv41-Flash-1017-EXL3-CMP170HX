@@ -2,8 +2,10 @@
 
 Curtis White ([CurtisAccelerate](https://github.com/CurtisAccelerate)).
 
-180.4 tok/s structured, 137.1 code, 96.6 prose. Eight users aggregate
-621, 376, and 283.
+The October 17 measurements were 180.4 tok/s structured, 137.1 code,
+96.6 prose; eight users aggregate 621, 376, and 283. The October 21
+controlled kernel sweeps and standardized four-Spark comparison are linked
+under [Kernel improvements](#kernel-improvements--october-21-2026).
 
 Routed experts only, layers 0–39, are LibertAI EXL3 2.9. Attention, shared
 experts, the head, the draft, and Engram stay the official FP8 checkpoint.
@@ -137,7 +139,36 @@ defaults:
 Attention, shared experts, the head, and Engram then stay on
 `deepseek_v4_fp8`.
 
-## Benchmarks
+## Kernel improvements — October 21, 2026
+
+A six-row ExLlamaV3 cooperative MoE experiment on **4× CMP 170HX**
+preserves the EXL3 weight format and transposes the MMA operands. It passed
+72/72 fixture/card bitwise comparisons and reduced tested expert latency
+by about 4.8–6.7%. Controlled serving showed about 2–3% short-context decode improvement;
+the public serving baseline remains selected. The baseline is a controlled
+CUDA 12.8 rebuild, not proven identical to the historical stock binary.
+
+[Two controlled sweep tables](benchmarks/2026-10-21/kernel-sweeps.md) cover
+1/2/4/8 users and 2K–128K context. The separate
+[4× CMP 170HX versus 4× DGX Spark comparison](benchmarks/2026-10-21/spark-comparison.md)
+reports three complete passes: C8 aggregate median **273.48 tok/s**
+[269.98–278.88], versus published TensorFold stock both-rails + patch0004
+**221.66 tok/s**. Single-user aggregate was **92.85 versus 98.55 tok/s**;
+93,335-token cold prefill took **67.975 versus 42.180 seconds**. This
+descriptive comparison uses different systems,
+quantizations and speculative work; it is not a causal kernel gain or quality
+equivalence result. C8 in the controlled sweep showed +0.02% structured and
++0.41% code; prose differed in output/work and cannot isolate the kernel.
+
+The [measured source patch](patches/exllamav3-six-row-transpose.patch) applies
+to ExLlamaV3 at `da68d57de61781e5b74ad68698ac4caf36408d7a`.
+It is an experimental artifact: broader source integration needs a guard
+matching the tested SM80/K2–K3/six-row geometry, correctness tests and a
+matched-toolchain rebuild. See [scope and attribution](patches/exllamav3-six-row-transpose-NOTICE.txt)
+and the [MIT license](patches/EXLLAMAV3-LICENSE.txt). No new upstream PR or
+production default change is represented by this record.
+
+## Historical benchmarks — October 17, 2026
 
 140 W, thinking off, temperature 0, same prompts as the previous 140 W
 sweep. Median of three warmed runs versus the previous Mia EXL3 3.0 bpw
@@ -228,3 +259,4 @@ Mia-AiLab, for the EXL3 3.0 bpw checkpoint this serve is compared with.
 
 Turboderp, for the EXL3 format in
 [exllamav3](https://github.com/turboderp-org/exllamav3).
+

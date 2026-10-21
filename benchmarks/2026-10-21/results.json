@@ -1,0 +1,342 @@
+{
+  "date": "2026-10-21",
+  "system": "4× CMP 170HX",
+  "status": "experimental candidate; public baseline selected",
+  "baseline_toolchain": "controlled CUDA12.8 rebuild; not attested identical to historical CUDA13",
+  "short_concurrency": {
+    "requests": 276,
+    "measured_requests": 270,
+    "batches": 72,
+    "paired_batches_per_cell": 3,
+    "metric": "all output tokens/full executor-pool batch wall including TTFT and DONE/stream-close",
+    "cells": [
+      {
+        "workload": "structured",
+        "concurrency": 1,
+        "baseline_aggregate_tok_s": 161.17359208664308,
+        "candidate_aggregate_tok_s": 164.56427603211299,
+        "baseline_runs": [
+          161.17359208664308,
+          161.17519150258403,
+          161.14303894893746
+        ],
+        "candidate_runs": [
+          164.65916172244434,
+          164.56427603211299,
+          164.11204914091311
+        ]
+      },
+      {
+        "workload": "structured",
+        "concurrency": 2,
+        "baseline_aggregate_tok_s": 240.64891970619837,
+        "candidate_aggregate_tok_s": 240.59408137452317,
+        "baseline_runs": [
+          240.64891970619837,
+          240.7324110019325,
+          240.4549257631318
+        ],
+        "candidate_runs": [
+          213.26427341322645,
+          240.96231457141974,
+          240.59408137452317
+        ]
+      },
+      {
+        "workload": "structured",
+        "concurrency": 4,
+        "baseline_aggregate_tok_s": 379.1830489293812,
+        "candidate_aggregate_tok_s": 378.52375577283345,
+        "baseline_runs": [
+          351.59958563568944,
+          379.22704812746406,
+          379.1830489293812
+        ],
+        "candidate_runs": [
+          378.3182126716716,
+          378.52375577283345,
+          378.8128229479073
+        ]
+      },
+      {
+        "workload": "structured",
+        "concurrency": 8,
+        "baseline_aggregate_tok_s": 569.670268479119,
+        "candidate_aggregate_tok_s": 569.7838346348852,
+        "baseline_runs": [
+          568.9608108990708,
+          570.5807472284858,
+          569.670268479119
+        ],
+        "candidate_runs": [
+          536.6256181660469,
+          570.820136794593,
+          569.7838346348852
+        ]
+      },
+      {
+        "workload": "code",
+        "concurrency": 1,
+        "baseline_aggregate_tok_s": 99.45930842013031,
+        "candidate_aggregate_tok_s": 101.48415535180573,
+        "baseline_runs": [
+          99.52270690820444,
+          99.45930842013031,
+          99.42251780733613
+        ],
+        "candidate_runs": [
+          101.51300452907435,
+          101.48415535180573,
+          101.21861631235767
+        ]
+      },
+      {
+        "workload": "code",
+        "concurrency": 2,
+        "baseline_aggregate_tok_s": 129.5894106845805,
+        "candidate_aggregate_tok_s": 130.66843478228077,
+        "baseline_runs": [
+          106.28967602556642,
+          129.7024357895949,
+          129.5894106845805
+        ],
+        "candidate_runs": [
+          130.06611746016992,
+          130.66843478228077,
+          130.72187842359824
+        ]
+      },
+      {
+        "workload": "code",
+        "concurrency": 4,
+        "baseline_aggregate_tok_s": 212.46914721488085,
+        "candidate_aggregate_tok_s": 211.81011024415847,
+        "baseline_runs": [
+          212.46914721488085,
+          212.79315434503175,
+          212.3189594641753
+        ],
+        "candidate_runs": [
+          180.40044038922417,
+          211.81011024415847,
+          217.24224409832362
+        ]
+      },
+      {
+        "workload": "code",
+        "concurrency": 8,
+        "baseline_aggregate_tok_s": 328.18979248473073,
+        "candidate_aggregate_tok_s": 329.51973338426023,
+        "baseline_runs": [
+          328.18979248473073,
+          327.6290788600471,
+          330.09281678836317
+        ],
+        "candidate_runs": [
+          330.08551051937616,
+          328.74503413737006,
+          329.51973338426023
+        ]
+      },
+      {
+        "workload": "prose",
+        "concurrency": 1,
+        "baseline_aggregate_tok_s": 90.42524310716347,
+        "candidate_aggregate_tok_s": 91.90849644201674,
+        "baseline_runs": [
+          90.42524310716347,
+          94.61725882256565,
+          90.24749692808534
+        ],
+        "candidate_runs": [
+          88.0111622518744,
+          94.85164614527912,
+          91.90849644201674
+        ]
+      },
+      {
+        "workload": "prose",
+        "concurrency": 2,
+        "baseline_aggregate_tok_s": 126.05684842538021,
+        "candidate_aggregate_tok_s": 125.39082327092008,
+        "baseline_runs": [
+          127.40847474214097,
+          125.08404007733681,
+          126.05684842538021
+        ],
+        "candidate_runs": [
+          116.34208337904231,
+          125.39082327092008,
+          134.95452253373148
+        ]
+      },
+      {
+        "workload": "prose",
+        "concurrency": 4,
+        "baseline_aggregate_tok_s": 181.92865708575698,
+        "candidate_aggregate_tok_s": 180.15490424336352,
+        "baseline_runs": [
+          178.43705125247845,
+          181.92865708575698,
+          182.10818218712203
+        ],
+        "candidate_runs": [
+          184.29615304241284,
+          175.34403016728623,
+          180.15490424336352
+        ]
+      },
+      {
+        "workload": "prose",
+        "concurrency": 8,
+        "baseline_aggregate_tok_s": 261.2637790478222,
+        "candidate_aggregate_tok_s": 271.84641059392465,
+        "baseline_runs": [
+          262.7714940731867,
+          261.2637790478222,
+          260.58543537132283
+        ],
+        "candidate_runs": [
+          272.3073546502654,
+          269.35148886478385,
+          271.84641059392465
+        ]
+      }
+    ]
+  },
+  "context_sweep": {
+    "requests": 60,
+    "pairs_per_context_cache": 3,
+    "metric": "(128-1)/(last nonempty content SSE-first nonempty content SSE)",
+    "columns": [
+      "input_tokens",
+      "baseline_cold",
+      "candidate_cold",
+      "cold_change_percent",
+      "baseline_warm",
+      "candidate_warm",
+      "warm_change_percent"
+    ],
+    "rows": [
+      [
+        2048,
+        149.87,
+        153.31,
+        2.3,
+        148.98,
+        152.14,
+        2.12
+      ],
+      [
+        8192,
+        147.84,
+        151.21,
+        2.28,
+        148.04,
+        151.06,
+        2.04
+      ],
+      [
+        32768,
+        148.49,
+        151.91,
+        2.31,
+        147.93,
+        151.59,
+        2.47
+      ],
+      [
+        65536,
+        149.93,
+        153.6,
+        2.45,
+        150.05,
+        153.72,
+        2.45
+      ],
+      [
+        131072,
+        157.49,
+        158.38,
+        0.56,
+        155.92,
+        158.86,
+        1.89
+      ]
+    ],
+    "historical_128k_decode_tok_s": 163.89,
+    "paired_text_matches": 30,
+    "full_speculative_summary_matches": 24
+  },
+  "spark_comparison": {
+    "streams_verified": 804,
+    "complete_passes": 3,
+    "all_cached_tokens_zero": true,
+    "aggregate_metric": "unweighted mean of8 rounded category aggregate rates; each aggregate=sum output/full batch wall incl TTFT/DONE-close; excludes counting",
+    "request_decode_metric": "(N-1)/(DONE-close-first token), category means then unweighted8-category headline",
+    "columns": [
+      "concurrency",
+      "cmp_aggregate_median",
+      "cmp_aggregate_min",
+      "cmp_aggregate_max",
+      "spark_stock_bothrails_patch0004_aggregate"
+    ],
+    "rows": [
+      [
+        1,
+        92.85,
+        88.11,
+        93.28,
+        98.55
+      ],
+      [
+        2,
+        122.6,
+        117.05,
+        124.51,
+        146.46
+      ],
+      [
+        3,
+        154.61,
+        141.83,
+        158.61,
+        null
+      ],
+      [
+        4,
+        186.69,
+        184.87,
+        187.49,
+        198.01
+      ],
+      [
+        5,
+        206.3,
+        202.23,
+        209.76,
+        null
+      ],
+      [
+        6,
+        219.07,
+        219.07,
+        223.56,
+        null
+      ],
+      [
+        8,
+        273.48,
+        269.98,
+        278.88,
+        221.66
+      ]
+    ],
+    "c8_ratio_descriptive_rounded": 1.234,
+    "limitations": [
+      "different hardware/quantization/engines and output/speculative work",
+      "not causal kernel gain or quality-equivalence result",
+      "ranges are observed min/max, not confidence intervals"
+    ]
+  }
+}
