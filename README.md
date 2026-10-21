@@ -160,13 +160,13 @@ quantizations and speculative work; it is not a causal kernel gain or quality
 equivalence result. C8 in the controlled sweep showed +0.02% structured and
 +0.41% code; prose differed in output/work and cannot isolate the kernel.
 
-The [measured source patch](patches/exllamav3-six-row-transpose.patch) applies
-to ExLlamaV3 at `da68d57de61781e5b74ad68698ac4caf36408d7a`.
-It is an experimental artifact: broader source integration needs a guard
-matching the tested SM80/K2–K3/six-row geometry, correctness tests and a
-matched-toolchain rebuild. See [scope and attribution](patches/exllamav3-six-row-transpose-NOTICE.txt)
-and the [MIT license](patches/EXLLAMAV3-LICENSE.txt). No new upstream PR or
-production default change is represented by this record.
+The [kernel source, CPU check and qualification notes](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/fb9786ec0ed6a94225ddc4b0aa2976b9f9a8bf69/experiments/exl3-cooperative-decode)
+are maintained in the primary kernel repository, pinned here to commit
+`fb9786ec0ed6a94225ddc4b0aa2976b9f9a8bf69`. The patch applies to ExLlamaV3
+at `da68d57de61781e5b74ad68698ac4caf36408d7a`. It remains an experimental
+artifact requiring a guard matching the tested scope before general
+integration. This 1017 repository maintains the model recipe and benchmark
+evidence. No upstream PR or production default change is represented by this record.
 
 ## Historical benchmarks — October 17, 2026
 

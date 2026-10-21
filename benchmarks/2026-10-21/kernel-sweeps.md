@@ -81,3 +81,7 @@ not distributed here. The source patch is experimental and the public serving
 baseline remains selected. No general task-quality or full-model bitwise
 equivalence claim follows. Measurements/experiment: Curtis White /
 CurtisAccelerate. ExLlamaV3 source: Turboderp (MIT).
+
+The [canonical kernel source and qualification notes](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/fb9786ec0ed6a94225ddc4b0aa2976b9f9a8bf69/experiments/exl3-cooperative-decode)
+are maintained in the primary kernel repository at `fb9786ec0ed6a94225ddc4b0aa2976b9f9a8bf69`.
+This repository retains the model recipe and these benchmark results.
