@@ -1,11 +1,10 @@
 # DeepSeek V4.1 Flash 1017 — EXL3 routed experts on CMP 170HX
 
-Curtis White ([CurtisAccelerate](https://github.com/CurtisAccelerate)).
+[CurtisAccelerate](https://github.com/CurtisAccelerate).
 
 The October 17 measurements were 180.4 tok/s structured, 137.1 code,
-96.6 prose; eight users aggregate 621, 376, and 283. The October 21
-controlled kernel sweeps and standardized four-Spark comparison are linked
-under [Kernel improvements](#kernel-improvements--october-21-2026).
+96.6 prose; eight users aggregate 621, 376, and 283. The latest controlled kernel, P2P and four-Spark measurements are linked
+under [Kernel improvements](#kernel-improvements--october-22-2026).
 
 Routed experts only, layers 0–39, are LibertAI EXL3 2.9. Attention, shared
 experts, the head, the draft, and Engram stay the official FP8 checkpoint.
@@ -16,7 +15,9 @@ not contain the weight files. Licenses are in [NOTICE.md](NOTICE.md).
 
 ## What you need
 
-4× CMP 170HX, 64 GB each, sm_80, tensor parallel 4, 140 W, peer access off.
+Historical recipe: 4× CMP 170HX, 64 GB each, sm_80, tensor parallel 4,
+140 W, peer access off. The separate October 22 experiment enables only
+qualified socket-local peers; it does not change the launch template below.
 This run filled about 62.5 GB of each card.
 
 The host this was measured on has 378 GB of RAM visible to the OS. That is
@@ -139,13 +140,45 @@ defaults:
 Attention, shared experts, the head, and Engram then stay on
 `deepseek_v4_fp8`.
 
+## Kernel improvements — October 22, 2026
+
+**Controlled counting: small reproducible kernel gains. Resident A/B testing:
+no weight reload.** On 4× CMP 170HX, the four-round sweep confirmed **+2.86%**
+from the EXL transpose optimization and **+1.74% further** from six-row host
+all-reduce tuning. A separate eight-pair confirmation measured
+**184.21 → 188.13 tok/s (+2.21%)** for host tuning.
+
+**Hybrid P2P:** socket-local peers plus host communication across sockets,
+restricted to 48-row collectives. C8 counting improved
+**572.60 → 586.31 aggregate tok/s (+2.43% paired)** with matched work.
+Large-prefill paths did not win and remain unchanged. General prose benefit
+is unproven; this is an opt-in topology-specific experiment.
+
+**Full standardized suite:** C8 aggregate **271.57 tok/s**, versus previous
+**273.48** and the published **four-DGX-Spark 221.66**. C1 aggregate was
+**91.44 versus Spark 98.55**; 93,335-token prefill took **68.003 versus
+42.180 s**. Different quants/engines/hardware prevent causal or quality claims.
+
+Read the [controlled tables, 128K sweep, Spark comparison and resident P2P A/B](benchmarks/2026-10-22/README.md),
+with [sanitized numerical records](benchmarks/2026-10-22/results.json).
+The primary repo maintains the [new host-tuning patch](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/2b15833e00c59ecb06692ca8dee64cd1cabc18da/experiments/host-allreduce-six-row),
+[P2P design](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/blob/2b15833e00c59ecb06692ca8dee64cd1cabc18da/docs/hybrid-p2p-broadwell.md), and
+[online CUDA graph technique](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/blob/2b15833e00c59ecb06692ca8dee64cd1cabc18da/docs/resident-cuda-graph-optimization.md).
+Compatible late registration took about **0.30 s across four ranks**; updates
+to 600 nodes/rank took **2.7–3.9 ms**, without reloading model/Engram or recapture.
+Requests are drained during changes; this is not arbitrary live engine replacement.
+
+The selected measured runtime keeps transpose + six-row tuning + narrow P2P.
+Published launch templates retain their existing defaults. The October 21
+section below describes its earlier experiment state, not current selection.
+
 ## Kernel improvements — October 21, 2026
 
 A six-row ExLlamaV3 cooperative MoE experiment on **4× CMP 170HX**
 preserves the EXL3 weight format and transposes the MMA operands. It passed
 72/72 fixture/card bitwise comparisons and reduced tested expert latency
 by about 4.8–6.7%. Controlled serving showed about 2–3% short-context decode improvement;
-the public serving baseline remains selected. The baseline is a controlled
+the public serving baseline remained selected at the end of that experiment. The baseline is a controlled
 CUDA 12.8 rebuild, not proven identical to the historical stock binary.
 
 [Two controlled sweep tables](benchmarks/2026-10-21/kernel-sweeps.md) cover
@@ -242,7 +275,7 @@ a new measurement. Their corpus was not rerun here.
 
 ## Credits
 
-Curtis White / CurtisAccelerate. The row rule on this hardware is
+CurtisAccelerate. The row rule on this hardware is
 [DeepSeekv41-Flash-EXL3-TC-MoE](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE).
 
 ## Attribution -- Special Thanks!
@@ -259,4 +292,3 @@ Mia-AiLab, for the EXL3 3.0 bpw checkpoint this serve is compared with.
 
 Turboderp, for the EXL3 format in
 [exllamav3](https://github.com/turboderp-org/exllamav3).
-

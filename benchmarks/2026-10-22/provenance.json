@@ -1,0 +1,25 @@
+{
+  "benchmark_script_sha256": "e0d6b2d25bd585d11fbdf39c2ddcdf7a4de8ab685af6bd42465e69f3ee6e80a8",
+  "benchmark_prompts_sha256": "f8106746dc729d287d3509376d683719862b13f3657847e86153856be6c80bb3",
+  "spark_source_commit": "9fa230d3eb119f588e690bf9b87ce41ed902db60",
+  "exl_baseline_cubin_sha256": "506f7ccd0108693e8c9f97f866330c976d72fbfca8e093e414f2150962d7560f",
+  "exl_transpose_cubin_sha256": "a4c2ed3e83ee8c9025962379fe1782b66c38b340f05cfa986b6d29c5ded63187",
+  "previous_spark_result_sha256": [
+    "d4ceda6c5b4c26f81f103d014b38b5254edd3de46bf20668fb0c3b4710510ac3",
+    "41a94a276b7e49e5e4ebc829c4bba0630ce9f457cf8bff23910d5c6c6559f2d8",
+    "303e526cc728dcea449c2eaf991071e007d92623e08ae55896d554db4ac9b12d"
+  ],
+  "current_spark_result_sha256": [
+    "5b6a8cee7ef669e9a902181716c8fcea9c9713098183323467048d4f60fa08ae",
+    "c329a846eb982f3ee8b60bf3bf06180071f97859510eb71839b7dcb541a313c0",
+    "c856bad6a6a891d1284ec687febe0ed007f7da309f29405cbd310d79cab658bc"
+  ],
+  "retained_private_evidence_archive_sha256": {
+    "paired_short": "3df67215c4662dd96854abc8dfe08b06efcbd4af0994a76f38d79413f0e0c3a3",
+    "context_and_spark": "7b40f380640b3e9871497e7f4bcec06bb7d6fbe81fdd07af6adc79e9e6d311eb",
+    "resident_subset": "48d278c9fd3e58f61dfae7121c2640ef22234cd72133411b94331b66c4903ec2"
+  },
+  "public_results_sha256": "d5cdb3ea950ada54a7342b03fc8800f93684489148478de47dce8c803a77c84e",
+  "scope": "Hashes identify retained evidence; raw archives, CUDA binaries, weights and deployment configuration are not distributed.",
+  "primary_source_commit": "2b15833e00c59ecb06692ca8dee64cd1cabc18da"
+}

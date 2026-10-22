@@ -1,7 +1,7 @@
 # Attribution
 
 The 1017 weight recipe and the measurements in this repository are by
-Curtis White (https://github.com/CurtisAccelerate).
+CurtisAccelerate (https://github.com/CurtisAccelerate).
 
 This repository does not contain weights. It did not author the DeepSeek
 checkpoint or the LibertAI quantization.

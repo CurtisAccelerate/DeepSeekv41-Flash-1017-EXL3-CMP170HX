@@ -79,8 +79,7 @@ Candidate cubin SHA256: a4c2ed3e83ee8c9025962379fe1782b66c38b340f05cfa986b6d29c5
 These identify measured artifacts; binaries and quantized weight fixtures are
 not distributed here. The source patch is experimental and the public serving
 baseline remains selected. No general task-quality or full-model bitwise
-equivalence claim follows. Measurements/experiment: Curtis White /
-CurtisAccelerate. ExLlamaV3 source: Turboderp (MIT).
+equivalence claim follows. Measurements/experiment: CurtisAccelerate. ExLlamaV3 source: Turboderp (MIT).
 
 The [canonical kernel source and qualification notes](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/fb9786ec0ed6a94225ddc4b0aa2976b9f9a8bf69/experiments/exl3-cooperative-decode)
 are maintained in the primary kernel repository at `fb9786ec0ed6a94225ddc4b0aa2976b9f9a8bf69`.
