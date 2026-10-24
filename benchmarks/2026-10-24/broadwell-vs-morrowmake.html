@@ -119,10 +119,12 @@ const charts = [
 ];
 
 function niceMax(v) {
-  const step = Math.pow(10, Math.floor(Math.log10(v)));
-  const n = v / step;
-  const nice = n <= 1 ? 1 : n <= 2 ? 2 : n <= 5 ? 5 : 10;
-  return nice * step;
+  const raw = v / 4;
+  const mag = Math.pow(10, Math.floor(Math.log10(raw)));
+  const n = raw / mag;
+  const nice = n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10;
+  const step = nice * mag;
+  return Math.ceil(v / step) * step;
 }
 
 function draw(id, cats, series, height) {
@@ -136,7 +138,7 @@ function draw(id, cats, series, height) {
   const innerH = height - top - bottom;
   let max = 0;
   series.forEach(s => s[1].forEach(v => { if (v > max) max = v; }));
-  const yMax = niceMax(max * 1.08);
+  const yMax = niceMax(max);
   const ticks = [0, 0.25, 0.5, 0.75, 1].map(f => Math.round(yMax * f));
   const ns = series.length;
   const slot = innerW / cats.length;
