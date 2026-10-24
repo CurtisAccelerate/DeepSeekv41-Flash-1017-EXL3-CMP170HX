@@ -1,21 +1,20 @@
-# Broadwell versus Morrowmake's build on the same machine
+# This Broadwell serve versus Morrowmake's repo run on this Broadwell
 
-DeepSeek V4.1 Flash 1017. Morrowmake's name is the build, not another machine.
-[dsv41-flash-cmp170hx-recipe](https://github.com/Morrowmake/dsv41-flash-cmp170hx-recipe)
-was run on this same 4× CMP 170HX, dual-socket Broadwell, PCIe Gen2 ×16, no NVLink, 140 W per card.
-These figures are not his published results from any other host.
+DeepSeek V4.1 Flash 1017, 4× CMP 170HX, dual-socket Broadwell, PCIe Gen2 ×16, no NVLink, 140 W per card.
+Every figure below is our measurement. Nothing here is a number published by Morrowmake.
 
-Broadwell is [DeepSeekv41-Flash-1017-EXL3-CMP170HX](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-1017-EXL3-CMP170HX),
+The second column is [dsv41-flash-cmp170hx-recipe](https://github.com/Morrowmake/dsv41-flash-cmp170hx-recipe)
+run on this Broadwell, engine [vllm-cmp170hx @ a0c57b523](https://github.com/Morrowmake/vllm-cmp170hx/tree/a0c57b52376efd67c57735bc949d4bafa22ae29e).
+The first column is our serve, [DeepSeekv41-Flash-1017-EXL3-CMP170HX](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-1017-EXL3-CMP170HX),
 the October 22 optimized stack (transpose, six-row host all-reduce, narrow pair route).
-The Morrowmake build uses engine [vllm-cmp170hx @ a0c57b523](https://github.com/Morrowmake/vllm-cmp170hx/tree/a0c57b52376efd67c57735bc949d4bafa22ae29e).
 The stacks differ in engine, draft depth, and KV cache. This is a system comparison on one board, not an isolated kernel result.
 
 ## Decode, one user
 
-Decode tokens per second after the first token. Broadwell is the median of four rounds.
-Morrowmake is the five-run median, peer access off.
+Decode tokens per second after the first token. Our serve is the median of four rounds.
+Morrowmake's repo, run on this Broadwell, is our five-run median, peer access off.
 
-| Task | CMP 170HX Broadwell | Morrowmake build, same Broadwell |
+| Task | CMP 170HX Broadwell | Morrowmake repo, run on this Broadwell |
 |---|---:|---:|
 | Count | 187.2 | 122.8 |
 | Code | 144.2 | 90.3 |
@@ -27,12 +26,12 @@ On this protocol, Broadwell is the highest-performing build tested on this board
 
 Spark prompt set, counting excluded. Task rates are decode tokens per second per stream.
 The concurrency table is aggregate tokens per second, the mean of those eight tasks.
-Broadwell is the October 22 median of three passes. Morrowmake is one pass, peer access off.
-Morrowmake one-user code is 30.3 tok/s in that pass; the same pass reached 98.7 tok/s at two users.
+Our serve is the October 22 median of three passes. Morrowmake's repo, run on this Broadwell, is one pass we measured, peer access off.
+One-user code on that run of his repo is 30.3 tok/s; the same pass reached 98.7 tok/s at two users.
 
 ### One user, per stream
 
-| Task | CMP 170HX Broadwell | Morrowmake build, same Broadwell |
+| Task | CMP 170HX Broadwell | Morrowmake repo, run on this Broadwell |
 |---|---:|---:|
 | Code | 158.4 | 30.3 |
 | JSON | 125.2 | 64.2 |
@@ -45,7 +44,7 @@ Morrowmake one-user code is 30.3 tok/s in that pass; the same pass reached 98.7 
 
 ### Eight users, per stream
 
-| Task | CMP 170HX Broadwell | Morrowmake build, same Broadwell |
+| Task | CMP 170HX Broadwell | Morrowmake repo, run on this Broadwell |
 |---|---:|---:|
 | Code | 66.9 | 51.5 |
 | JSON | 48.9 | 41.1 |
@@ -58,7 +57,7 @@ Morrowmake one-user code is 30.3 tok/s in that pass; the same pass reached 98.7 
 
 ### Aggregate by concurrent users
 
-| Users | CMP 170HX Broadwell | Morrowmake build, same Broadwell |
+| Users | CMP 170HX Broadwell | Morrowmake repo, run on this Broadwell |
 |---:|---:|---:|
 | 1 | 91.4 | 67.2 |
 | 2 | 119.4 | 131.9 |
@@ -70,9 +69,9 @@ Morrowmake one-user code is 30.3 tok/s in that pass; the same pass reached 98.7 
 
 ## Cold prefill
 
-Prompt tokens over time to the first token, cold. On Broadwell the pair route matches peers off: that sweep made no pair calls. Morrowmake was not prefilled with the pair route on.
+Prompt tokens over time to the first token, cold. On our serve the pair route matches peers off: that sweep made no pair calls. His repo was not prefilled here with the pair route on.
 
-| Prompt | Broadwell, peers off | Broadwell, pair route | Morrowmake build, same Broadwell |
+| Prompt | Broadwell, peers off | Broadwell, pair route | Morrowmake repo, run on this Broadwell |
 |---|---:|---:|---:|
 | 2K | 1564.8 | 1565.4 | 1633.6 |
 | 8K | 1544.4 | 1544.5 | 1707.9 |
@@ -82,9 +81,9 @@ Prompt tokens over time to the first token, cold. On Broadwell the pair route ma
 
 ## Pair route on versus off
 
-One-user decode. Broadwell compares the same resident workers. Morrowmake compares two fresh boots. Those Morrowmake bars are not the five-run median in the first table. Count and code match. Morrowmake prose falls to 28.5 tok/s because two of the three runs dropped.
+One-user decode, our measurements. Our serve compares the same resident workers. His repo compares two fresh boots on this Broadwell. Those columns are not the five-run median in the first table. Count and code match. Prose on the pair-route boot of his repo falls to 28.5 tok/s because two of the three runs dropped.
 
-| Task | Broadwell, peers off | Broadwell, pair route | Morrowmake build, peers off | Morrowmake build, pair route |
+| Task | Broadwell, peers off | Broadwell, pair route | His repo, peers off | His repo, pair route |
 |---|---:|---:|---:|---:|
 | Count | 187.1 | 187.2 | 254.1 | 256.2 |
 | Code | 141.0 | 144.2 | 196.2 | 197.8 |

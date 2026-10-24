@@ -5,8 +5,8 @@
 Optimized for dual-socket Broadwell, 4× CMP 170HX, PCIe Gen2 ×16.
 This is the highest-performing build tested on that board for one-user
 decode: **187.2 / 144.2 / 101.2 tok/s** (count, code, prose).
-The Morrowmake column is his build run on this same Broadwell machine, not a result from another host.
-[Broadwell versus Morrowmake's build on the same machine](benchmarks/2026-10-24/broadwell-vs-morrowmake.md).
+The comparison measures Morrowmake's repo run on this Broadwell. Those figures are our measurements, not numbers published by Morrowmake.
+[This Broadwell serve versus Morrowmake's repo run here](benchmarks/2026-10-24/broadwell-vs-morrowmake.md).
 
 The October 17 measurements were 180.4 tok/s structured, 137.1 code,
 96.6 prose; eight users aggregate 621, 376, and 283. The latest controlled kernel, P2P and four-Spark measurements are linked
