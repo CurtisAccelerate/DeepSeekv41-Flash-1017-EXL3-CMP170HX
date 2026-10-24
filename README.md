@@ -7,6 +7,7 @@ This is the highest-performing build tested on that board for one-user
 decode: **187.2 / 144.2 / 101.2 tok/s** (count, code, prose).
 The comparison measures Morrowmake's repo run on this Broadwell. Those figures are our measurements, not numbers published by Morrowmake.
 [This Broadwell serve versus Morrowmake's repo run here](benchmarks/2026-10-24/broadwell-vs-morrowmake.md).
+The same charts: [broadwell-vs-morrowmake.html](https://curtisaccelerate.github.io/DeepSeekv41-Flash-1017-EXL3-CMP170HX/benchmarks/2026-10-24/broadwell-vs-morrowmake.html).
 
 The October 17 measurements were 180.4 tok/s structured, 137.1 code,
 96.6 prose; eight users aggregate 621, 376, and 283. The latest controlled kernel, P2P and four-Spark measurements are linked

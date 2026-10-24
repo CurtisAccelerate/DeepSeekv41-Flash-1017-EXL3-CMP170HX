@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Morrowmake's repo, run on this Broadwell</title>
+<style>
+  :root {
+    color-scheme: light;
+    --text: #1c1916;
+    --muted: #5c564e;
+    --faint: #8a8178;
+    --line: #e4dfd8;
+    --green: #2f7d4a;
+    --gray: #8a8175;
+    --blue: #3d6f9a;
+    --bg: #f7f5f2;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 15px/1.45 ui-sans-serif, system-ui, "Segoe UI", sans-serif;
+  }
+  main { max-width: 980px; margin: 0 auto; padding: 28px 20px 64px; }
+  h1 { font-size: 24px; line-height: 1.25; font-weight: 590; margin: 0 0 8px; }
+  h2 { font-size: 18px; line-height: 1.3; font-weight: 590; margin: 28px 0 10px; }
+  h3 { font-size: 14px; font-weight: 600; margin: 0 0 8px; }
+  p { margin: 0 0 10px; }
+  .lede, .note { color: var(--muted); }
+  .note { font-size: 13px; color: var(--faint); }
+  a { color: #1f4f86; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 800px) { .grid { grid-template-columns: 1fr; } }
+  figure { margin: 0; }
+  svg { display: block; width: 100%; height: auto; }
+  .legend { display: flex; flex-wrap: wrap; gap: 8px 16px; justify-content: center; margin-top: 8px; font-size: 12px; color: var(--muted); }
+  .swatch { width: 8px; height: 8px; border-radius: 99px; display: inline-block; margin-right: 6px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Morrowmake's repo, run on this Broadwell</h1>
+  <p class="lede">DeepSeek V4.1 Flash 1017, 4× CMP 170HX, dual-socket Broadwell, PCIe Gen2 ×16, 140 W per card. Every figure is our measurement of his repo on this machine. Nothing here is a number published by Morrowmake. Our serve is <a href="https://github.com/CurtisAccelerate/DeepSeekv41-Flash-1017-EXL3-CMP170HX">DeepSeekv41-Flash-1017-EXL3-CMP170HX</a>. Morrowmake's repo is <a href="https://github.com/Morrowmake/dsv41-flash-cmp170hx-recipe">dsv41-flash-cmp170hx-recipe</a>, engine <a href="https://github.com/Morrowmake/vllm-cmp170hx/tree/a0c57b52376efd67c57735bc949d4bafa22ae29e">vllm-cmp170hx @ a0c57b523</a>.</p>
+
+  <h2>Decode, one user</h2>
+  <figure id="decode"></figure>
+  <p class="note">Decode tok/s after the first token. Broadwell is DeepSeekv41-Flash-1017-EXL3-CMP170HX, the October 22 optimized stack, median of four rounds. The other series is our five-run measurement of dsv41-flash-cmp170hx-recipe on this Broadwell, peer access off.</p>
+
+  <h2>Spark real-world tasks</h2>
+  <div class="grid">
+    <div>
+      <h3>One user, per stream</h3>
+      <figure id="spark1"></figure>
+    </div>
+    <div>
+      <h3>Eight users, per stream</h3>
+      <figure id="spark8"></figure>
+    </div>
+  </div>
+  <figure id="sparkc"></figure>
+  <p class="note">Spark prompt set, counting excluded. The task bars are decode tok/s per stream. The lower chart is aggregate tok/s, the mean of those eight tasks, by user count. Broadwell is DeepSeekv41-Flash-1017-EXL3-CMP170HX, the October 22 optimized stack, median of three passes. The other series is one pass we measured of dsv41-flash-cmp170hx-recipe on this Broadwell, peer access off. One-user code on that run is 30.3 tok/s; the same pass reached 98.7 tok/s at two users.</p>
+
+  <h2>Cold prefill</h2>
+  <figure id="prefill"></figure>
+  <p class="note">Prompt tokens over time to the first token, cold. On Broadwell the pair route matches peers off: that sweep made no pair calls. His repo was not prefilled here with the pair route on.</p>
+
+  <h2>Pair route on versus off</h2>
+  <div class="grid">
+    <div>
+      <h3>CMP 170HX Broadwell, one user</h3>
+      <figure id="pair-ours"></figure>
+    </div>
+    <div>
+      <h3>His repo on this Broadwell, one user</h3>
+      <figure id="pair-his"></figure>
+    </div>
+  </div>
+  <p class="note">Peer access off versus the pair route, one-user decode. Broadwell is the same resident workers. His repo is two fresh boots we measured here. Count and code match. Prose on the pair-route boot falls to 28.5 tok/s because two of the three runs dropped. Those bars are a fresh boot, not the five-run median in the first chart.</p>
+</main>
+<script>
+const GREEN = "#2f7d4a";
+const GRAY = "#8a8175";
+const BLUE = "#3d6f9a";
+const OURS = "CMP 170HX Broadwell";
+const HIS = "His repo on this Broadwell";
+
+const charts = [
+  ["decode", ["Count", "Code", "Prose"], [
+    [OURS, [187.2, 144.2, 101.2], GREEN],
+    [HIS, [122.8, 90.3, 62.4], GRAY]
+  ], 280],
+  ["spark1", ["Code", "JSON", "Story", "Prose", "Math", "Reason", "Summary", "Format"], [
+    [OURS, [158.4, 125.2, 65.3, 83.6, 141.5, 106.2, 70.9, 160.4], GREEN],
+    [HIS, [30.3, 64.2, 41.9, 63.2, 117.8, 97.4, 66.5, 143.4], GRAY]
+  ], 280],
+  ["spark8", ["Code", "JSON", "Story", "Prose", "Math", "Reason", "Summary", "Format"], [
+    [OURS, [66.9, 48.9, 23.7, 32.4, 59.5, 42.3, 27.0, 68.3], GREEN],
+    [HIS, [51.5, 41.1, 32.5, 36.7, 46.1, 40.3, 35.0, 57.2], GRAY]
+  ], 280],
+  ["sparkc", ["1", "2", "3", "4", "5", "6", "8"], [
+    [OURS, [91.4, 119.4, 152.7, 185.6, 204.2, 216.9, 271.6], GREEN],
+    [HIS, [67.2, 131.9, 173.1, 184.9, 179.9, 205.6, 168.7], GRAY]
+  ], 260],
+  ["prefill", ["2K", "8K", "32K", "64K", "128K"], [
+    ["Broadwell, peers off", [1564.8, 1544.4, 1539.3, 1469.4, 1329.0], GRAY],
+    ["Broadwell, pair route", [1565.4, 1544.5, 1539.9, 1471.3, 1327.8], GREEN],
+    [HIS, [1633.6, 1707.9, 1732.5, 1630.6, 1558.7], BLUE]
+  ], 280],
+  ["pair-ours", ["Count", "Code", "Prose"], [
+    ["Peers off", [187.1, 141.0, 101.6], GRAY],
+    ["Pair route on", [187.2, 144.2, 101.2], GREEN]
+  ], 240],
+  ["pair-his", ["Count", "Code", "Prose"], [
+    ["Peers off", [254.1, 196.2, 139.7], GRAY],
+    ["Pair route on", [256.2, 197.8, 28.5], BLUE]
+  ], 240]
+];
+
+function niceMax(v) {
+  const step = Math.pow(10, Math.floor(Math.log10(v)));
+  const n = v / step;
+  const nice = n <= 1 ? 1 : n <= 2 ? 2 : n <= 5 ? 5 : 10;
+  return nice * step;
+}
+
+function draw(id, cats, series, height) {
+  const host = document.getElementById(id);
+  const width = Math.max(host.clientWidth, 280);
+  const left = 64;
+  const right = 12;
+  const top = 8;
+  const bottom = 28;
+  const innerW = width - left - right;
+  const innerH = height - top - bottom;
+  let max = 0;
+  series.forEach(s => s[1].forEach(v => { if (v > max) max = v; }));
+  const yMax = niceMax(max * 1.08);
+  const ticks = [0, 0.25, 0.5, 0.75, 1].map(f => Math.round(yMax * f));
+  const ns = series.length;
+  const slot = innerW / cats.length;
+  const group = slot * 0.72;
+  const barW = group / ns;
+  const svg = [];
+  svg.push(`<svg viewBox="0 0 ${width} ${height}" role="img">`);
+  ticks.forEach(t => {
+    const y = top + innerH - (t / yMax) * innerH;
+    if (t > 0) svg.push(`<line x1="${left}" x2="${width - right}" y1="${y}" y2="${y}" stroke="#e4dfd8"/>`);
+    const label = t >= 1000 ? (t / 1000).toFixed(1).replace(/\.0$/, "") + "k" : String(t);
+    svg.push(`<text x="${left - 8}" y="${y + 4}" text-anchor="end" fill="#8a8178" font-size="12">${label}</text>`);
+  });
+  cats.forEach((cat, i) => {
+    const x0 = left + i * slot + (slot - group) / 2;
+    series.forEach((s, si) => {
+      const v = s[1][i];
+      const h = (v / yMax) * innerH;
+      const x = x0 + si * barW;
+      const y = top + innerH - h;
+      svg.push(`<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${Math.max(barW - 2, 1).toFixed(1)}" height="${h.toFixed(1)}" fill="${s[2]}"/>`);
+    });
+    svg.push(`<text x="${(left + i * slot + slot / 2).toFixed(1)}" y="${height - 8}" text-anchor="middle" fill="#5c564e" font-size="12">${cat}</text>`);
+  });
+  svg.push(`</svg>`);
+  const legend = series.map(s => `<span><i class="swatch" style="background:${s[2]}"></i>${s[0]}</span>`).join("");
+  host.innerHTML = svg.join("") + `<div class="legend">${legend}<span>tok/s</span></div>`;
+}
+
+function render() { charts.forEach(c => draw(...c)); }
+render();
+addEventListener("resize", render);
+</script>
+</body>
+</html>

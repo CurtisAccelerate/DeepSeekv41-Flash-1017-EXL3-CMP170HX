@@ -2,6 +2,7 @@
 
 DeepSeek V4.1 Flash 1017, 4× CMP 170HX, dual-socket Broadwell, PCIe Gen2 ×16, no NVLink, 140 W per card.
 Every figure below is our measurement. Nothing here is a number published by Morrowmake.
+The same charts render at [broadwell-vs-morrowmake.html](https://curtisaccelerate.github.io/DeepSeekv41-Flash-1017-EXL3-CMP170HX/benchmarks/2026-10-24/broadwell-vs-morrowmake.html).
 
 The second column is [dsv41-flash-cmp170hx-recipe](https://github.com/Morrowmake/dsv41-flash-cmp170hx-recipe)
 run on this Broadwell, engine [vllm-cmp170hx @ a0c57b523](https://github.com/Morrowmake/vllm-cmp170hx/tree/a0c57b52376efd67c57735bc949d4bafa22ae29e).
