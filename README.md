@@ -3,8 +3,8 @@
 [CurtisAccelerate](https://github.com/CurtisAccelerate).
 
 Optimized for dual-socket Broadwell, 4× CMP 170HX, PCIe Gen2 ×16.
-This is the highest-performing build tested on that board for one-user
-decode: **187.2 / 144.2 / 101.2 tok/s** (count, code, prose).
+The October 22 published configuration measured **187.2 / 144.2 / 101.2 tok/s**
+(count, code, prose). The October 25 experimental update is described below.
 The comparison measures Morrowmake's repo run on this Broadwell. Those figures are our measurements, not numbers published by Morrowmake.
 [This Broadwell serve versus Morrowmake's repo run here](benchmarks/2026-10-24/broadwell-vs-morrowmake.md).
 The same charts: [broadwell-vs-morrowmake.html](https://curtisaccelerate.github.io/DeepSeekv41-Flash-1017-EXL3-CMP170HX/benchmarks/2026-10-24/broadwell-vs-morrowmake.html).
@@ -19,6 +19,30 @@ Measured on 4× CMP 170HX at 140 W.
 
 This repository is that weight selection and these measurements. It does
 not contain the weight files. Licenses are in [NOTICE.md](NOTICE.md).
+
+## Native mixed and experimental combined decode — October 25, 2026
+
+Two successive additions now have [published source and explicit opt-in component flags](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/8a59fd5a0bfbe61c43e24b01737adff18e0025d9/experiments/ds1017-native-mixed-and-split):
+native mixed K2/K3 experts, then split8/core8 attention plus a captured
+vocabulary-sharded K5 drafter. Same weights and quantization; target verification
+is unchanged. The source bundle requires startup/capture integration and does
+not activate the historical launch by exporting flags alone.
+
+From the consistently published October 22 baseline to the combined candidate,
+single-user short code/prose measured **144.23 → 155.54 / 101.16 → 116.05 tok/s**
+(**+7.84% / +14.72%**); Spark-matched code/prose measured
+**158.36 → 175.73 / 83.64 → 94.65 tok/s** (**+10.97% / +13.16%**).
+These cumulative comparisons are descriptive across runs. The latest paired
+increment over native mixed and the separate controlled **+4.10% counting**
+result are distinguished in the [full tables and quality report](benchmarks/2026-10-25/README.md).
+No consistent C4/C8 or cold-prefill gain is established.
+
+**Experimental, opt-in.** Initial numerical/runtime checks passed and the path was evaluated in
+limited matched end-to-end tests; task-quality results were mixed. Split attention changes floating-point reduction and
+is not bit-exact; broader numerical accuracy and task-quality verification is
+still warranted. The matched quality screen did not pass every criterion and
+does not establish universal quality equivalence. All public component flags
+default off.
 
 ## What you need
 

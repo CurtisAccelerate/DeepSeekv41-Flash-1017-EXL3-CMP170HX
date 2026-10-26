@@ -1,0 +1,127 @@
+{
+  "date": "2026-10-25",
+  "hardware": "4x CMP 170HX",
+  "metric": "Single-user streamed decode tokens/second",
+  "baseline": "Published October22 results, same published configuration across each suite",
+  "percent_method": "Ratios of displayed medians for all cumulative-chain columns; latest paired median effects separately retained. Historical changes are descriptive across runs, not isolated causal component gains.",
+  "rows": [
+    {
+      "benchmark": "Short code",
+      "published_baseline_tps": 144.23,
+      "native_mixed_reference_tps": 146.28,
+      "combined_tps": 155.54,
+      "part1_historical_ratio_percent": 1.4213409138182254,
+      "part2_ratio_percent": 6.330325403336068,
+      "part2_controlled_median_paired_percent": 6.33,
+      "total_historical_ratio_percent": 7.841641822089729
+    },
+    {
+      "benchmark": "Short prose",
+      "published_baseline_tps": 101.16,
+      "native_mixed_reference_tps": 102.82,
+      "combined_tps": 116.05,
+      "part1_historical_ratio_percent": 1.6409648082245987,
+      "part2_ratio_percent": 12.867146469558467,
+      "part2_controlled_median_paired_percent": 12.87,
+      "total_historical_ratio_percent": 14.719256623171217
+    },
+    {
+      "benchmark": "Spark-matched code",
+      "published_baseline_tps": 158.36,
+      "native_mixed_reference_tps": 169.44,
+      "combined_tps": 175.73,
+      "part1_historical_ratio_percent": 6.996716342510734,
+      "part2_ratio_percent": 3.712228517469307,
+      "part2_controlled_median_paired_percent": 3.71,
+      "total_historical_ratio_percent": 10.968678959333156
+    },
+    {
+      "benchmark": "Spark-matched prose",
+      "published_baseline_tps": 83.64,
+      "native_mixed_reference_tps": 88.46,
+      "combined_tps": 94.65,
+      "part1_historical_ratio_percent": 5.7627929220468666,
+      "part2_ratio_percent": 6.997513000226108,
+      "part2_controlled_median_paired_percent": 6.25,
+      "total_historical_ratio_percent": 13.163558106169294
+    }
+  ],
+  "controlled_native_mixed_counting": {
+    "before_tps": 187.7230039535026,
+    "after_tps": 195.422982379083,
+    "scope": "24 requests in 6 balanced blocks; matched output/prompt/cache/speculative work; counting only.",
+    "gain_percent": 4.101776694074033
+  },
+  "source_refs": [
+    "https://github.com/CurtisAccelerate/DeepSeekv41-Flash-1017-EXL3-CMP170HX/blob/main/benchmarks/2026-10-22/README.md"
+  ],
+  "limitations": [
+    "Historical changes describe configurations across runs, not isolated causal component effects.",
+    "No consistent C4/C8 or cold-prefill gain.",
+    "Same quant/weights; experimental split attention is not bit-exact; broader numerical accuracy and task-quality verification is needed.",
+    "Do not add percentages from different protocols or generalize counting gains to all code/prose."
+  ],
+  "quality": {
+    "matched_pairs": 10,
+    "tasks": 20,
+    "stages": 40,
+    "independent_templates": 8,
+    "repeats": 2,
+    "completed": 20,
+    "primary_case_exclusions": 0,
+    "retries": 0,
+    "code_pass": [
+      5,
+      4
+    ],
+    "code_total_per_arm": 5,
+    "prose_strict_pass": [
+      0,
+      1
+    ],
+    "prose_total_per_arm": 5,
+    "prose_checklist_and_format": [
+      5,
+      5
+    ],
+    "code_excluding_stock_sensitivity": [
+      3,
+      3
+    ],
+    "prose_lenient_attribution_sensitivity": [
+      3,
+      4
+    ],
+    "all_task_seconds": [
+      2101.4558,
+      1792.0375
+    ],
+    "code_seconds": [
+      931.757,
+      949.407
+    ],
+    "prose_seconds": [
+      1169.698,
+      842.631
+    ],
+    "both_pass_code_pairs": 4,
+    "both_pass_code_seconds": [
+      774.838,
+      764.456
+    ],
+    "strict_both_pass_prose_pairs": 0,
+    "quality_equivalence_established": false
+  },
+  "concurrency_and_prefill": {
+    "spark_c8_aggregate_tps": [
+      275.11,
+      276.55
+    ],
+    "cold_prefill_prompt_tokens": 93335,
+    "cold_prefill_prompt_tps": [
+      1389.0,
+      1391.1
+    ],
+    "scope": "Whole configurations; unsupported combined shapes use older transpose/boot + six fallback, reference uses global native mixed + six."
+  }
+}
