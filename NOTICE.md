@@ -1,6 +1,8 @@
 # Attribution
 
-The 1017 weight recipe and the measurements in this repository are by
+The published DeepSeek serving build and MoE port, 1017 weight recipe,
+six-row transpose/native-mixed changes, Engram retention integration and
+measurements are by
 CurtisAccelerate (https://github.com/CurtisAccelerate).
 
 This repository does not contain weights. It did not author the DeepSeek
@@ -14,10 +16,14 @@ checkpoint or the LibertAI quantization.
 - [LibertAIDAI/DeepSeek-V4.1-Flash-1017-EXL3-2.9bpw](https://huggingface.co/LibertAIDAI/DeepSeek-V4.1-Flash-1017-EXL3-2.9bpw)
   supplies the main routed experts, layers 0–39. LibertAI licenses that
   pack under MIT, the same license as the base model. The quant is theirs.
-- Tensor-core EXL3 MoE kernels and the host-staged all-reduce are Morrowmake's,
-  ported in
+- The original host-staged all-reduce is Morrowmake's; the six-row launch-policy
+  optimization is CurtisAccelerate's. The earlier tensor-core/prefill MoE path
+  uses Morrowmake's operator foundations, with the DeepSeek port, K2/K3 support,
+  dispatch, workspace integration and spill fixes implemented by CurtisAccelerate in
   [CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE),
-  Apache-2.0. That repository's NOTICE names the kernel commit. The 1017
+  Apache-2.0. Our newer six-row transpose and native-mixed changes instead
+  derive from Turboderp's cooperative expert kernels. That repository's NOTICE
+  separates these lineages and names their source commits. The 1017
   weight selection in this repository is not that checkpoint's reader.
 - EXL3 is the format from
   [turboderp-org/exllamav3](https://github.com/turboderp-org/exllamav3)

@@ -22,6 +22,13 @@ screen below did not pass every acceptance criterion.
 
 ## Prior work and contribution
 
+CurtisAccelerate implemented and published the DeepSeek EXL3 MoE port and
+serving build, and developed the six-row transpose/native-mixed changes,
+Engram retention/reattachment and resident A/B workflow. The new expert changes
+build on Turboderp's cooperative kernels. They are distinct from our earlier
+DeepSeek port of Morrowmake's tensor-core/prefill operators; Morrowmake also
+supplies the original host-staged collective, whose six-row tuning is our work.
+
 The attention path builds on substantial upstream work: vLLM's ROCm sparse
 attention, Fangzhou Ai's split-K decode primitives, and the SM80 adaptation by
 haosdent, thomaslwang and PixelML/sm80vllm contributors. Our wrapper directly
@@ -44,6 +51,8 @@ Turboderp, DeepSeek and LibertAI credits remain in [NOTICE.md](../../NOTICE.md).
 **Part 1, native mixed experts:** K2 retains guarded behavior and writer-fence
 handling; K3 specializes the eligible six-row native MoE contract. The previous
 transpose and six-row host-allreduce improvements were already published.
+Native mixed and the transpose modifications are CurtisAccelerate's work on
+Turboderp's ExLlamaV3 cooperative kernels, not Morrowmake's earlier tensor-core path.
 Controlled counting measured **187.723 → 195.423 tok/s (+4.10%)**, 24 requests
 in six balanced blocks, with matched prompt/output IDs, cached tokens and
 speculative work. This is not a +4.10% claim for every code or prose request.

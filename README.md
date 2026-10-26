@@ -311,7 +311,12 @@ a new measurement. Their corpus was not rerun here.
 
 ## Credits
 
-CurtisAccelerate. The row rule on this hardware is
+CurtisAccelerate implemented and published the DeepSeek V4.1 Flash EXL3 MoE
+port and serving build, the 1017 weight recipe, six-row transpose/native-mixed
+optimizations, Engram retention/reattachment, and resident A/B workflow.
+The [contribution breakdown](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/blob/main/experiments/ds1017-native-mixed-and-split/PRIOR-WORK.md#deepseek-build-expert-kernels-and-loading-separate-contributions)
+distinguishes our implementations from their upstream foundations.
+The row rule on this hardware is
 [DeepSeekv41-Flash-EXL3-TC-MoE](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE).
 
 ## Attribution -- Special Thanks!
@@ -320,9 +325,12 @@ DeepSeek, for the 1017 checkpoint.
 
 LibertAI, for the EXL3 2.9 expert pack. The quant is theirs.
 
-Morrowmake, for the tensor-core EXL3 MoE kernels and the host-staged
-all-reduce in [vllm-cmp170hx](https://github.com/Morrowmake/vllm-cmp170hx),
-and for the published CMP 170HX recipe those kernels were written for.
+Morrowmake, for the original host-staged all-reduce and the earlier tensor-core
+operators in [vllm-cmp170hx](https://github.com/Morrowmake/vllm-cmp170hx) that
+CurtisAccelerate ported to DeepSeek. Our newer six-row transpose/native-mixed
+expert changes build on Turboderp's cooperative kernels; they are a separate
+source lineage. The six-row host-collective launch tuning is also our change
+to Morrowmake's original collective.
 
 Mia-AiLab, for the EXL3 3.0 bpw checkpoint this serve is compared with.
 
