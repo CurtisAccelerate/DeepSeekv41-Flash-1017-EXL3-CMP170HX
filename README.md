@@ -44,6 +44,11 @@ still warranted. The matched quality screen did not pass every criterion and
 does not establish universal quality equivalence. All public component flags
 default off.
 
+Attention builds on vLLM's ROCm split-K kernels and PixelML's SM80 adaptation.
+CurtisAccelerate developed the DS1017-specific tuning, dispatch/capture
+integration and captured drafter path, and performed these measurements.
+[Prior work, named contributors and source lineage](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/blob/main/experiments/ds1017-native-mixed-and-split/PRIOR-WORK.md).
+
 ## What you need
 
 Historical recipe: 4× CMP 170HX, 64 GB each, sm_80, tensor parallel 4,
@@ -323,3 +328,9 @@ Mia-AiLab, for the EXL3 3.0 bpw checkpoint this serve is compared with.
 
 Turboderp, for the EXL3 format in
 [exllamav3](https://github.com/turboderp-org/exllamav3).
+
+The vLLM ROCm contributors, including Hexiang Wang, Fangzhou Ai and Tuukka
+Sarvi, for the sparse-attention and split-decode lineage; haosdent and
+thomaslwang in [PixelML/sm80vllm](https://github.com/PixelML/sm80vllm), for the
+SM80 adaptation and FP8 helpers. The October 25 attention integration builds
+on that work; [specific commits and our contributions are documented here](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/blob/main/experiments/ds1017-native-mixed-and-split/PRIOR-WORK.md).

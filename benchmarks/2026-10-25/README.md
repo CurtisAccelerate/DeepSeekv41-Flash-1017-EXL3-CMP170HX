@@ -20,6 +20,25 @@ reference; broader verification of numerical accuracy and task quality is still
 warranted. Results do not establish universal quality equivalence. The quality
 screen below did not pass every acceptance criterion.
 
+## Prior work and contribution
+
+The attention path builds on substantial upstream work: vLLM's ROCm sparse
+attention, Fangzhou Ai's split-K decode primitives, and the SM80 adaptation by
+haosdent, thomaslwang and PixelML/sm80vllm contributors. Our wrapper directly
+uses the retained partial-attention, reduction and FP8 helper kernels.
+
+CurtisAccelerate developed the DS1017-specific dispatch and cache/shape guards,
+tuned the split8/core8/reducer4 launch configuration, integrated the captured
+attention/fallback path and vocabulary-sharded K5 drafter, and performed the
+numerical checks, resident A/B benchmarks and matched agentic-task evaluation
+reported here. The gains are measurements of that integrated configuration;
+the underlying split-K attention algorithm is upstream work.
+
+The [detailed prior-work and contribution record](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/blob/main/experiments/ds1017-native-mixed-and-split/PRIOR-WORK.md)
+credits the original sparse-attention and subsequent contributors, links their
+commits, and records the exact retained dependency hashes. Existing Morrowmake,
+Turboderp, DeepSeek and LibertAI credits remain in [NOTICE.md](../../NOTICE.md).
+
 ## Two successive changes
 
 **Part 1, native mixed experts:** K2 retains guarded behavior and writer-fence

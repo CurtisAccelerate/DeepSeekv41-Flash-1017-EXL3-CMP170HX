@@ -25,3 +25,17 @@ checkpoint or the LibertAI quantization.
 - The previous comparison serve is
   [Mia-AiLab/DeepSeek-V4.1-Flash-EXL3-3.0bpw](https://huggingface.co/Mia-AiLab/DeepSeek-V4.1-Flash-EXL3-3.0bpw)
   (MIT). Those weights are not in this repository.
+
+## October 25 attention and drafter update
+
+The attention integration directly uses retained vLLM ROCm sparse-attention
+and split-K primitives, including work by Hexiang Wang, Fangzhou Ai and Tuukka
+Sarvi, with the SM80/FP8 adaptation by haosdent, thomaslwang and PixelML/sm80vllm
+contributors. The original Apache-2.0 notices and license are preserved in the
+canonical source repository.
+
+CurtisAccelerate developed the DS1017-specific dispatch, launch tuning,
+capture/fallback integration and captured vocabulary-sharded drafter path,
+and performed the measurements and validation reported here. See the
+[detailed prior-work record](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/blob/main/experiments/ds1017-native-mixed-and-split/PRIOR-WORK.md)
+for the upstream commits, dependency hashes and contribution boundaries.
