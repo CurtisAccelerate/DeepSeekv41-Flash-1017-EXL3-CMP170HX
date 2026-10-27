@@ -110,11 +110,37 @@ later run. Sampled sets draft temperature to 1. These are separate runs.
 | 7 | +3.6% | −0.7% | −2.9% | −3.9% | +3.3% | +2.7% |
 | 8 | +3.7% | −2.2% | +12.3% | +4.9% | +8.8% | +2.1% |
 
-Spark, per-stream median. Temperature 0 is ahead at every listed user count.
-Temperature 1 is ahead except 2 users and 8 users. Prefill at about 93K prompt
-tokens is −0.2% at temperature 0 and −0.2% at temperature 1.
+### Spark prompt suite, measured on this 4× CMP 170HX
 
-| Users | Spark T=0 | Spark T=1, greedy drafter |
+These rows are not a DGX Spark. “Spark” here is the prompt text and the
+timing rules in the pinned bench, run on the same 4× CMP 170HX owner as the
+rest of this page. The bench source is not in this repository. It is
+[`bench/v41bench.py`](https://github.com/tonyd2wild/DeepSeek-V4.1-Flash-vLLM-DGX-Spark/blob/9fa230d3eb119f588e690bf9b87ce41ed902db60/bench/v41bench.py)
+and
+[`bench/prompts-v1.json`](https://github.com/tonyd2wild/DeepSeek-V4.1-Flash-vLLM-DGX-Spark/blob/9fa230d3eb119f588e690bf9b87ce41ed902db60/bench/prompts-v1.json)
+at `9fa230d3`. The October 21 page that uses those same prompts for a
+hardware comparison is
+[4× CMP 170HX versus 4× DGX Spark](../2026-10-21/spark-comparison.md).
+
+The tasks in this run are ceiling count, coding, format, json, math,
+narrative, prose, reasoning, and summary. Each cell is the median per-stream
+decode rate pooled across those tasks and three passes, 268 requests a pass.
+There is no 7-user row. Temperature 0 is ahead at every listed user count.
+
+The one-user coding task in that temperature-0 run is 158.5 to 170.1
+tokens/s (+7.3%). That 170.1 figure is temperature-0 coding only. It is not
+the pooled suite cell, and it is not a temperature-1 rate.
+
+Temperature 1 leaves the drafter greedy. The sealed client sends temperature
+0; this run changed the request body to temperature 1 and did not send
+`dsv41_draft_tq`. The temperature-1 column is the same pooled suite median.
+It is not a coding rate and not a prose rate. It is ahead except at 2 users
+and 8 users.
+
+Prefill is prompt ingestion in the same passes, not decode. At about 93K
+prompt tokens it is −0.2% at temperature 0 and −0.2% at temperature 1.
+
+| Users | Suite T=0 | Suite T=1, greedy drafter |
 |---:|---:|---:|
 | 1 | +12.3% | +7.5% |
 | 2 | +3.9% | −3.4% |
