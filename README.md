@@ -20,6 +20,14 @@ Measured on 4× CMP 170HX at 140 W.
 This repository is that weight selection and these measurements. It does
 not contain the weight files. Licenses are in [NOTICE.md](NOTICE.md).
 
+## 2–8 user attention — October 26, 2026
+
+The new attention is faster at every user count from 1 through 8 on temperature-0
+count, code, and prose. One temperature-1 request should sample the drafter.
+Batches of 2–8 should keep the new attention and leave the drafter greedy.
+Prefill is flat. Draft length stays 5.
+[Headlines and tables](benchmarks/2026-10-26/README.md).
+
 ## Native mixed and experimental combined decode — October 25, 2026
 
 Two successive additions now have [published source and explicit opt-in component flags](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/8a59fd5a0bfbe61c43e24b01737adff18e0025d9/experiments/ds1017-native-mixed-and-split):
