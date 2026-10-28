@@ -327,7 +327,8 @@ a new measurement. Their corpus was not rerun here.
 
 ## Credits
 
-CurtisAccelerate implemented and published the DeepSeek V4.1 Flash EXL3 MoE
+Curtis White ([CurtisAccelerate](https://github.com/CurtisAccelerate))
+implemented and published the DeepSeek V4.1 Flash EXL3 MoE
 port and serving build, the 1017 weight recipe, six-row transpose/native-mixed
 optimizations, Engram retention/reattachment, and resident A/B workflow.
 The [contribution breakdown](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/blob/main/experiments/ds1017-native-mixed-and-split/PRIOR-WORK.md#deepseek-build-expert-kernels-and-loading-separate-contributions)
