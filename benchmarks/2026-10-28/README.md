@@ -70,11 +70,11 @@ These rows are not a DGX Spark. The prompt text and timing rules are the
 pinned bench used on October 26, run on this 4× CMP 170HX. Median of 3
 passes. The ceiling category is excluded. There is no 7-user row.
 
-The aggregate column is the headline. It is the average of the eight category
-rates, and each rate is that batch's completion tokens divided by the full
-wall clock, including the wait for the first token. Per stream starts at the
-first token, so it is decode only. At 2 users, 96.9 × 2 is about 194. That
-product leaves the first-token wait out, so it is not the 154.4 headline.
+Aggregate is the average of the eight category rates. Each rate is that
+batch's completion tokens divided by the full wall clock, including the wait
+for the first token. Per stream starts at the first token, so it is decode
+only. At 2 users, 96.9 × 2 is about 194. That product leaves the first-token
+wait out, so it is not 154.4.
 
 The 1-user pass was measured on the fused trial, which is not the serving
 path. Users 2–8 match what is serving.
