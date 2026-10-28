@@ -26,7 +26,8 @@ tensor-core path. The small differences at 7 and 8 users are run noise.
 ## Takeaways
 
 1. **2–6 users are faster.** Counting decode is +9% to +14%. Code is +6% to
-   +14%. Prose is +4% to +15%.
+   +14%. Prose is +4% to +15%. The Spark suite aggregate, October 26 to
+   October 28, is +11% to +26% at those same counts.
 2. **One user stays on the previous attention kernel.** The fused trial was
    not faster.
 3. **Seven and eight users are unchanged.** They are the tensor-core path.

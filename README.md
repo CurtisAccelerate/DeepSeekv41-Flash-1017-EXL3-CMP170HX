@@ -24,8 +24,9 @@ not contain the weight files. Licenses are in [NOTICE.md](NOTICE.md).
 
 The rebuilt gate kernel is faster at 2–6 users and matches the previous expert
 kernel bit for bit. Counting decode is +9% to +14%, code +6% to +14%, prose
-+4% to +15%. One user stays on the October 26 attention kernel. Seven and
-eight users stay on the tensor-core path.
++4% to +15%. The Spark suite aggregate, October 26 to October 28, is
++11% to +26% at those same counts. One user stays on the October 26 attention
+kernel. Seven and eight users stay on the tensor-core path.
 [Headlines and tables](benchmarks/2026-10-28/README.md).
 
 ## 2–8 user attention — October 26, 2026
