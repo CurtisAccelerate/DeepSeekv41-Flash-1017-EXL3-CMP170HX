@@ -6,6 +6,10 @@ stays 5. Temperature 0, thinking off. Decode is
 `(completion_tokens - 1) / (end - first_token)`, median of 3 runs, 400 output
 tokens.
 
+The source is
+[experiments/ds1017-decode-gates](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/blob/main/experiments/ds1017-decode-gates/README.md).
+Cloning either repository does not load it into a server.
+
 The change is a rebuilt expert gate, up, and down kernel for the decode row
 counts that 2–6 users actually hit: 8, 12, 18, 24, 30, and 36 rows. One user
 is 6 rows. The new kernel matches the previous expert kernel bit for bit, so
