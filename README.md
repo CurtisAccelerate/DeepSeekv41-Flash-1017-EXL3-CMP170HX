@@ -66,6 +66,111 @@ CurtisAccelerate developed the DS1017-specific tuning, dispatch/capture
 integration and captured drafter path, and performed these measurements.
 [Prior work, named contributors and source lineage](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/blob/main/experiments/ds1017-native-mixed-and-split/PRIOR-WORK.md).
 
+## Kernel improvements — October 22, 2026
+
+**Controlled counting: small reproducible kernel gains. Resident A/B testing:
+no weight reload.** On 4× CMP 170HX, the four-round sweep confirmed **+2.86%**
+from the EXL transpose optimization and **+1.74% further** from six-row host
+all-reduce tuning. A separate eight-pair confirmation measured
+**184.21 → 188.13 tok/s (+2.21%)** for host tuning.
+
+**Hybrid P2P:** socket-local peers plus host communication across sockets,
+restricted to 48-row collectives. C8 counting improved
+**572.60 → 586.31 aggregate tok/s (+2.43% paired)** with matched work.
+Large-prefill paths did not win and remain unchanged. General prose benefit
+is unproven; this is an opt-in topology-specific experiment.
+
+**Full standardized suite:** C8 aggregate **271.57 tok/s**, versus previous
+**273.48** and the published **four-DGX-Spark 221.66**. C1 aggregate was
+**91.44 versus Spark 98.55**; 93,335-token prefill took **68.003 versus
+42.180 s**. Different quants/engines/hardware prevent causal or quality claims.
+
+Read the [controlled tables, 128K sweep, Spark comparison and resident P2P A/B](benchmarks/2026-10-22/README.md),
+with [sanitized numerical records](benchmarks/2026-10-22/results.json).
+The primary repo maintains the [new host-tuning patch](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/2b15833e00c59ecb06692ca8dee64cd1cabc18da/experiments/host-allreduce-six-row),
+[P2P design](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/blob/2b15833e00c59ecb06692ca8dee64cd1cabc18da/docs/hybrid-p2p-broadwell.md), and
+[online CUDA graph technique](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/blob/2b15833e00c59ecb06692ca8dee64cd1cabc18da/docs/resident-cuda-graph-optimization.md).
+Compatible late registration took about **0.30 s across four ranks**; updates
+to 600 nodes/rank took **2.7–3.9 ms**, without reloading model/Engram or recapture.
+Requests are drained during changes; this is not arbitrary live engine replacement.
+
+The selected measured runtime keeps transpose + six-row tuning + narrow P2P.
+Published launch templates retain their existing defaults. The October 21
+section below describes its earlier experiment state, not current selection.
+
+## Kernel improvements — October 21, 2026
+
+A six-row ExLlamaV3 cooperative MoE experiment on **4× CMP 170HX**
+preserves the EXL3 weight format and transposes the MMA operands. It passed
+72/72 fixture/card bitwise comparisons and reduced tested expert latency
+by about 4.8–6.7%. Controlled serving showed about 2–3% short-context decode improvement;
+the public serving baseline remained selected at the end of that experiment. The baseline is a controlled
+CUDA 12.8 rebuild, not proven identical to the historical stock binary.
+
+[Two controlled sweep tables](benchmarks/2026-10-21/kernel-sweeps.md) cover
+1/2/4/8 users and 2K–128K context. The separate
+[4× CMP 170HX versus 4× DGX Spark comparison](benchmarks/2026-10-21/spark-comparison.md)
+reports three complete passes: C8 aggregate median **273.48 tok/s**
+[269.98–278.88], versus published TensorFold stock both-rails + patch0004
+**221.66 tok/s**. Single-user aggregate was **92.85 versus 98.55 tok/s**;
+93,335-token cold prefill took **67.975 versus 42.180 seconds**. This
+descriptive comparison uses different systems,
+quantizations and speculative work; it is not a causal kernel gain or quality
+equivalence result. C8 in the controlled sweep showed +0.02% structured and
++0.41% code; prose differed in output/work and cannot isolate the kernel.
+
+The [kernel source, CPU check and qualification notes](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/fb9786ec0ed6a94225ddc4b0aa2976b9f9a8bf69/experiments/exl3-cooperative-decode)
+are maintained in the primary kernel repository, pinned here to commit
+`fb9786ec0ed6a94225ddc4b0aa2976b9f9a8bf69`. The patch applies to ExLlamaV3
+at `da68d57de61781e5b74ad68698ac4caf36408d7a`. It remains an experimental
+artifact requiring a guard matching the tested scope before general
+integration. This 1017 repository maintains the model recipe and benchmark
+evidence. No upstream PR or production default change is represented by this record.
+
+## Historical benchmarks — October 17, 2026
+
+140 W, thinking off, temperature 0, same prompts as the previous 140 W
+sweep. Median of three warmed runs versus the previous Mia EXL3 3.0 bpw
+serve, median of five. Decode is per stream after the first token.
+
+| | 1017 | Previous 140 W |
+|---|---:|---:|
+| Structured tok/s | 180.4 | 178.6 |
+| Code tok/s | 137.1 | 138.7 |
+| Prose tok/s | 96.6 | 84.9 |
+
+The cycle is about 34 ms. Structured keeps 5.97 tokens per step. Prose
+keeps 3.31, versus about 3.12 on the previous shipped prose cell
+(91 tok/s). The prose gain is more accepted draft tokens, not a faster
+step.
+
+Aggregate is every completion token divided by the wall time of the batch.
+Decode is the per-stream rate beside it. Code stopped at 95 tokens on
+every stream, so its one-user aggregate includes startup. Structured and
+prose ran to 400.
+
+| Users | Structured | Code | Prose |
+|---:|---:|---:|---:|
+| 1 | 156.5 / 180.8 | 93.4 / 137.2 | 89.5 / 95.9 |
+| 2 | 248.0 / 155.3 | 127.6 / 112.7 | 133.6 / 71.3 |
+| 4 | 419.2 / 114.2 | 173.2 / 83.0 | 187.8 / 50.0 |
+| 8 | 621.1 / 85.1 | 376.1 / 62.8 | 282.5 / 37.2 |
+
+Each cell is aggregate / decode. The previous structured eight-user
+aggregate on the 140 W sweep was 564.7.
+
+Long context on `/v1/completions`, 128 output tokens, median of three,
+versus the previous 140 W curve. Each cell is prefill tok/s, decode tok/s,
+and wall time.
+
+| Prompt | 1017 | Previous 140 W |
+|---:|---|---|
+| 2,048 | 1,523 / 150.3 / 2.19 s | 1,570 / 149.2 / 2.16 s |
+| 8,192 | 1,531 / 148.2 / 6.21 s | 1,528 / 146.8 / 6.22 s |
+| 32,768 | 1,526 / 148.4 / 22.33 s | 1,519 / 148.5 / 22.42 s |
+| 65,536 | 1,460 / 150.5 / 45.73 s | 1,453 / 149.9 / 45.94 s |
+| 131,072 | 1,330 / 163.9 / 99.37 s | 1,329 / 156.5 / 99.48 s |
+
 ## What you need
 
 Historical recipe: 4× CMP 170HX, 64 GB each, sm_80, tensor parallel 4,
@@ -192,111 +297,6 @@ defaults:
 `scope` is `dsv41_main_routed_experts_only`. Do not set `non_routed_exl3`.
 Attention, shared experts, the head, and Engram then stay on
 `deepseek_v4_fp8`.
-
-## Kernel improvements — October 22, 2026
-
-**Controlled counting: small reproducible kernel gains. Resident A/B testing:
-no weight reload.** On 4× CMP 170HX, the four-round sweep confirmed **+2.86%**
-from the EXL transpose optimization and **+1.74% further** from six-row host
-all-reduce tuning. A separate eight-pair confirmation measured
-**184.21 → 188.13 tok/s (+2.21%)** for host tuning.
-
-**Hybrid P2P:** socket-local peers plus host communication across sockets,
-restricted to 48-row collectives. C8 counting improved
-**572.60 → 586.31 aggregate tok/s (+2.43% paired)** with matched work.
-Large-prefill paths did not win and remain unchanged. General prose benefit
-is unproven; this is an opt-in topology-specific experiment.
-
-**Full standardized suite:** C8 aggregate **271.57 tok/s**, versus previous
-**273.48** and the published **four-DGX-Spark 221.66**. C1 aggregate was
-**91.44 versus Spark 98.55**; 93,335-token prefill took **68.003 versus
-42.180 s**. Different quants/engines/hardware prevent causal or quality claims.
-
-Read the [controlled tables, 128K sweep, Spark comparison and resident P2P A/B](benchmarks/2026-10-22/README.md),
-with [sanitized numerical records](benchmarks/2026-10-22/results.json).
-The primary repo maintains the [new host-tuning patch](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/2b15833e00c59ecb06692ca8dee64cd1cabc18da/experiments/host-allreduce-six-row),
-[P2P design](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/blob/2b15833e00c59ecb06692ca8dee64cd1cabc18da/docs/hybrid-p2p-broadwell.md), and
-[online CUDA graph technique](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/blob/2b15833e00c59ecb06692ca8dee64cd1cabc18da/docs/resident-cuda-graph-optimization.md).
-Compatible late registration took about **0.30 s across four ranks**; updates
-to 600 nodes/rank took **2.7–3.9 ms**, without reloading model/Engram or recapture.
-Requests are drained during changes; this is not arbitrary live engine replacement.
-
-The selected measured runtime keeps transpose + six-row tuning + narrow P2P.
-Published launch templates retain their existing defaults. The October 21
-section below describes its earlier experiment state, not current selection.
-
-## Kernel improvements — October 21, 2026
-
-A six-row ExLlamaV3 cooperative MoE experiment on **4× CMP 170HX**
-preserves the EXL3 weight format and transposes the MMA operands. It passed
-72/72 fixture/card bitwise comparisons and reduced tested expert latency
-by about 4.8–6.7%. Controlled serving showed about 2–3% short-context decode improvement;
-the public serving baseline remained selected at the end of that experiment. The baseline is a controlled
-CUDA 12.8 rebuild, not proven identical to the historical stock binary.
-
-[Two controlled sweep tables](benchmarks/2026-10-21/kernel-sweeps.md) cover
-1/2/4/8 users and 2K–128K context. The separate
-[4× CMP 170HX versus 4× DGX Spark comparison](benchmarks/2026-10-21/spark-comparison.md)
-reports three complete passes: C8 aggregate median **273.48 tok/s**
-[269.98–278.88], versus published TensorFold stock both-rails + patch0004
-**221.66 tok/s**. Single-user aggregate was **92.85 versus 98.55 tok/s**;
-93,335-token cold prefill took **67.975 versus 42.180 seconds**. This
-descriptive comparison uses different systems,
-quantizations and speculative work; it is not a causal kernel gain or quality
-equivalence result. C8 in the controlled sweep showed +0.02% structured and
-+0.41% code; prose differed in output/work and cannot isolate the kernel.
-
-The [kernel source, CPU check and qualification notes](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/fb9786ec0ed6a94225ddc4b0aa2976b9f9a8bf69/experiments/exl3-cooperative-decode)
-are maintained in the primary kernel repository, pinned here to commit
-`fb9786ec0ed6a94225ddc4b0aa2976b9f9a8bf69`. The patch applies to ExLlamaV3
-at `da68d57de61781e5b74ad68698ac4caf36408d7a`. It remains an experimental
-artifact requiring a guard matching the tested scope before general
-integration. This 1017 repository maintains the model recipe and benchmark
-evidence. No upstream PR or production default change is represented by this record.
-
-## Historical benchmarks — October 17, 2026
-
-140 W, thinking off, temperature 0, same prompts as the previous 140 W
-sweep. Median of three warmed runs versus the previous Mia EXL3 3.0 bpw
-serve, median of five. Decode is per stream after the first token.
-
-| | 1017 | Previous 140 W |
-|---|---:|---:|
-| Structured tok/s | 180.4 | 178.6 |
-| Code tok/s | 137.1 | 138.7 |
-| Prose tok/s | 96.6 | 84.9 |
-
-The cycle is about 34 ms. Structured keeps 5.97 tokens per step. Prose
-keeps 3.31, versus about 3.12 on the previous shipped prose cell
-(91 tok/s). The prose gain is more accepted draft tokens, not a faster
-step.
-
-Aggregate is every completion token divided by the wall time of the batch.
-Decode is the per-stream rate beside it. Code stopped at 95 tokens on
-every stream, so its one-user aggregate includes startup. Structured and
-prose ran to 400.
-
-| Users | Structured | Code | Prose |
-|---:|---:|---:|---:|
-| 1 | 156.5 / 180.8 | 93.4 / 137.2 | 89.5 / 95.9 |
-| 2 | 248.0 / 155.3 | 127.6 / 112.7 | 133.6 / 71.3 |
-| 4 | 419.2 / 114.2 | 173.2 / 83.0 | 187.8 / 50.0 |
-| 8 | 621.1 / 85.1 | 376.1 / 62.8 | 282.5 / 37.2 |
-
-Each cell is aggregate / decode. The previous structured eight-user
-aggregate on the 140 W sweep was 564.7.
-
-Long context on `/v1/completions`, 128 output tokens, median of three,
-versus the previous 140 W curve. Each cell is prefill tok/s, decode tok/s,
-and wall time.
-
-| Prompt | 1017 | Previous 140 W |
-|---:|---|---|
-| 2,048 | 1,523 / 150.3 / 2.19 s | 1,570 / 149.2 / 2.16 s |
-| 8,192 | 1,531 / 148.2 / 6.21 s | 1,528 / 146.8 / 6.22 s |
-| 32,768 | 1,526 / 148.4 / 22.33 s | 1,519 / 148.5 / 22.42 s |
-| 65,536 | 1,460 / 150.5 / 45.73 s | 1,453 / 149.9 / 45.94 s |
-| 131,072 | 1,330 / 163.9 / 99.37 s | 1,329 / 156.5 / 99.48 s |
 
 ## Context
 
