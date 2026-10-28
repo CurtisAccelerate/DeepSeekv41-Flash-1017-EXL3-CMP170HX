@@ -84,6 +84,20 @@ path. Users 2–8 match what is serving.
 | 6 | 243.8 | 53.6 |
 | 8 | 275.7 | 45.3 |
 
+October 26 is the new-attention suite from that report. October 28 is the
+table above. Median of 3 passes, same headline rule. The runs are two days
+apart.
+
+| Users | Aggregate Oct 26 | Aggregate Oct 28 | Aggregate | Per stream Oct 26 | Per stream Oct 28 | Per stream |
+|---:|---:|---:|---:|---:|---:|---:|
+| 1 | 99.0 | 96.2 | −2.9% | 124.3 | 120.8 | −2.8% |
+| 2 | 122.6 | 154.4 | +25.9% | 78.6 | 96.9 | +23.3% |
+| 3 | 157.5 | 197.0 | +25.1% | 67.9 | 81.3 | +19.8% |
+| 4 | 185.4 | 209.3 | +12.9% | 59.9 | 66.1 | +10.5% |
+| 5 | 207.2 | 231.2 | +11.6% | 53.3 | 59.7 | +11.9% |
+| 6 | 220.5 | 243.8 | +10.6% | 48.1 | 53.6 | +11.4% |
+| 8 | 270.0 | 275.7 | +2.1% | 45.0 | 45.3 | +0.6% |
+
 The October 22 published CMP suite, a different stack and not a same-hour
 rerun, was 91.4 aggregate at 1 user, 185.6 at 4, and 271.6 at 8. Published
 per-stream was 114.7 at 1 user and 46.0 at 8.
