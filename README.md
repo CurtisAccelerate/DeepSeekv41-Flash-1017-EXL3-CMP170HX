@@ -2,17 +2,10 @@
 
 [CurtisAccelerate](https://github.com/CurtisAccelerate).
 
-Optimized for dual-socket Broadwell, 4× CMP 170HX, PCIe Gen2 ×16.
-The October 22 published configuration measured **187.2 / 144.2 / 101.2 tok/s**
-(count, code, prose). The October 25 experimental update is described below.
-The comparison measures Morrowmake's repo run on this Broadwell. Those figures are our measurements, not numbers published by Morrowmake.
-[This Broadwell serve versus Morrowmake's repo run here](benchmarks/2026-10-24/broadwell-vs-morrowmake.md).
-The same charts: [broadwell-vs-morrowmake.html](https://curtisaccelerate.github.io/DeepSeekv41-Flash-1017-EXL3-CMP170HX/benchmarks/2026-10-24/broadwell-vs-morrowmake.html).
-
-The October 17 measurements were 180.4 tok/s structured, 137.1 code,
-96.6 prose; eight users aggregate 621, 376, and 283. The latest controlled kernel, P2P and four-Spark measurements are linked
-under [Kernel improvements](#kernel-improvements--october-22-2026).
-
+We combine our optimized expert, attention and communication kernels with
+selected GNmac target/drafter paths and full prefill fusion. The latest build
+keeps BF16 KV cache; the measured speed gains and quality tradeoffs are below.
+Hardware: dual-socket Broadwell, 4× CMP 170HX at 140 W, PCIe Gen2 ×16.
 Routed experts only, layers 0–39, are LibertAI EXL3 2.9. Attention, shared
 experts, the head, the draft, and Engram stay the official FP8 checkpoint.
 Measured on 4× CMP 170HX at 140 W.
@@ -22,35 +15,75 @@ not contain the weight files. Licenses are in [NOTICE.md](NOTICE.md).
 
 ## BF16 cache and full prefill fusion — November 1, 2026
 
-The [new matched tables and likelihood report](benchmarks/2026-11-01/README.md)
-retain our optimized A/B/C decode stack and add full integer fusion for all 40
-target layers. With C target and BF16 KV fixed, 128K wall time fell
-**91.585 → 87.615 seconds** beyond MoE-only prefill. Full SPARK and previous
-baselines, quality ranks, cold stalls and GNmac attribution are reported
-separately. This is an opt-in source/qualification update; the existing launcher
-and weights are unchanged. The complete adaptive GNmac drafter policy remains
-untested here and has a concrete next-ablation plan.
+We kept our optimized expert, attention and communication paths, integrated
+selected GNmac target/drafter kernels, and completed integer prefill fusion
+across all 40 target layers. The measured build uses **BF16 KV cache** and
+Marlin dense prefill. Existing launcher defaults and weights are unchanged.
 
-### Result and quality takeaway
+### Morrow benchmark headline
 
-The isolated new prefill gain is a **4.3–6.7% request wall-time reduction**
-across 2K–128K. Current full-wall SPARK C results are **112.02 tokens/s at
-one user and 281.48 at eight**, close to prior C's 111.28 and 280.25;
-intermediate-user regressions remain in the full tables. The larger current
-A/C percentage is not the isolated gain from the new prefill kernel.
+Original means our optimized target/decode paths; updated means the selected
+GNmac-derived short-row target and draft-head/selection paths integrated with
+our retained expert, attention and collective optimizations. Both use BF16 KV
+on the same loaded model at 140 W. These figures compare the complete selected
+stacks, not the prefill fusion in isolation.
 
-On the small matched synthetic teacher screen, overall perplexity is
-**A 1.166656 / B 1.166469 / C 1.167468**, lower is better. B effectively ties
-A within repeat noise; A leads long-history and critical-field likelihood.
-These scores do not measure agent task success or drafter correctness.
-The measured C-versus-B drafting-component wall benefit is about **0.9–2.5%**;
-GNmac's complete adaptive width/gate policy remains a separate untested trial.
+Morrow prompts, temperature 0, thinking off, output cap 400; one measured batch
+per cell on this load, at one and eight concurrent users. Decode tok/s is per
+user after the first token, `(completion_tokens - 1) / (end - first_token)`;
+request wall includes the first-token wait. Positive wall reduction means
+faster completion; a negative value means a longer wait. This is a limited
+control, not a new three-repeat 1–8-user sweep.
 
+| Users | Prompt | Original decode tok/s | Updated decode tok/s | Decode change | Request wall reduction |
+| ---: | --- | ---: | ---: | ---: | ---: |
+| 1 | Count | 221.93 | 271.77 | +22.46% | +15.39% |
+| 1 | Code | 196.99 | 245.96 | +24.86% | +17.84% |
+| 1 | Prose | 116.68 | 149.54 | +28.17% | +20.44% |
+| 8 | Count | 88.10 | 81.12 | -7.92% | -40.35% |
+| 8 | Code | 76.90 | 81.53 | +6.02% | +1.60% |
+| 8 | Prose | 39.10 | 43.89 | +12.24% | +11.74% |
+
+Single-user count/code/prose request walls fell **15.39% / 17.84% / 20.44%**.
+Eight-user code/prose improved, but counting took **7.250s versus 5.166s**,
+with TTFT **2.514s versus 0.659s**. That regression remains part of the result.
+The [complete Morrow timing table](benchmarks/2026-11-01/README.md#morrow-benchmark-headline)
+includes wall/TTFT and the separate earlier full sweep.
+
+### Prefill, quality and attribution
+
+Holding the selected target paths and BF16 cache fixed, full integer fusion
+reduced 2K–128K request walls by **4.3–6.7% beyond MoE-only prefill**; at 128K,
+**91.585 → 87.615 seconds**. This is the isolated new prefill gain.
+Current SPARK full-wall rates are **112.02 tokens/s at one user and 281.48 at
+eight**, close to the earlier updated-stack results of 111.28 and 280.25;
+intermediate-user regressions remain in the full report.
+
+The original target paths led long-history and critical-field likelihood in
+the small synthetic quality screen. Overall perplexity was **1.166656 for
+the original paths versus 1.167468 for the speed-focused updated stack**,
+about **0.07% higher**, within the scale of observed repeat variation. These
+are expected-token scores, not agent task-success percentages. The full report
+retains the other target-path comparison and short-history results.
+
+The [benchmark and likelihood report](benchmarks/2026-11-01/README.md) includes
+previous baselines, measured drafting-component benefits, latency exceptions
+and GNmac attribution. The complete adaptive width/gate policy remains untested.
 The [source update](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/main/experiments/ds1017-bf16-full-fusion)
-contains the complete tested source export, change map, correctness checks and
-GNmac/Morrowmake/vLLM/EXL3 attribution. Its approximately 62,000 added lines
-include retained dependencies and reference copies, rather than that many
-lines of newly implemented kernels.
+contains qualification, source hashes and GNmac/Morrowmake/vLLM/EXL3 credits.
+Its approximately 62,000 added lines include retained dependencies, tests and
+reference copies; the runtime map identifies five integration edits and 22
+new files. The public export uses sanitized endpoint/socket examples.
+
+### Earlier reference measurements
+
+The comparison measures Morrowmake's repo run on this Broadwell. Those figures are our measurements, not numbers published by Morrowmake.
+[This Broadwell serve versus Morrowmake's repo run here](benchmarks/2026-10-24/broadwell-vs-morrowmake.md).
+The same charts: [broadwell-vs-morrowmake.html](https://curtisaccelerate.github.io/DeepSeekv41-Flash-1017-EXL3-CMP170HX/benchmarks/2026-10-24/broadwell-vs-morrowmake.html).
+
+The October 17 measurements were 180.4 tok/s structured, 137.1 code,
+96.6 prose; eight users aggregate 621, 376, and 283. The latest controlled kernel, P2P and four-Spark measurements are linked
+under [Kernel improvements](#kernel-improvements--october-22-2026).
 
 ## Expert gates for 2–6 users — October 28, 2026
 

@@ -1,15 +1,16 @@
 # BF16 cache and full prefill fusion — November 1, 2026
 
 This update keeps our optimized serving stack, integrates selected GNmac target
-and drafter paths through qualified A/B/C arms, and completes integer prefill
+and drafter paths through qualified runtime selections, and completes integer prefill
 fusion across **all 40 target layers**. It is experimental and opt-in; the
 normal public launcher is unchanged. The source and qualification are pinned
 to [this kernel commit](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/036f62398e32689e5cfa8bc6bd0255d602597dac/experiments/ds1017-bf16-full-fusion).
 
 The best-supported common settings are **BF16 KV + full integer fusion + Marlin
-dense prefill**. No arm proved best on every speed and quality measure. A leads
-long-history and critical-field likelihood; B effectively ties A overall; C is
-the fastest demonstrated A/C option and leads short-history likelihood.
+dense prefill**. No arm proved best on every speed and quality measure. The original target paths lead
+long-history and critical-field likelihood; the alternate target-only path
+effectively ties them overall. The target-plus-drafter update is the faster
+measured complete-stack option and leads short-history likelihood.
 No extra dense/cuBLAS speed-only override is justified by the current evidence.
 
 ## Labels and what was actually tested
@@ -134,17 +135,59 @@ It does **not** evaluate the drafter itself, a sampled gate's correction
 distribution or 128K/whole-agent quality. B/C target-family sharing also means
 small score differences cannot automatically be assigned to C's draft head.
 
-## Morrow and real latency exceptions
+## Morrow benchmark headline
 
-The fresh V6 control measured one repeat at users one/eight, not a new full 1–8
-sweep. Original A/B/C 1–8 baselines are supplied separately. Current one-user
-C count/code/prose streams were 271.77/245.96/149.54 tok/s; full request walls
-were 1.743/1.866/2.930s versus A's 2.060/2.271/3.683s.
+Original means our optimized target/decode paths; updated means the selected
+GNmac-derived short-row target and draft-head/selection paths integrated with
+our retained expert, attention and collective optimizations. Both use BF16 KV
+on the same loaded model at 140 W. These figures compare the complete selected
+stacks, not the prefill fusion in isolation.
 
-Eight-user count regressed: **C 7.250s / TTFT 2.514s versus A 5.166s / 0.659s**.
-C code/prose at eight users were faster. The first seeded short coding delivery
-probe also paused for **0.399s**, despite lower TTFT; seven other delivery probes
-had no such gap. These observations are retained, not hidden behind streaming rate.
+Morrow prompts, temperature 0, thinking off, output cap 400; one measured batch
+per cell on this load, at one and eight concurrent users. Decode tok/s is per
+user after the first token, `(completion_tokens - 1) / (end - first_token)`;
+request wall includes the first-token wait. Positive wall reduction means
+faster completion; a negative value means a longer wait. This is a limited
+control, not a new three-repeat 1–8-user sweep.
+
+| Users | Prompt | Original decode tok/s | Updated decode tok/s | Decode change | Request wall reduction |
+| ---: | --- | ---: | ---: | ---: | ---: |
+| 1 | Count | 221.93 | 271.77 | +22.46% | +15.39% |
+| 1 | Code | 196.99 | 245.96 | +24.86% | +17.84% |
+| 1 | Prose | 116.68 | 149.54 | +28.17% | +20.44% |
+| 8 | Count | 88.10 | 81.12 | -7.92% | -40.35% |
+| 8 | Code | 76.90 | 81.53 | +6.02% | +1.60% |
+| 8 | Prose | 39.10 | 43.89 | +12.24% | +11.74% |
+
+The fresh comparison measured one batch per cell at one/eight users, using
+the retained `results-decode-controls` rows. It excludes the separate first-use
+probe; those raw first-use results remain in
+[MORROW-CURRENT-WALLS.csv](MORROW-CURRENT-WALLS.csv).
+
+| Users | Prompt | Original wall, s | Updated wall, s | Original TTFT, s | Updated TTFT, s |
+| ---: | --- | ---: | ---: | ---: | ---: |
+| 1 | Count | 2.060 | 1.743 | 0.261 | 0.274 |
+| 1 | Code | 2.271 | 1.866 | 0.245 | 0.243 |
+| 1 | Prose | 3.683 | 2.930 | 0.263 | 0.262 |
+| 8 | Count | 5.166 | 7.250 | 0.659 | 2.514 |
+| 8 | Code | 6.056 | 5.960 | 0.756 | 0.845 |
+| 8 | Prose | 11.187 | 9.873 | 0.682 | 0.682 |
+
+The earlier full 1–8-user, three-repeat results remain in
+[MORROW-PREVIOUS-FULL.csv](MORROW-PREVIOUS-FULL.csv); they are from an earlier
+boot and are not fresh measurements of this prefill build. Machine-readable
+headline values and exact percentage formulas are in
+[MORROW-HEADLINE.csv](MORROW-HEADLINE.csv). The original/update mapping is the
+original optimized decode versus the target-plus-drafter candidate described
+in the technical labels above; no arm is being silently redefined.
+
+### Real latency exceptions
+
+Eight-user counting regressed: **updated 7.250s / TTFT 2.514s versus original
+5.166s / 0.659s**. Code/prose at eight users were faster. The first seeded
+short coding delivery probe also paused for **0.399s**, despite lower TTFT;
+seven other delivery probes had no such gap. These observations are retained
+alongside the streaming gains.
 
 Verbose logs show shared Engram/gather/draft compilation in the slow count
 window and rejection/recovery compilation during the seeded pause. This supports
