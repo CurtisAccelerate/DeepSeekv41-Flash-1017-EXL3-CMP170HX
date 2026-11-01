@@ -31,6 +31,27 @@ separately. This is an opt-in source/qualification update; the existing launcher
 and weights are unchanged. The complete adaptive GNmac drafter policy remains
 untested here and has a concrete next-ablation plan.
 
+### Result and quality takeaway
+
+The isolated new prefill gain is a **4.3–6.7% request wall-time reduction**
+across 2K–128K. Current full-wall SPARK C results are **112.02 tokens/s at
+one user and 281.48 at eight**, close to prior C's 111.28 and 280.25;
+intermediate-user regressions remain in the full tables. The larger current
+A/C percentage is not the isolated gain from the new prefill kernel.
+
+On the small matched synthetic teacher screen, overall perplexity is
+**A 1.166656 / B 1.166469 / C 1.167468**, lower is better. B effectively ties
+A within repeat noise; A leads long-history and critical-field likelihood.
+These scores do not measure agent task success or drafter correctness.
+The measured C-versus-B drafting-component wall benefit is about **0.9–2.5%**;
+GNmac's complete adaptive width/gate policy remains a separate untested trial.
+
+The [source update](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/main/experiments/ds1017-bf16-full-fusion)
+contains the complete tested source export, change map, correctness checks and
+GNmac/Morrowmake/vLLM/EXL3 attribution. Its approximately 62,000 added lines
+include retained dependencies and reference copies, rather than that many
+lines of newly implemented kernels.
+
 ## Expert gates for 2–6 users — October 28, 2026
 
 The rebuilt gate kernel is faster at 2–6 users and matches the previous expert
