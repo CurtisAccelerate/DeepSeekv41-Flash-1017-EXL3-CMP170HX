@@ -45,3 +45,15 @@ capture/fallback integration and captured vocabulary-sharded drafter path,
 and performed the measurements and validation reported here. See the
 [detailed prior-work record](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/blob/main/experiments/ds1017-native-mixed-and-split/PRIOR-WORK.md)
 for the upstream commits, dependency hashes and contribution boundaries.
+
+## November 1 GNmac integration and full prefill fusion
+
+Selected short-row FP8 target kernels, FP8 draft head and fused Markov selection
+derive from GNmac-lab's MIT-licensed DS1017 recipe. They were integrated with
+the retained CurtisAccelerate serving optimizations and explicit graph,
+sampling and qualification guards. The full integer ragged integration and
+actual ratio-1/2/sliding-window coverage are distinct from GNmac's target math
+and the retained Morrowmake/vLLM/ExLlamaV3 foundations. The complete adaptive
+GNmac drafter policy was not tested by the main run.
+See the [pinned component attribution and included licenses](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/4844d485868ee69e10ff3d0019e28dc7431bbc68/experiments/ds1017-bf16-full-fusion/NOTICE.md)
+and the [measured benchmark/quality report](benchmarks/2026-11-01/README.md).

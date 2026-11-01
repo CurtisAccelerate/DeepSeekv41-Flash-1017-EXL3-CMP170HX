@@ -1,0 +1,9 @@
+{
+  "scope": "Synthetic investigation/tool-state likelihood fixture, not real customer conversations or a standard language-model corpus.",
+  "uncompressed_sha256": "f8e7572d9c2ebf562dac97815c6b582de4116e7c3e34bf2aa3105acf790bd2f1",
+  "gzip_sha256": "f3a88b904482d023881ee9ea471c256c38a3eb0e9665cddc4c8b7542b3112303",
+  "cases": 24,
+  "gold_tokens_per_pass": 138,
+  "histories": "approximately0.4K/7.3K",
+  "target_span_sha256": "b70875596dd35b85743d344db2c9dc66f8bbaae355f72ba44adf653b8e3d1171"
+}

@@ -20,6 +20,17 @@ Measured on 4× CMP 170HX at 140 W.
 This repository is that weight selection and these measurements. It does
 not contain the weight files. Licenses are in [NOTICE.md](NOTICE.md).
 
+## BF16 cache and full prefill fusion — November 1, 2026
+
+The [new matched tables and likelihood report](benchmarks/2026-11-01/README.md)
+retain our optimized A/B/C decode stack and add full integer fusion for all 40
+target layers. With C target and BF16 KV fixed, 128K wall time fell
+**91.585 → 87.615 seconds** beyond MoE-only prefill. Full SPARK and previous
+baselines, quality ranks, cold stalls and GNmac attribution are reported
+separately. This is an opt-in source/qualification update; the existing launcher
+and weights are unchanged. The complete adaptive GNmac drafter policy remains
+untested here and has a concrete next-ablation plan.
+
 ## Expert gates for 2–6 users — October 28, 2026
 
 The rebuilt gate kernel is faster at 2–6 users and matches the previous expert
