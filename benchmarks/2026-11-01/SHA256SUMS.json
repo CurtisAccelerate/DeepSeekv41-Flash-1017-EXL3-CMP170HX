@@ -1,0 +1,97 @@
+[
+  {
+    "path": ".gitattributes",
+    "bytes": 29,
+    "sha256": "730a35ae3d558080083c3103d9ac8100c3f6561678092abe341701dfa331eb1d"
+  },
+  {
+    "path": "DELIVERY-SPARK-T1.csv",
+    "bytes": 2695,
+    "sha256": "588c67414ae580ee2cbca8c1bde1227d6c8ce1692a3b02874febaff454e1f8a4"
+  },
+  {
+    "path": "DRAFT-COMPONENT-FOLLOWUP.json",
+    "bytes": 8495,
+    "sha256": "9485678bb221d2588dc62023adff29f1fde2640055f8fd84435f1c5cbfb388d7"
+  },
+  {
+    "path": "fixtures/MANIFEST.json",
+    "bytes": 540,
+    "sha256": "edd35c01f487f386a50409b7126e68334e32d7198e6fac7891fb665510ba31c9"
+  },
+  {
+    "path": "fixtures/README.md",
+    "bytes": 1059,
+    "sha256": "058ac73a6f124f28664a03b06f09a1a05bcf162784b346f3ea0f24717b04bdfb"
+  },
+  {
+    "path": "fixtures/target-spans.json",
+    "bytes": 102356,
+    "sha256": "7b9affe54abce94540dd9d2be22ff85445929243dd8503385d79f7bf462a8274"
+  },
+  {
+    "path": "fixtures/teacher-data.json.gz",
+    "bytes": 65250,
+    "sha256": "f3a88b904482d023881ee9ea471c256c38a3eb0e9665cddc4c8b7542b3112303"
+  },
+  {
+    "path": "measurements.json",
+    "bytes": 172102,
+    "sha256": "37cb8e2f3a3efde1897037a365c50432c3f54aacff2fd26a1fb9d6f2f9d94f18"
+  },
+  {
+    "path": "MORROW-CURRENT-WALLS.csv",
+    "bytes": 2065,
+    "sha256": "b50244e87151ead7bd839d5ef8d8a5b6c9ca69b2d5a937e5cade6cd4d0d97158"
+  },
+  {
+    "path": "MORROW-PREVIOUS-FULL.csv",
+    "bytes": 13311,
+    "sha256": "376d7edc50b59213f08434ae9069f5aec11a48a9cad67e95947c31ed3a840631"
+  },
+  {
+    "path": "PREFILL-WALL-AND-GN.csv",
+    "bytes": 964,
+    "sha256": "4846fb45d4d7b87d75f84d8a5d9d2aab2baa0cbbe5ee13b185cbf5fd74de02bc"
+  },
+  {
+    "path": "quality-positions.json",
+    "bytes": 442365,
+    "sha256": "f3142f0dcd14a850180a61fcd7a2e9c7305122492922233eb3a5f0319d8be138"
+  },
+  {
+    "path": "README.md",
+    "bytes": 14427,
+    "sha256": "12fcc802ba894c6281bf1405a0829932ab5449616ca3d938064030b627bb0cca"
+  },
+  {
+    "path": "request-timings.jsonl",
+    "bytes": 934100,
+    "sha256": "a68b57003f1af84a89dc38481bc956184641c4f2c5a6f766be121cdc8309e264"
+  },
+  {
+    "path": "SNAPSHOT.json",
+    "bytes": 1315,
+    "sha256": "11d39a4bd5e2be1497d32b0eacebd6339fe1b96dabacf3f73bf25dcfc146b5b4"
+  },
+  {
+    "path": "SPARK-T1-CATEGORY-WALLS.csv",
+    "bytes": 4640,
+    "sha256": "dd5d904ecae96b4a7656e255eba17b2d8792b289a9103f5495f8121e772ba734"
+  },
+  {
+    "path": "SPARK-T1-HEADLINE.csv",
+    "bytes": 641,
+    "sha256": "955df725c963e70d1277148dab70a9a5f111a6983fefcc4733fe8f419feb2a95"
+  },
+  {
+    "path": "SPARK-T1-PREFILL.csv",
+    "bytes": 730,
+    "sha256": "7d91e0441560e7d2abf00b8b6f9c6492c46ee8d475e990c87a0c94419d787f41"
+  },
+  {
+    "path": "SPARK-T1-SEEDED-C1.csv",
+    "bytes": 76,
+    "sha256": "fec95c14e39fd8064df19cdc8b7a7f15a3b2fd1e8aac35829f3a044aa1731394"
+  }
+]

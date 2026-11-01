@@ -1,0 +1,25 @@
+{
+  "schema": "star.qualified-snapshot.v1",
+  "created_utc": "2026-11-01T21:03:37.445627+00:00",
+  "image": "sha256:db41e3e783756467713e317b9d5aee224a4ca64fad9553666f2435bdf001d30d",
+  "kv_cache_dtype": "bfloat16",
+  "effective_source_files": 180,
+  "effective_source_tree_sha256": "ad659febdc60dfd82a50ac718a318d934348745be07cc59ca219d9ff4b7ff80d",
+  "full_source_zip_sha256": "86d227270485e17bb75c515af6d87137c85fadb235d7c1fb58969542144eb96b",
+  "evidence_zip_sha256": "5adf723c1debbe48882d16a177ef9540a747b54df198d509db1b9eb0521ee1b2",
+  "recommended_common_settings": {
+    "kv": "bfloat16",
+    "prefill": "MOE_RAGGED",
+    "dense_prefill": "Marlin"
+  },
+  "decode_choices": {
+    "accuracy_first": "A",
+    "fastest_measured_A_C": "C",
+    "B": "overall likelihood tie withA; no current fullSPARK speed sweep"
+  },
+  "adaptive_gnmac_draft_policy_tested": false,
+  "scope": "Effective imported code/native objects plus exact image/launch pins; no modelweights,mutableKV,or fullcontainerfilesystem. Requires retained baseimage/model mounts to restore. Not a claim of one universally optimal decode arm.",
+  "snapshot_archive_sha256": "010378117f7d7d19745f1936f87ef8ac655ddbf64f3e9f6c5a4f8170333de999",
+  "snapshot_archive_bytes": 12833287,
+  "kernel_source_commit": "036f62398e32689e5cfa8bc6bd0255d602597dac"
+}

@@ -1,0 +1,3605 @@
+{
+  "schema": "star.agentic.loss.v1",
+  "started_unix": 1793499032.058726,
+  "endpoint": "http://127.0.0.1:8095",
+  "model": "deepseek-v4.1-flash",
+  "rows": [
+    {
+      "case": "failed_test_vs_stale_summary",
+      "variant": "short",
+      "kind": "gold",
+      "prefix_tokens": 425,
+      "prefix_sha256": "702b434509aa4d1160e740a31ce10801640935a791836c11c991a8c8dc130df9",
+      "target_text": "{\"status\":\"failed\",\"exit_code\":1}",
+      "target_ids": [
+        24313,
+        19027,
+        16562,
+        86486,
+        10177,
+        52100,
+        17636,
+        3362,
+        19,
+        95
+      ],
+      "prompt_sha256": "d08cb25533fbc5c67af059d67691cefb753ce97b00c8dcf10e96784170868efb",
+      "wall_s": 0.4210000000020955,
+      "score": {
+        "target_tokens": 10,
+        "sum_nll": 0.36145316043368325,
+        "nll_nats_per_token": 0.03614531604336833,
+        "perplexity": 1.036806500162803,
+        "critical_field": "status",
+        "critical_token_count": 3,
+        "critical_sum_nll": 0.34633934113116993,
+        "critical_nll_nats_per_token": 0.11544644704372331,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.01496528834104538,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 19027,
+            "token": "status",
+            "logprob": -7.688703772146255e-05,
+            "char_start": 2,
+            "char_end": 8
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.03365084156394005,
+            "char_start": 8,
+            "char_end": 11
+          },
+          {
+            "index": 3,
+            "token_id": 86486,
+            "token": "failed",
+            "logprob": -0.312672883272171,
+            "char_start": 11,
+            "char_end": 17
+          },
+          {
+            "index": 4,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -1.5616295058862306e-05,
+            "char_start": 17,
+            "char_end": 20
+          },
+          {
+            "index": 5,
+            "token_id": 52100,
+            "token": "exit",
+            "logprob": -2.264974000354414e-06,
+            "char_start": 20,
+            "char_end": 24
+          },
+          {
+            "index": 6,
+            "token_id": 17636,
+            "token": "_code",
+            "logprob": -2.3841855067985307e-07,
+            "char_start": 24,
+            "char_end": 29
+          },
+          {
+            "index": 7,
+            "token_id": 3362,
+            "token": "\":",
+            "logprob": -3.158996332786046e-05,
+            "char_start": 29,
+            "char_end": 31
+          },
+          {
+            "index": 8,
+            "token_id": 19,
+            "token": "1",
+            "logprob": -1.6689160474925302e-05,
+            "char_start": 31,
+            "char_end": 32
+          },
+          {
+            "index": 9,
+            "token_id": 95,
+            "token": "}",
+            "logprob": -2.0861407392658293e-05,
+            "char_start": 32,
+            "char_end": 33
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 435,
+        "total_tokens": 436,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-9ff637ed91ff3241",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "failed_test_vs_stale_summary",
+      "variant": "short",
+      "kind": "wrong",
+      "prefix_tokens": 425,
+      "prefix_sha256": "702b434509aa4d1160e740a31ce10801640935a791836c11c991a8c8dc130df9",
+      "target_text": "{\"status\":\"passed\",\"exit_code\":0}",
+      "target_ids": [
+        24313,
+        19027,
+        16562,
+        125519,
+        10177,
+        52100,
+        17636,
+        3362,
+        18,
+        95
+      ],
+      "prompt_sha256": "3ae3e52c5a3e7dec3fb8b40be5fea6df1a8f715ac69a2cf5b540cf74e91cd9f4",
+      "wall_s": 0.42199999999138527,
+      "score": {
+        "target_tokens": 10,
+        "sum_nll": 10.23812455488769,
+        "nll_nats_per_token": 1.023812455488769,
+        "perplexity": 2.783787625139025,
+        "critical_field": "status",
+        "critical_token_count": 3,
+        "critical_sum_nll": 8.984618784859776,
+        "critical_nll_nats_per_token": 2.994872928286592,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.01496528834104538,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 19027,
+            "token": "status",
+            "logprob": -7.688703772146255e-05,
+            "char_start": 2,
+            "char_end": 8
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.03365084156394005,
+            "char_start": 8,
+            "char_end": 11
+          },
+          {
+            "index": 3,
+            "token_id": 125519,
+            "token": "passed",
+            "logprob": -8.93767261505127,
+            "char_start": 11,
+            "char_end": 17
+          },
+          {
+            "index": 4,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -0.013295328244566917,
+            "char_start": 17,
+            "char_end": 20
+          },
+          {
+            "index": 5,
+            "token_id": 52100,
+            "token": "exit",
+            "logprob": -0.00020585325546562672,
+            "char_start": 20,
+            "char_end": 24
+          },
+          {
+            "index": 6,
+            "token_id": 17636,
+            "token": "_code",
+            "logprob": -9.536697689327411e-06,
+            "char_start": 24,
+            "char_end": 29
+          },
+          {
+            "index": 7,
+            "token_id": 3362,
+            "token": "\":",
+            "logprob": -0.0007438276661559939,
+            "char_start": 29,
+            "char_end": 31
+          },
+          {
+            "index": 8,
+            "token_id": 18,
+            "token": "0",
+            "logprob": -1.2314927577972412,
+            "char_start": 31,
+            "char_end": 32
+          },
+          {
+            "index": 9,
+            "token_id": 95,
+            "token": "}",
+            "logprob": -0.006011619232594967,
+            "char_start": 32,
+            "char_end": 33
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 435,
+        "total_tokens": 436,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-a2eb132af49d960d",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "failed_test_vs_stale_summary",
+      "variant": "long",
+      "kind": "gold",
+      "prefix_tokens": 7271,
+      "prefix_sha256": "445e15fd7ee6eeef831b8ac7f0ac6a4d01e3bff17caece6fb152489b4f2312fc",
+      "target_text": "{\"status\":\"failed\",\"exit_code\":1}",
+      "target_ids": [
+        24313,
+        19027,
+        16562,
+        86486,
+        10177,
+        52100,
+        17636,
+        3362,
+        19,
+        95
+      ],
+      "prompt_sha256": "85d0747f6aa498e154876e398dea3289a58d5067e97654e49b1d3f5542e6f159",
+      "wall_s": 4.594000000011874,
+      "score": {
+        "target_tokens": 10,
+        "sum_nll": 0.33632312953943,
+        "nll_nats_per_token": 0.033632312953943,
+        "perplexity": 1.0342042732962968,
+        "critical_field": "status",
+        "critical_token_count": 3,
+        "critical_sum_nll": 0.33164313801353273,
+        "critical_nll_nats_per_token": 0.11054771267117758,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.00453408295288682,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 19027,
+            "token": "status",
+            "logprob": -7.378782902378589e-05,
+            "char_start": 2,
+            "char_end": 8
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.004621420055627823,
+            "char_start": 8,
+            "char_end": 11
+          },
+          {
+            "index": 3,
+            "token_id": 86486,
+            "token": "failed",
+            "logprob": -0.3270101547241211,
+            "char_start": 11,
+            "char_end": 17
+          },
+          {
+            "index": 4,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -1.156323378381785e-05,
+            "char_start": 17,
+            "char_end": 20
+          },
+          {
+            "index": 5,
+            "token_id": 52100,
+            "token": "exit",
+            "logprob": -1.5497195136049413e-06,
+            "char_start": 20,
+            "char_end": 24
+          },
+          {
+            "index": 6,
+            "token_id": 17636,
+            "token": "_code",
+            "logprob": -1.1920928244535389e-07,
+            "char_start": 24,
+            "char_end": 29
+          },
+          {
+            "index": 7,
+            "token_id": 3362,
+            "token": "\":",
+            "logprob": -3.1470757676288486e-05,
+            "char_start": 29,
+            "char_end": 31
+          },
+          {
+            "index": 8,
+            "token_id": 19,
+            "token": "1",
+            "logprob": -1.966933996300213e-05,
+            "char_start": 31,
+            "char_end": 32
+          },
+          {
+            "index": 9,
+            "token_id": 95,
+            "token": "}",
+            "logprob": -1.9311717551317997e-05,
+            "char_start": 32,
+            "char_end": 33
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 7281,
+        "total_tokens": 7282,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-ba7854cd36241cec",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "failed_test_vs_stale_summary",
+      "variant": "long",
+      "kind": "wrong",
+      "prefix_tokens": 7271,
+      "prefix_sha256": "445e15fd7ee6eeef831b8ac7f0ac6a4d01e3bff17caece6fb152489b4f2312fc",
+      "target_text": "{\"status\":\"passed\",\"exit_code\":0}",
+      "target_ids": [
+        24313,
+        19027,
+        16562,
+        125519,
+        10177,
+        52100,
+        17636,
+        3362,
+        18,
+        95
+      ],
+      "prompt_sha256": "2b561a3371a541bf5bfa3936cec26f4a3ead02e883fa1636ed7308eab4a87520",
+      "wall_s": 4.73399999999674,
+      "score": {
+        "target_tokens": 10,
+        "sum_nll": 10.040597544917546,
+        "nll_nats_per_token": 1.0040597544917547,
+        "perplexity": 2.7293398164925016,
+        "critical_field": "status",
+        "critical_token_count": 3,
+        "critical_sum_nll": 8.716098214499652,
+        "critical_nll_nats_per_token": 2.905366071499884,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.00453408295288682,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 19027,
+            "token": "status",
+            "logprob": -7.378782902378589e-05,
+            "char_start": 2,
+            "char_end": 8
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.004621420055627823,
+            "char_start": 8,
+            "char_end": 11
+          },
+          {
+            "index": 3,
+            "token_id": 125519,
+            "token": "passed",
+            "logprob": -8.702010154724121,
+            "char_start": 11,
+            "char_end": 17
+          },
+          {
+            "index": 4,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -0.009466639719903469,
+            "char_start": 17,
+            "char_end": 20
+          },
+          {
+            "index": 5,
+            "token_id": 52100,
+            "token": "exit",
+            "logprob": -9.786603914108127e-05,
+            "char_start": 20,
+            "char_end": 24
+          },
+          {
+            "index": 6,
+            "token_id": 17636,
+            "token": "_code",
+            "logprob": -3.814689989667386e-06,
+            "char_start": 24,
+            "char_end": 29
+          },
+          {
+            "index": 7,
+            "token_id": 3362,
+            "token": "\":",
+            "logprob": -0.0005004345439374447,
+            "char_start": 29,
+            "char_end": 31
+          },
+          {
+            "index": 8,
+            "token_id": 18,
+            "token": "0",
+            "logprob": -1.3162473440170288,
+            "char_start": 31,
+            "char_end": 32
+          },
+          {
+            "index": 9,
+            "token_id": 95,
+            "token": "}",
+            "logprob": -0.0030420003458857536,
+            "char_start": 32,
+            "char_end": 33
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 7281,
+        "total_tokens": 7282,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-91f120bdaa52f791",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "exact_path_after_search",
+      "variant": "short",
+      "kind": "gold",
+      "prefix_tokens": 451,
+      "prefix_sha256": "5eeec3876c65863648775cc4a5c2a862bf5d840627d9cd14df70b09f037ec253",
+      "target_text": "{\"tool\":\"read_file\",\"path\":\"/srv/app/cache_config.py\"}",
+      "target_ids": [
+        24313,
+        72461,
+        16562,
+        1795,
+        19086,
+        10177,
+        9860,
+        16562,
+        17,
+        85,
+        31884,
+        38885,
+        5252,
+        6634,
+        48119,
+        23042,
+        62773
+      ],
+      "prompt_sha256": "b3f3f576f54bf885e535eedad8453187971edf011d551b990f744c61fb955142",
+      "wall_s": 0.4370000000053551,
+      "score": {
+        "target_tokens": 17,
+        "sum_nll": 3.246341658873206,
+        "nll_nats_per_token": 0.19096127405136507,
+        "perplexity": 1.2104125767983842,
+        "critical_field": "path",
+        "critical_token_count": 10,
+        "critical_sum_nll": 0.0016320101464941672,
+        "critical_nll_nats_per_token": 0.00016320101464941671,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.04375888407230377,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 72461,
+            "token": "tool",
+            "logprob": -0.00014554394874721766,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.25195202231407166,
+            "char_start": 6,
+            "char_end": 9
+          },
+          {
+            "index": 3,
+            "token_id": 1795,
+            "token": "read",
+            "logprob": -2.9376518726348877,
+            "char_start": 9,
+            "char_end": 13
+          },
+          {
+            "index": 4,
+            "token_id": 19086,
+            "token": "_file",
+            "logprob": -0.011053873226046562,
+            "char_start": 13,
+            "char_end": 18
+          },
+          {
+            "index": 5,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -0.00013636612857226282,
+            "char_start": 18,
+            "char_end": 21
+          },
+          {
+            "index": 6,
+            "token_id": 9860,
+            "token": "path",
+            "logprob": -1.1086402082582936e-05,
+            "char_start": 21,
+            "char_end": 25
+          },
+          {
+            "index": 7,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -3.3378546504536644e-06,
+            "char_start": 25,
+            "char_end": 28
+          },
+          {
+            "index": 8,
+            "token_id": 17,
+            "token": "/",
+            "logprob": -1.4781842764932662e-05,
+            "char_start": 28,
+            "char_end": 29
+          },
+          {
+            "index": 9,
+            "token_id": 85,
+            "token": "s",
+            "logprob": -6.437280717364047e-06,
+            "char_start": 29,
+            "char_end": 30
+          },
+          {
+            "index": 10,
+            "token_id": 31884,
+            "token": "rv",
+            "logprob": -2.3841855067985307e-07,
+            "char_start": 30,
+            "char_end": 32
+          },
+          {
+            "index": 11,
+            "token_id": 38885,
+            "token": "/app",
+            "logprob": -4.291525328881107e-06,
+            "char_start": 32,
+            "char_end": 36
+          },
+          {
+            "index": 12,
+            "token_id": 5252,
+            "token": "/c",
+            "logprob": -1.537788011773955e-05,
+            "char_start": 36,
+            "char_end": 38
+          },
+          {
+            "index": 13,
+            "token_id": 6634,
+            "token": "ache",
+            "logprob": -2.0265558760002023e-06,
+            "char_start": 38,
+            "char_end": 42
+          },
+          {
+            "index": 14,
+            "token_id": 48119,
+            "token": "_config",
+            "logprob": -0.0002499506517779082,
+            "char_start": 42,
+            "char_end": 49
+          },
+          {
+            "index": 15,
+            "token_id": 23042,
+            "token": ".py",
+            "logprob": -3.814689989667386e-06,
+            "char_start": 49,
+            "char_end": 52
+          },
+          {
+            "index": 16,
+            "token_id": 62773,
+            "token": "\"}",
+            "logprob": -0.0013317534467205405,
+            "char_start": 52,
+            "char_end": 54
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 468,
+        "total_tokens": 469,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-a1f4f475eb9056d7",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "exact_path_after_search",
+      "variant": "short",
+      "kind": "wrong",
+      "prefix_tokens": 451,
+      "prefix_sha256": "5eeec3876c65863648775cc4a5c2a862bf5d840627d9cd14df70b09f037ec253",
+      "target_text": "{\"tool\":\"read_file\",\"path\":\"/srv/app/cache-config.py\"}",
+      "target_ids": [
+        24313,
+        72461,
+        16562,
+        1795,
+        19086,
+        10177,
+        9860,
+        16562,
+        17,
+        85,
+        31884,
+        38885,
+        5252,
+        6634,
+        82823,
+        23042,
+        62773
+      ],
+      "prompt_sha256": "57466bd5c6a1eeef9cf04145df954b9bfa9ad36d934d84a3eea87881648b103a",
+      "wall_s": 0.42199999999138527,
+      "score": {
+        "target_tokens": 17,
+        "sum_nll": 12.016838215997922,
+        "nll_nats_per_token": 0.7068728362351718,
+        "perplexity": 2.027640569881989,
+        "critical_field": "path",
+        "critical_token_count": 10,
+        "critical_sum_nll": 8.77212856727121,
+        "critical_nll_nats_per_token": 0.877212856727121,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.04375888407230377,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 72461,
+            "token": "tool",
+            "logprob": -0.00014554394874721766,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.25195202231407166,
+            "char_start": 6,
+            "char_end": 9
+          },
+          {
+            "index": 3,
+            "token_id": 1795,
+            "token": "read",
+            "logprob": -2.9376518726348877,
+            "char_start": 9,
+            "char_end": 13
+          },
+          {
+            "index": 4,
+            "token_id": 19086,
+            "token": "_file",
+            "logprob": -0.011053873226046562,
+            "char_start": 13,
+            "char_end": 18
+          },
+          {
+            "index": 5,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -0.00013636612857226282,
+            "char_start": 18,
+            "char_end": 21
+          },
+          {
+            "index": 6,
+            "token_id": 9860,
+            "token": "path",
+            "logprob": -1.1086402082582936e-05,
+            "char_start": 21,
+            "char_end": 25
+          },
+          {
+            "index": 7,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -3.3378546504536644e-06,
+            "char_start": 25,
+            "char_end": 28
+          },
+          {
+            "index": 8,
+            "token_id": 17,
+            "token": "/",
+            "logprob": -1.4781842764932662e-05,
+            "char_start": 28,
+            "char_end": 29
+          },
+          {
+            "index": 9,
+            "token_id": 85,
+            "token": "s",
+            "logprob": -6.437280717364047e-06,
+            "char_start": 29,
+            "char_end": 30
+          },
+          {
+            "index": 10,
+            "token_id": 31884,
+            "token": "rv",
+            "logprob": -2.3841855067985307e-07,
+            "char_start": 30,
+            "char_end": 32
+          },
+          {
+            "index": 11,
+            "token_id": 38885,
+            "token": "/app",
+            "logprob": -4.291525328881107e-06,
+            "char_start": 32,
+            "char_end": 36
+          },
+          {
+            "index": 12,
+            "token_id": 5252,
+            "token": "/c",
+            "logprob": -1.537788011773955e-05,
+            "char_start": 36,
+            "char_end": 38
+          },
+          {
+            "index": 13,
+            "token_id": 6634,
+            "token": "ache",
+            "logprob": -2.0265558760002023e-06,
+            "char_start": 38,
+            "char_end": 42
+          },
+          {
+            "index": 14,
+            "token_id": 82823,
+            "token": "-config",
+            "logprob": -8.750249862670898,
+            "char_start": 42,
+            "char_end": 49
+          },
+          {
+            "index": 15,
+            "token_id": 23042,
+            "token": ".py",
+            "logprob": -0.00033849707688204944,
+            "char_start": 49,
+            "char_end": 52
+          },
+          {
+            "index": 16,
+            "token_id": 62773,
+            "token": "\"}",
+            "logprob": -0.021493716165423393,
+            "char_start": 52,
+            "char_end": 54
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 468,
+        "total_tokens": 469,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-818dc0fc84959ab1",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "exact_path_after_search",
+      "variant": "long",
+      "kind": "gold",
+      "prefix_tokens": 7298,
+      "prefix_sha256": "24d461886edc7c0d22647e9310f299d0b8ebc99ca02332e23be099cf7ca4b1df",
+      "target_text": "{\"tool\":\"read_file\",\"path\":\"/srv/app/cache_config.py\"}",
+      "target_ids": [
+        24313,
+        72461,
+        16562,
+        1795,
+        19086,
+        10177,
+        9860,
+        16562,
+        17,
+        85,
+        31884,
+        38885,
+        5252,
+        6634,
+        48119,
+        23042,
+        62773
+      ],
+      "prompt_sha256": "9c18e9331db572deab8084d4c62ae942e6da138896e6ae37a682f7b26e767b94",
+      "wall_s": 4.671999999991385,
+      "score": {
+        "target_tokens": 17,
+        "sum_nll": 0.9853023567881678,
+        "nll_nats_per_token": 0.05795896216400987,
+        "perplexity": 1.0596715081924202,
+        "critical_field": "path",
+        "critical_token_count": 10,
+        "critical_sum_nll": 0.0008872174909697605,
+        "critical_nll_nats_per_token": 8.872174909697605e-05,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.057345569133758545,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 72461,
+            "token": "tool",
+            "logprob": -3.242440288886428e-05,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.20142123103141785,
+            "char_start": 6,
+            "char_end": 9
+          },
+          {
+            "index": 3,
+            "token_id": 1795,
+            "token": "read",
+            "logprob": -0.7184414267539978,
+            "char_start": 9,
+            "char_end": 13
+          },
+          {
+            "index": 4,
+            "token_id": 19086,
+            "token": "_file",
+            "logprob": -0.007134911138564348,
+            "char_start": 13,
+            "char_end": 18
+          },
+          {
+            "index": 5,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -3.576214658096433e-05,
+            "char_start": 18,
+            "char_end": 21
+          },
+          {
+            "index": 6,
+            "token_id": 9860,
+            "token": "path",
+            "logprob": -3.814689989667386e-06,
+            "char_start": 21,
+            "char_end": 25
+          },
+          {
+            "index": 7,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -3.576278118089249e-07,
+            "char_start": 25,
+            "char_end": 28
+          },
+          {
+            "index": 8,
+            "token_id": 17,
+            "token": "/",
+            "logprob": -1.585470999998506e-05,
+            "char_start": 28,
+            "char_end": 29
+          },
+          {
+            "index": 9,
+            "token_id": 85,
+            "token": "s",
+            "logprob": -6.6756979322235566e-06,
+            "char_start": 29,
+            "char_end": 30
+          },
+          {
+            "index": 10,
+            "token_id": 31884,
+            "token": "rv",
+            "logprob": -1.0728830375228426e-06,
+            "char_start": 30,
+            "char_end": 32
+          },
+          {
+            "index": 11,
+            "token_id": 38885,
+            "token": "/app",
+            "logprob": -6.9141146923357155e-06,
+            "char_start": 32,
+            "char_end": 36
+          },
+          {
+            "index": 12,
+            "token_id": 5252,
+            "token": "/c",
+            "logprob": -1.8954096958623268e-05,
+            "char_start": 36,
+            "char_end": 38
+          },
+          {
+            "index": 13,
+            "token_id": 6634,
+            "token": "ache",
+            "logprob": 0.0,
+            "char_start": 38,
+            "char_end": 42
+          },
+          {
+            "index": 14,
+            "token_id": 48119,
+            "token": "_config",
+            "logprob": -0.0004532501916401088,
+            "char_start": 42,
+            "char_end": 49
+          },
+          {
+            "index": 15,
+            "token_id": 23042,
+            "token": ".py",
+            "logprob": -1.0728830375228426e-06,
+            "char_start": 49,
+            "char_end": 52
+          },
+          {
+            "index": 16,
+            "token_id": 62773,
+            "token": "\"}",
+            "logprob": -0.0003830652858596295,
+            "char_start": 52,
+            "char_end": 54
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 7315,
+        "total_tokens": 7316,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-86a903b6e0af76a4",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "exact_path_after_search",
+      "variant": "long",
+      "kind": "wrong",
+      "prefix_tokens": 7298,
+      "prefix_sha256": "24d461886edc7c0d22647e9310f299d0b8ebc99ca02332e23be099cf7ca4b1df",
+      "target_text": "{\"tool\":\"read_file\",\"path\":\"/srv/app/cache-config.py\"}",
+      "target_ids": [
+        24313,
+        72461,
+        16562,
+        1795,
+        19086,
+        10177,
+        9860,
+        16562,
+        17,
+        85,
+        31884,
+        38885,
+        5252,
+        6634,
+        82823,
+        23042,
+        62773
+      ],
+      "prompt_sha256": "78109db486066fa014c20665f4ded8d0eddd61c43f704dadb9d79acd8b8b1636",
+      "wall_s": 5.0,
+      "score": {
+        "target_tokens": 17,
+        "sum_nll": 8.884069615455076,
+        "nll_nats_per_token": 0.5225923303208868,
+        "perplexity": 1.6863936776240172,
+        "critical_field": "path",
+        "critical_token_count": 10,
+        "critical_sum_nll": 7.8996544761578775,
+        "critical_nll_nats_per_token": 0.7899654476157878,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.057345569133758545,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 72461,
+            "token": "tool",
+            "logprob": -3.242440288886428e-05,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.20142123103141785,
+            "char_start": 6,
+            "char_end": 9
+          },
+          {
+            "index": 3,
+            "token_id": 1795,
+            "token": "read",
+            "logprob": -0.7184414267539978,
+            "char_start": 9,
+            "char_end": 13
+          },
+          {
+            "index": 4,
+            "token_id": 19086,
+            "token": "_file",
+            "logprob": -0.007134911138564348,
+            "char_start": 13,
+            "char_end": 18
+          },
+          {
+            "index": 5,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -3.576214658096433e-05,
+            "char_start": 18,
+            "char_end": 21
+          },
+          {
+            "index": 6,
+            "token_id": 9860,
+            "token": "path",
+            "logprob": -3.814689989667386e-06,
+            "char_start": 21,
+            "char_end": 25
+          },
+          {
+            "index": 7,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -3.576278118089249e-07,
+            "char_start": 25,
+            "char_end": 28
+          },
+          {
+            "index": 8,
+            "token_id": 17,
+            "token": "/",
+            "logprob": -1.585470999998506e-05,
+            "char_start": 28,
+            "char_end": 29
+          },
+          {
+            "index": 9,
+            "token_id": 85,
+            "token": "s",
+            "logprob": -6.6756979322235566e-06,
+            "char_start": 29,
+            "char_end": 30
+          },
+          {
+            "index": 10,
+            "token_id": 31884,
+            "token": "rv",
+            "logprob": -1.0728830375228426e-06,
+            "char_start": 30,
+            "char_end": 32
+          },
+          {
+            "index": 11,
+            "token_id": 38885,
+            "token": "/app",
+            "logprob": -6.9141146923357155e-06,
+            "char_start": 32,
+            "char_end": 36
+          },
+          {
+            "index": 12,
+            "token_id": 5252,
+            "token": "/c",
+            "logprob": -1.8954096958623268e-05,
+            "char_start": 36,
+            "char_end": 38
+          },
+          {
+            "index": 13,
+            "token_id": 6634,
+            "token": "ache",
+            "logprob": 0.0,
+            "char_start": 38,
+            "char_end": 42
+          },
+          {
+            "index": 14,
+            "token_id": 82823,
+            "token": "-config",
+            "logprob": -7.875453472137451,
+            "char_start": 42,
+            "char_end": 49
+          },
+          {
+            "index": 15,
+            "token_id": 23042,
+            "token": ".py",
+            "logprob": -0.00013243274588603526,
+            "char_start": 49,
+            "char_end": 52
+          },
+          {
+            "index": 16,
+            "token_id": 62773,
+            "token": "\"}",
+            "logprob": -0.02401874214410782,
+            "char_start": 52,
+            "char_end": 54
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 7315,
+        "total_tokens": 7316,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-804ab93840491f2d",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "latest_owner_after_transfer",
+      "variant": "short",
+      "kind": "gold",
+      "prefix_tokens": 439,
+      "prefix_sha256": "1468f2e1ace05f710c130efe3e30f31223dcc021dd9a40753924531ae03820ea",
+      "target_text": "{\"task\":\"K7\",\"owner\":\"Inez\"}",
+      "target_ids": [
+        24313,
+        41584,
+        16562,
+        45,
+        25,
+        10177,
+        33980,
+        16562,
+        43,
+        43648,
+        62773
+      ],
+      "prompt_sha256": "d0556a34c4bfc13c137c4889e8915ba2d70e96c89b77fe6435161e271d0263d1",
+      "wall_s": 0.4220000000204891,
+      "score": {
+        "target_tokens": 11,
+        "sum_nll": 0.08343779385984362,
+        "nll_nats_per_token": 0.007585253987258511,
+        "perplexity": 1.0076140949020544,
+        "critical_field": "owner",
+        "critical_token_count": 4,
+        "critical_sum_nll": 0.00037366246272085846,
+        "critical_nll_nats_per_token": 9.341561568021461e-05,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.004111290909349918,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 41584,
+            "token": "task",
+            "logprob": -4.2676016164477915e-05,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.0788908526301384,
+            "char_start": 6,
+            "char_end": 9
+          },
+          {
+            "index": 3,
+            "token_id": 45,
+            "token": "K",
+            "logprob": -9.775113539944869e-06,
+            "char_start": 9,
+            "char_end": 10
+          },
+          {
+            "index": 4,
+            "token_id": 25,
+            "token": "7",
+            "logprob": -3.576272320060525e-06,
+            "char_start": 10,
+            "char_end": 11
+          },
+          {
+            "index": 5,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -2.861018856492592e-06,
+            "char_start": 11,
+            "char_end": 14
+          },
+          {
+            "index": 6,
+            "token_id": 33980,
+            "token": "owner",
+            "logprob": -3.099436753473128e-06,
+            "char_start": 14,
+            "char_end": 19
+          },
+          {
+            "index": 7,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -2.0265558760002023e-06,
+            "char_start": 19,
+            "char_end": 22
+          },
+          {
+            "index": 8,
+            "token_id": 43,
+            "token": "I",
+            "logprob": -2.8967437174287625e-05,
+            "char_start": 22,
+            "char_end": 23
+          },
+          {
+            "index": 9,
+            "token_id": 43648,
+            "token": "nez",
+            "logprob": -1.4305104514278355e-06,
+            "char_start": 23,
+            "char_end": 26
+          },
+          {
+            "index": 10,
+            "token_id": 62773,
+            "token": "\"}",
+            "logprob": -0.0003412379592191428,
+            "char_start": 26,
+            "char_end": 28
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 450,
+        "total_tokens": 451,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-96c3ba3b89766b5d",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "latest_owner_after_transfer",
+      "variant": "short",
+      "kind": "wrong",
+      "prefix_tokens": 439,
+      "prefix_sha256": "1468f2e1ace05f710c130efe3e30f31223dcc021dd9a40753924531ae03820ea",
+      "target_text": "{\"task\":\"K7\",\"owner\":\"Omar\"}",
+      "target_ids": [
+        24313,
+        41584,
+        16562,
+        45,
+        25,
+        10177,
+        33980,
+        16562,
+        49,
+        5228,
+        62773
+      ],
+      "prompt_sha256": "b725d328577e41108e8cfb2ae323342da4ac3354dece11cc9720c072b982ca06",
+      "wall_s": 0.42199999999138527,
+      "score": {
+        "target_tokens": 11,
+        "sum_nll": 12.728959803425823,
+        "nll_nats_per_token": 1.157178163947802,
+        "perplexity": 3.1809444957903517,
+        "critical_field": "owner",
+        "critical_token_count": 4,
+        "critical_sum_nll": 12.6458956720287,
+        "critical_nll_nats_per_token": 3.161473918007175,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.004111290909349918,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 41584,
+            "token": "task",
+            "logprob": -4.2676016164477915e-05,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.0788908526301384,
+            "char_start": 6,
+            "char_end": 9
+          },
+          {
+            "index": 3,
+            "token_id": 45,
+            "token": "K",
+            "logprob": -9.775113539944869e-06,
+            "char_start": 9,
+            "char_end": 10
+          },
+          {
+            "index": 4,
+            "token_id": 25,
+            "token": "7",
+            "logprob": -3.576272320060525e-06,
+            "char_start": 10,
+            "char_end": 11
+          },
+          {
+            "index": 5,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -2.861018856492592e-06,
+            "char_start": 11,
+            "char_end": 14
+          },
+          {
+            "index": 6,
+            "token_id": 33980,
+            "token": "owner",
+            "logprob": -3.099436753473128e-06,
+            "char_start": 14,
+            "char_end": 19
+          },
+          {
+            "index": 7,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -2.0265558760002023e-06,
+            "char_start": 19,
+            "char_end": 22
+          },
+          {
+            "index": 8,
+            "token_id": 49,
+            "token": "O",
+            "logprob": -12.625028610229492,
+            "char_start": 22,
+            "char_end": 23
+          },
+          {
+            "index": 9,
+            "token_id": 5228,
+            "token": "mar",
+            "logprob": -0.006322027184069157,
+            "char_start": 23,
+            "char_end": 26
+          },
+          {
+            "index": 10,
+            "token_id": 62773,
+            "token": "\"}",
+            "logprob": -0.01454300805926323,
+            "char_start": 26,
+            "char_end": 28
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 450,
+        "total_tokens": 451,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-aa795c859549ea1e",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "latest_owner_after_transfer",
+      "variant": "long",
+      "kind": "gold",
+      "prefix_tokens": 7285,
+      "prefix_sha256": "45d8a948a36efce5e66e05ac07e246d19d9deadc839f2c3936cd8838b60cbc7b",
+      "target_text": "{\"task\":\"K7\",\"owner\":\"Inez\"}",
+      "target_ids": [
+        24313,
+        41584,
+        16562,
+        45,
+        25,
+        10177,
+        33980,
+        16562,
+        43,
+        43648,
+        62773
+      ],
+      "prompt_sha256": "eb64818ec90d88bfa3bc917d9041483175425b75a2785b01084187d690b36505",
+      "wall_s": 4.9539999999979045,
+      "score": {
+        "target_tokens": 11,
+        "sum_nll": 0.04882875770115902,
+        "nll_nats_per_token": 0.004438977972832638,
+        "perplexity": 1.0044488448297388,
+        "critical_field": "owner",
+        "critical_token_count": 4,
+        "critical_sum_nll": 0.0016185547135876277,
+        "critical_nll_nats_per_token": 0.0004046386783969069,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.013518339022994041,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 41584,
+            "token": "task",
+            "logprob": -3.0278701160568744e-05,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.033646922558546066,
+            "char_start": 6,
+            "char_end": 9
+          },
+          {
+            "index": 3,
+            "token_id": 45,
+            "token": "K",
+            "logprob": -7.510157047363464e-06,
+            "char_start": 9,
+            "char_end": 10
+          },
+          {
+            "index": 4,
+            "token_id": 25,
+            "token": "7",
+            "logprob": -1.1920922133867862e-06,
+            "char_start": 10,
+            "char_end": 11
+          },
+          {
+            "index": 5,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -3.099436753473128e-06,
+            "char_start": 11,
+            "char_end": 14
+          },
+          {
+            "index": 6,
+            "token_id": 33980,
+            "token": "owner",
+            "logprob": -2.861018856492592e-06,
+            "char_start": 14,
+            "char_end": 19
+          },
+          {
+            "index": 7,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -5.960462772236497e-07,
+            "char_start": 19,
+            "char_end": 22
+          },
+          {
+            "index": 8,
+            "token_id": 43,
+            "token": "I",
+            "logprob": -0.00011097769311163574,
+            "char_start": 22,
+            "char_end": 23
+          },
+          {
+            "index": 9,
+            "token_id": 43648,
+            "token": "nez",
+            "logprob": -2.3841855067985307e-07,
+            "char_start": 23,
+            "char_end": 26
+          },
+          {
+            "index": 10,
+            "token_id": 62773,
+            "token": "\"}",
+            "logprob": -0.0015067425556480885,
+            "char_start": 26,
+            "char_end": 28
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 7296,
+        "total_tokens": 7297,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-89624f4e4ff5f51d",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "latest_owner_after_transfer",
+      "variant": "long",
+      "kind": "wrong",
+      "prefix_tokens": 7285,
+      "prefix_sha256": "45d8a948a36efce5e66e05ac07e246d19d9deadc839f2c3936cd8838b60cbc7b",
+      "target_text": "{\"task\":\"K7\",\"owner\":\"Omar\"}",
+      "target_ids": [
+        24313,
+        41584,
+        16562,
+        45,
+        25,
+        10177,
+        33980,
+        16562,
+        49,
+        5228,
+        62773
+      ],
+      "prompt_sha256": "9784c2f21ceefed277d3f473f236f3702c64f76271f6d9f72e9ff79a2c58a6ea",
+      "wall_s": 4.85899999999674,
+      "score": {
+        "target_tokens": 11,
+        "sum_nll": 9.313789651698528,
+        "nll_nats_per_token": 0.8467081501544116,
+        "perplexity": 2.3319577484282634,
+        "critical_field": "owner",
+        "critical_token_count": 4,
+        "critical_sum_nll": 9.266579448710957,
+        "critical_nll_nats_per_token": 2.316644862177739,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.013518339022994041,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 41584,
+            "token": "task",
+            "logprob": -3.0278701160568744e-05,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.033646922558546066,
+            "char_start": 6,
+            "char_end": 9
+          },
+          {
+            "index": 3,
+            "token_id": 45,
+            "token": "K",
+            "logprob": -7.510157047363464e-06,
+            "char_start": 9,
+            "char_end": 10
+          },
+          {
+            "index": 4,
+            "token_id": 25,
+            "token": "7",
+            "logprob": -1.1920922133867862e-06,
+            "char_start": 10,
+            "char_end": 11
+          },
+          {
+            "index": 5,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -3.099436753473128e-06,
+            "char_start": 11,
+            "char_end": 14
+          },
+          {
+            "index": 6,
+            "token_id": 33980,
+            "token": "owner",
+            "logprob": -2.861018856492592e-06,
+            "char_start": 14,
+            "char_end": 19
+          },
+          {
+            "index": 7,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -5.960462772236497e-07,
+            "char_start": 19,
+            "char_end": 22
+          },
+          {
+            "index": 8,
+            "token_id": 49,
+            "token": "O",
+            "logprob": -9.250110626220703,
+            "char_start": 22,
+            "char_end": 23
+          },
+          {
+            "index": 9,
+            "token_id": 5228,
+            "token": "mar",
+            "logprob": -0.007725717034190893,
+            "char_start": 23,
+            "char_end": 26
+          },
+          {
+            "index": 10,
+            "token_id": 62773,
+            "token": "\"}",
+            "logprob": -0.00874250940978527,
+            "char_start": 26,
+            "char_end": 28
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 7296,
+        "total_tokens": 7297,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-8e69f0cf0a73027e",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "read_only_scope",
+      "variant": "short",
+      "kind": "gold",
+      "prefix_tokens": 451,
+      "prefix_sha256": "655800fd54b8b3002125b5142ced58ca11b466f3269b1d48689d6a35eef556b8",
+      "target_text": "{\"tool\":\"read_file\",\"path\":\"/srv/app/auth.py\"}",
+      "target_ids": [
+        24313,
+        72461,
+        16562,
+        1795,
+        19086,
+        10177,
+        9860,
+        16562,
+        17,
+        85,
+        31884,
+        38885,
+        91272,
+        23042,
+        62773
+      ],
+      "prompt_sha256": "0c5d526563164537faa6137d5431adaae16035c11c29814e12800d7d7241ad11",
+      "wall_s": 0.42199999999138527,
+      "score": {
+        "target_tokens": 15,
+        "sum_nll": 0.46970976529842545,
+        "nll_nats_per_token": 0.031313984353228366,
+        "perplexity": 1.0318094250457517,
+        "critical_field": "tool",
+        "critical_token_count": 4,
+        "critical_sum_nll": 0.4576234026499151,
+        "critical_nll_nats_per_token": 0.11440585066247877,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.010787504725158215,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 72461,
+            "token": "tool",
+            "logprob": -0.0005460678366944194,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.14269162714481354,
+            "char_start": 6,
+            "char_end": 9
+          },
+          {
+            "index": 3,
+            "token_id": 1795,
+            "token": "read",
+            "logprob": -0.29134508967399597,
+            "char_start": 9,
+            "char_end": 13
+          },
+          {
+            "index": 4,
+            "token_id": 19086,
+            "token": "_file",
+            "logprob": -0.02354496344923973,
+            "char_start": 13,
+            "char_end": 18
+          },
+          {
+            "index": 5,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -4.172238186583854e-05,
+            "char_start": 18,
+            "char_end": 21
+          },
+          {
+            "index": 6,
+            "token_id": 9860,
+            "token": "path",
+            "logprob": -8.106198947643861e-06,
+            "char_start": 21,
+            "char_end": 25
+          },
+          {
+            "index": 7,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -1.4305104514278355e-06,
+            "char_start": 25,
+            "char_end": 28
+          },
+          {
+            "index": 8,
+            "token_id": 17,
+            "token": "/",
+            "logprob": -5.722029527532868e-06,
+            "char_start": 28,
+            "char_end": 29
+          },
+          {
+            "index": 9,
+            "token_id": 85,
+            "token": "s",
+            "logprob": -7.629365427419543e-06,
+            "char_start": 29,
+            "char_end": 30
+          },
+          {
+            "index": 10,
+            "token_id": 31884,
+            "token": "rv",
+            "logprob": -1.1920928244535389e-07,
+            "char_start": 30,
+            "char_end": 32
+          },
+          {
+            "index": 11,
+            "token_id": 38885,
+            "token": "/app",
+            "logprob": -3.099436753473128e-06,
+            "char_start": 32,
+            "char_end": 36
+          },
+          {
+            "index": 12,
+            "token_id": 91272,
+            "token": "/auth",
+            "logprob": -1.2516897186287679e-05,
+            "char_start": 36,
+            "char_end": 41
+          },
+          {
+            "index": 13,
+            "token_id": 23042,
+            "token": ".py",
+            "logprob": -3.576278118089249e-07,
+            "char_start": 41,
+            "char_end": 44
+          },
+          {
+            "index": 14,
+            "token_id": 62773,
+            "token": "\"}",
+            "logprob": -0.0007138088112697005,
+            "char_start": 44,
+            "char_end": 46
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 466,
+        "total_tokens": 467,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-99fb2675b74e0733",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "read_only_scope",
+      "variant": "short",
+      "kind": "wrong",
+      "prefix_tokens": 451,
+      "prefix_sha256": "655800fd54b8b3002125b5142ced58ca11b466f3269b1d48689d6a35eef556b8",
+      "target_text": "{\"tool\":\"write_file\",\"path\":\"/srv/app/auth.py\"}",
+      "target_ids": [
+        24313,
+        72461,
+        16562,
+        25837,
+        19086,
+        10177,
+        9860,
+        16562,
+        17,
+        85,
+        31884,
+        38885,
+        91272,
+        23042,
+        62773
+      ],
+      "prompt_sha256": "967c9aff41192e351fd2ea5e64a19521c530a1fed2581c3198b53c4806e0f536",
+      "wall_s": 0.4210000000020955,
+      "score": {
+        "target_tokens": 15,
+        "sum_nll": 4.9534510684327415,
+        "nll_nats_per_token": 0.33023007122884945,
+        "perplexity": 1.391288187027108,
+        "critical_field": "tool",
+        "critical_token_count": 4,
+        "critical_sum_nll": 4.934982741731801,
+        "critical_nll_nats_per_token": 1.2337456854329503,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.010787504725158215,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 72461,
+            "token": "tool",
+            "logprob": -0.0005460678366944194,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.14269162714481354,
+            "char_start": 6,
+            "char_end": 9
+          },
+          {
+            "index": 3,
+            "token_id": 25837,
+            "token": "write",
+            "logprob": -4.791345119476318,
+            "char_start": 9,
+            "char_end": 14
+          },
+          {
+            "index": 4,
+            "token_id": 19086,
+            "token": "_file",
+            "logprob": -0.0007267932523973286,
+            "char_start": 14,
+            "char_end": 19
+          },
+          {
+            "index": 5,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -0.00021920185827184469,
+            "char_start": 19,
+            "char_end": 22
+          },
+          {
+            "index": 6,
+            "token_id": 9860,
+            "token": "path",
+            "logprob": -2.8490614567999728e-05,
+            "char_start": 22,
+            "char_end": 26
+          },
+          {
+            "index": 7,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.00014208737411536276,
+            "char_start": 26,
+            "char_end": 29
+          },
+          {
+            "index": 8,
+            "token_id": 17,
+            "token": "/",
+            "logprob": -0.0001896439935080707,
+            "char_start": 29,
+            "char_end": 30
+          },
+          {
+            "index": 9,
+            "token_id": 85,
+            "token": "s",
+            "logprob": -0.00032145579461939633,
+            "char_start": 30,
+            "char_end": 31
+          },
+          {
+            "index": 10,
+            "token_id": 31884,
+            "token": "rv",
+            "logprob": -1.1920922133867862e-06,
+            "char_start": 31,
+            "char_end": 33
+          },
+          {
+            "index": 11,
+            "token_id": 38885,
+            "token": "/app",
+            "logprob": -4.494089080253616e-05,
+            "char_start": 33,
+            "char_end": 37
+          },
+          {
+            "index": 12,
+            "token_id": 91272,
+            "token": "/auth",
+            "logprob": -0.0002862997353076935,
+            "char_start": 37,
+            "char_end": 42
+          },
+          {
+            "index": 13,
+            "token_id": 23042,
+            "token": ".py",
+            "logprob": -4.160317621426657e-05,
+            "char_start": 42,
+            "char_end": 45
+          },
+          {
+            "index": 14,
+            "token_id": 62773,
+            "token": "\"}",
+            "logprob": -0.006079040467739105,
+            "char_start": 45,
+            "char_end": 47
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 466,
+        "total_tokens": 467,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-9d2502ac2b32bc8e",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "read_only_scope",
+      "variant": "long",
+      "kind": "gold",
+      "prefix_tokens": 7298,
+      "prefix_sha256": "829a7baccf3f71ca45a63931960d8da549e4d1133d617efd4cd66df860b5575f",
+      "target_text": "{\"tool\":\"read_file\",\"path\":\"/srv/app/auth.py\"}",
+      "target_ids": [
+        24313,
+        72461,
+        16562,
+        1795,
+        19086,
+        10177,
+        9860,
+        16562,
+        17,
+        85,
+        31884,
+        38885,
+        91272,
+        23042,
+        62773
+      ],
+      "prompt_sha256": "30b2e5723b6e95a93c405c0adbb6f205289e280dd69076284b57f48205863719",
+      "wall_s": 4.812999999994645,
+      "score": {
+        "target_tokens": 15,
+        "sum_nll": 0.7784838107817222,
+        "nll_nats_per_token": 0.05189892071878148,
+        "perplexity": 1.0532692734314584,
+        "critical_field": "tool",
+        "critical_token_count": 4,
+        "critical_sum_nll": 0.7062793512704957,
+        "critical_nll_nats_per_token": 0.17656983781762392,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.07130641490221024,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 72461,
+            "token": "tool",
+            "logprob": -0.00028320116689428687,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.38688382506370544,
+            "char_start": 6,
+            "char_end": 9
+          },
+          {
+            "index": 3,
+            "token_id": 1795,
+            "token": "read",
+            "logprob": -0.302850604057312,
+            "char_start": 9,
+            "char_end": 13
+          },
+          {
+            "index": 4,
+            "token_id": 19086,
+            "token": "_file",
+            "logprob": -0.016499385237693787,
+            "char_start": 13,
+            "char_end": 18
+          },
+          {
+            "index": 5,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -4.5536911784438416e-05,
+            "char_start": 18,
+            "char_end": 21
+          },
+          {
+            "index": 6,
+            "token_id": 9860,
+            "token": "path",
+            "logprob": -1.0609570381348021e-05,
+            "char_start": 21,
+            "char_end": 25
+          },
+          {
+            "index": 7,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -2.9802276912960224e-06,
+            "char_start": 25,
+            "char_end": 28
+          },
+          {
+            "index": 8,
+            "token_id": 17,
+            "token": "/",
+            "logprob": -9.775113539944869e-06,
+            "char_start": 28,
+            "char_end": 29
+          },
+          {
+            "index": 9,
+            "token_id": 85,
+            "token": "s",
+            "logprob": -1.2040065485052764e-05,
+            "char_start": 29,
+            "char_end": 30
+          },
+          {
+            "index": 10,
+            "token_id": 31884,
+            "token": "rv",
+            "logprob": 0.0,
+            "char_start": 30,
+            "char_end": 32
+          },
+          {
+            "index": 11,
+            "token_id": 38885,
+            "token": "/app",
+            "logprob": -2.9802276912960224e-06,
+            "char_start": 32,
+            "char_end": 36
+          },
+          {
+            "index": 12,
+            "token_id": 91272,
+            "token": "/auth",
+            "logprob": -1.4781842764932662e-05,
+            "char_start": 36,
+            "char_end": 41
+          },
+          {
+            "index": 13,
+            "token_id": 23042,
+            "token": ".py",
+            "logprob": -1.4305104514278355e-06,
+            "char_start": 41,
+            "char_end": 44
+          },
+          {
+            "index": 14,
+            "token_id": 62773,
+            "token": "\"}",
+            "logprob": -0.000560245884116739,
+            "char_start": 44,
+            "char_end": 46
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 7313,
+        "total_tokens": 7314,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-bbbd8629b04e3d42",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "read_only_scope",
+      "variant": "long",
+      "kind": "wrong",
+      "prefix_tokens": 7298,
+      "prefix_sha256": "829a7baccf3f71ca45a63931960d8da549e4d1133d617efd4cd66df860b5575f",
+      "target_text": "{\"tool\":\"write_file\",\"path\":\"/srv/app/auth.py\"}",
+      "target_ids": [
+        24313,
+        72461,
+        16562,
+        25837,
+        19086,
+        10177,
+        9860,
+        16562,
+        17,
+        85,
+        31884,
+        38885,
+        91272,
+        23042,
+        62773
+      ],
+      "prompt_sha256": "59bee98232f9b47012815d0579ffd2f4db968899ad157ecb3753fde41d91b614",
+      "wall_s": 4.7189999999827705,
+      "score": {
+        "target_tokens": 15,
+        "sum_nll": 3.515961237546435,
+        "nll_nats_per_token": 0.23439741583642898,
+        "perplexity": 1.264146784343411,
+        "critical_field": "tool",
+        "critical_token_count": 4,
+        "critical_sum_nll": 3.4405088744242676,
+        "critical_nll_nats_per_token": 0.8601272186060669,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.07130641490221024,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 72461,
+            "token": "tool",
+            "logprob": -0.00028320116689428687,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.38688382506370544,
+            "char_start": 6,
+            "char_end": 9
+          },
+          {
+            "index": 3,
+            "token_id": 25837,
+            "token": "write",
+            "logprob": -3.0528507232666016,
+            "char_start": 9,
+            "char_end": 14
+          },
+          {
+            "index": 4,
+            "token_id": 19086,
+            "token": "_file",
+            "logprob": -0.0005505952867679298,
+            "char_start": 14,
+            "char_end": 19
+          },
+          {
+            "index": 5,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -0.00022373080719262362,
+            "char_start": 19,
+            "char_end": 22
+          },
+          {
+            "index": 6,
+            "token_id": 9860,
+            "token": "path",
+            "logprob": -1.1444026313256472e-05,
+            "char_start": 22,
+            "char_end": 26
+          },
+          {
+            "index": 7,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.0001110968878492713,
+            "char_start": 26,
+            "char_end": 29
+          },
+          {
+            "index": 8,
+            "token_id": 17,
+            "token": "/",
+            "logprob": -0.0002397011558059603,
+            "char_start": 29,
+            "char_end": 30
+          },
+          {
+            "index": 9,
+            "token_id": 85,
+            "token": "s",
+            "logprob": -0.0005762108485214412,
+            "char_start": 30,
+            "char_end": 31
+          },
+          {
+            "index": 10,
+            "token_id": 31884,
+            "token": "rv",
+            "logprob": -7.629365427419543e-06,
+            "char_start": 31,
+            "char_end": 33
+          },
+          {
+            "index": 11,
+            "token_id": 38885,
+            "token": "/app",
+            "logprob": -8.95221673999913e-05,
+            "char_start": 33,
+            "char_end": 37
+          },
+          {
+            "index": 12,
+            "token_id": 91272,
+            "token": "/auth",
+            "logprob": -0.00025817399728111923,
+            "char_start": 37,
+            "char_end": 42
+          },
+          {
+            "index": 13,
+            "token_id": 23042,
+            "token": ".py",
+            "logprob": -3.6477376852417365e-05,
+            "char_start": 42,
+            "char_end": 45
+          },
+          {
+            "index": 14,
+            "token_id": 62773,
+            "token": "\"}",
+            "logprob": -0.0025324912276118994,
+            "char_start": 45,
+            "char_end": 47
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 7313,
+        "total_tokens": 7314,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-be2138e85ea9fd04",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "retry_after_tool_error",
+      "variant": "short",
+      "kind": "gold",
+      "prefix_tokens": 439,
+      "prefix_sha256": "bde4e74680bee8dea998dad421ce05788e45bb8ec39f9db3ab8e5c409ffb64cd",
+      "target_text": "{\"tool\":\"sleep\",\"seconds\":20}",
+      "target_ids": [
+        24313,
+        72461,
+        16562,
+        86338,
+        10177,
+        28818,
+        3362,
+        397,
+        95
+      ],
+      "prompt_sha256": "5e630f7dae95f6561efe443a6fa5e26921c2e5f7dbb8d1da14cb5139fe7ec238",
+      "wall_s": 0.39100000000325963,
+      "score": {
+        "target_tokens": 9,
+        "sum_nll": 5.949164744946756,
+        "nll_nats_per_token": 0.6610183049940841,
+        "perplexity": 1.9367635465759327,
+        "critical_field": "seconds",
+        "critical_token_count": 1,
+        "critical_sum_nll": 0.0002181292074965313,
+        "critical_nll_nats_per_token": 0.0002181292074965313,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.006486788857728243,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 72461,
+            "token": "tool",
+            "logprob": -0.0001517419150331989,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.1602437049150467,
+            "char_start": 6,
+            "char_end": 9
+          },
+          {
+            "index": 3,
+            "token_id": 86338,
+            "token": "sleep",
+            "logprob": -5.757539749145508,
+            "char_start": 9,
+            "char_end": 14
+          },
+          {
+            "index": 4,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -0.024200161918997765,
+            "char_start": 14,
+            "char_end": 17
+          },
+          {
+            "index": 5,
+            "token_id": 28818,
+            "token": "seconds",
+            "logprob": -7.521823135903105e-05,
+            "char_start": 17,
+            "char_end": 24
+          },
+          {
+            "index": 6,
+            "token_id": 3362,
+            "token": "\":",
+            "logprob": -0.0001431601122021675,
+            "char_start": 24,
+            "char_end": 26
+          },
+          {
+            "index": 7,
+            "token_id": 397,
+            "token": "20",
+            "logprob": -0.0002181292074965313,
+            "char_start": 26,
+            "char_end": 28
+          },
+          {
+            "index": 8,
+            "token_id": 95,
+            "token": "}",
+            "logprob": -0.00010609064338495955,
+            "char_start": 28,
+            "char_end": 29
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 448,
+        "total_tokens": 449,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-851b979a7f0f73a1",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "retry_after_tool_error",
+      "variant": "short",
+      "kind": "wrong",
+      "prefix_tokens": 439,
+      "prefix_sha256": "bde4e74680bee8dea998dad421ce05788e45bb8ec39f9db3ab8e5c409ffb64cd",
+      "target_text": "{\"tool\":\"sleep\",\"seconds\":0}",
+      "target_ids": [
+        24313,
+        72461,
+        16562,
+        86338,
+        10177,
+        28818,
+        3362,
+        18,
+        95
+      ],
+      "prompt_sha256": "63fd8e336c63fff60b8383bcadbbe99ec180818a2caff1f04cdbf68a1e41681f",
+      "wall_s": 0.42199999999138527,
+      "score": {
+        "target_tokens": 9,
+        "sum_nll": 15.841091921647603,
+        "nll_nats_per_token": 1.7601213246275114,
+        "perplexity": 5.813142628984694,
+        "critical_field": "seconds",
+        "critical_token_count": 1,
+        "critical_sum_nll": 9.875218391418457,
+        "critical_nll_nats_per_token": 9.875218391418457,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.006486788857728243,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 72461,
+            "token": "tool",
+            "logprob": -0.0001517419150331989,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.1602437049150467,
+            "char_start": 6,
+            "char_end": 9
+          },
+          {
+            "index": 3,
+            "token_id": 86338,
+            "token": "sleep",
+            "logprob": -5.757539749145508,
+            "char_start": 9,
+            "char_end": 14
+          },
+          {
+            "index": 4,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -0.024200161918997765,
+            "char_start": 14,
+            "char_end": 17
+          },
+          {
+            "index": 5,
+            "token_id": 28818,
+            "token": "seconds",
+            "logprob": -7.521823135903105e-05,
+            "char_start": 17,
+            "char_end": 24
+          },
+          {
+            "index": 6,
+            "token_id": 3362,
+            "token": "\":",
+            "logprob": -0.0001431601122021675,
+            "char_start": 24,
+            "char_end": 26
+          },
+          {
+            "index": 7,
+            "token_id": 18,
+            "token": "0",
+            "logprob": -9.875218391418457,
+            "char_start": 26,
+            "char_end": 27
+          },
+          {
+            "index": 8,
+            "token_id": 95,
+            "token": "}",
+            "logprob": -0.017033005133271217,
+            "char_start": 27,
+            "char_end": 28
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 448,
+        "total_tokens": 449,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-abeee59a111877f5",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "retry_after_tool_error",
+      "variant": "long",
+      "kind": "gold",
+      "prefix_tokens": 7286,
+      "prefix_sha256": "251fcef64d6e2f6b838f9bfb54c0c8db01025abb5868e2e9e735314fa001f1fe",
+      "target_text": "{\"tool\":\"sleep\",\"seconds\":20}",
+      "target_ids": [
+        24313,
+        72461,
+        16562,
+        86338,
+        10177,
+        28818,
+        3362,
+        397,
+        95
+      ],
+      "prompt_sha256": "ceba76802113af3ade7f94d12530d56bb25dee366b90903c3378395e9f1906ef",
+      "wall_s": 4.875,
+      "score": {
+        "target_tokens": 9,
+        "sum_nll": 7.652916011538764,
+        "nll_nats_per_token": 0.8503240012820849,
+        "perplexity": 2.3404050233232607,
+        "critical_field": "seconds",
+        "critical_token_count": 1,
+        "critical_sum_nll": 0.00044347942457534373,
+        "critical_nll_nats_per_token": 0.00044347942457534373,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.001768454909324646,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 72461,
+            "token": "tool",
+            "logprob": -6.246371776796877e-05,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.47408604621887207,
+            "char_start": 6,
+            "char_end": 9
+          },
+          {
+            "index": 3,
+            "token_id": 86338,
+            "token": "sleep",
+            "logprob": -7.1350908279418945,
+            "char_start": 9,
+            "char_end": 14
+          },
+          {
+            "index": 4,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -0.04112621024250984,
+            "char_start": 14,
+            "char_end": 17
+          },
+          {
+            "index": 5,
+            "token_id": 28818,
+            "token": "seconds",
+            "logprob": -2.6702524337451905e-05,
+            "char_start": 17,
+            "char_end": 24
+          },
+          {
+            "index": 6,
+            "token_id": 3362,
+            "token": "\":",
+            "logprob": -0.0001811817055568099,
+            "char_start": 24,
+            "char_end": 26
+          },
+          {
+            "index": 7,
+            "token_id": 397,
+            "token": "20",
+            "logprob": -0.00044347942457534373,
+            "char_start": 26,
+            "char_end": 28
+          },
+          {
+            "index": 8,
+            "token_id": 95,
+            "token": "}",
+            "logprob": -0.00013064485392533243,
+            "char_start": 28,
+            "char_end": 29
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 7295,
+        "total_tokens": 7296,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-bf401be742cc34ed",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "retry_after_tool_error",
+      "variant": "long",
+      "kind": "wrong",
+      "prefix_tokens": 7286,
+      "prefix_sha256": "251fcef64d6e2f6b838f9bfb54c0c8db01025abb5868e2e9e735314fa001f1fe",
+      "target_text": "{\"tool\":\"sleep\",\"seconds\":0}",
+      "target_ids": [
+        24313,
+        72461,
+        16562,
+        86338,
+        10177,
+        28818,
+        3362,
+        18,
+        95
+      ],
+      "prompt_sha256": "6784d0aa74becdd7e043b9bfe3e98d5a822699c33c50176aa8c0631f6c830db8",
+      "wall_s": 4.8439999999827705,
+      "score": {
+        "target_tokens": 9,
+        "sum_nll": 16.19061213722307,
+        "nll_nats_per_token": 1.7989569041358966,
+        "perplexity": 6.043340392175883,
+        "critical_field": "seconds",
+        "critical_token_count": 1,
+        "critical_sum_nll": 8.500443458557129,
+        "critical_nll_nats_per_token": 8.500443458557129,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.001768454909324646,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 72461,
+            "token": "tool",
+            "logprob": -6.246371776796877e-05,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -0.47408604621887207,
+            "char_start": 6,
+            "char_end": 9
+          },
+          {
+            "index": 3,
+            "token_id": 86338,
+            "token": "sleep",
+            "logprob": -7.1350908279418945,
+            "char_start": 9,
+            "char_end": 14
+          },
+          {
+            "index": 4,
+            "token_id": 10177,
+            "token": "\",\"",
+            "logprob": -0.04112621024250984,
+            "char_start": 14,
+            "char_end": 17
+          },
+          {
+            "index": 5,
+            "token_id": 28818,
+            "token": "seconds",
+            "logprob": -2.6702524337451905e-05,
+            "char_start": 17,
+            "char_end": 24
+          },
+          {
+            "index": 6,
+            "token_id": 3362,
+            "token": "\":",
+            "logprob": -0.0001811817055568099,
+            "char_start": 24,
+            "char_end": 26
+          },
+          {
+            "index": 7,
+            "token_id": 18,
+            "token": "0",
+            "logprob": -8.500443458557129,
+            "char_start": 26,
+            "char_end": 27
+          },
+          {
+            "index": 8,
+            "token_id": 95,
+            "token": "}",
+            "logprob": -0.037826791405677795,
+            "char_start": 27,
+            "char_end": 28
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 7295,
+        "total_tokens": 7296,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-94573f92d35e995e",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "unknown_cause_not_hallucinated",
+      "variant": "short",
+      "kind": "gold",
+      "prefix_tokens": 448,
+      "prefix_sha256": "0a8983abd0eb1f443261276edbbbdc1cca43074631ce4da8456c8e5ed5c4b6e0",
+      "target_text": "{\"root_cause\":null}",
+      "target_ids": [
+        24313,
+        9056,
+        4941,
+        1308,
+        3362,
+        16042,
+        95
+      ],
+      "prompt_sha256": "c766f771617015f144280f17d877dd667e90f012b13eac5bdfb4c048adb0ac9d",
+      "wall_s": 0.4370000000053551,
+      "score": {
+        "target_tokens": 7,
+        "sum_nll": 1.0564580833956754,
+        "nll_nats_per_token": 0.15092258334223935,
+        "perplexity": 1.1629066262525913,
+        "critical_field": "root_cause",
+        "critical_token_count": 1,
+        "critical_sum_nll": 1.053709626197815,
+        "critical_nll_nats_per_token": 1.053709626197815,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.002684919396415353,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 9056,
+            "token": "root",
+            "logprob": -1.2397689715726301e-05,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 4941,
+            "token": "_c",
+            "logprob": -2.145764938177308e-06,
+            "char_start": 6,
+            "char_end": 8
+          },
+          {
+            "index": 3,
+            "token_id": 1308,
+            "token": "ause",
+            "logprob": -1.1920928244535389e-07,
+            "char_start": 8,
+            "char_end": 12
+          },
+          {
+            "index": 4,
+            "token_id": 3362,
+            "token": "\":",
+            "logprob": -3.302042750874534e-05,
+            "char_start": 12,
+            "char_end": 14
+          },
+          {
+            "index": 5,
+            "token_id": 16042,
+            "token": "null",
+            "logprob": -1.053709626197815,
+            "char_start": 14,
+            "char_end": 18
+          },
+          {
+            "index": 6,
+            "token_id": 95,
+            "token": "}",
+            "logprob": -1.585470999998506e-05,
+            "char_start": 18,
+            "char_end": 19
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 455,
+        "total_tokens": 456,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-a3d0c884b88a4153",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "unknown_cause_not_hallucinated",
+      "variant": "short",
+      "kind": "wrong",
+      "prefix_tokens": 448,
+      "prefix_sha256": "0a8983abd0eb1f443261276edbbbdc1cca43074631ce4da8456c8e5ed5c4b6e0",
+      "target_text": "{\"root_cause\":\"disk\"}",
+      "target_ids": [
+        24313,
+        9056,
+        4941,
+        1308,
+        16562,
+        88122,
+        62773
+      ],
+      "prompt_sha256": "30ef2afd1f99912f4161a7857b98c281130d27524a7917110e94ad2ee22189fd",
+      "wall_s": 0.4220000000204891,
+      "score": {
+        "target_tokens": 7,
+        "sum_nll": 16.69761487670757,
+        "nll_nats_per_token": 2.385373553815367,
+        "perplexity": 10.863119866954776,
+        "critical_field": "root_cause",
+        "critical_token_count": 3,
+        "critical_sum_nll": 16.694915294647217,
+        "critical_nll_nats_per_token": 5.564971764882405,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.002684919396415353,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 9056,
+            "token": "root",
+            "logprob": -1.2397689715726301e-05,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 4941,
+            "token": "_c",
+            "logprob": -2.145764938177308e-06,
+            "char_start": 6,
+            "char_end": 8
+          },
+          {
+            "index": 3,
+            "token_id": 1308,
+            "token": "ause",
+            "logprob": -1.1920928244535389e-07,
+            "char_start": 8,
+            "char_end": 12
+          },
+          {
+            "index": 4,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -10.375033378601074,
+            "char_start": 12,
+            "char_end": 15
+          },
+          {
+            "index": 5,
+            "token_id": 88122,
+            "token": "disk",
+            "logprob": -5.802358627319336,
+            "char_start": 15,
+            "char_end": 19
+          },
+          {
+            "index": 6,
+            "token_id": 62773,
+            "token": "\"}",
+            "logprob": -0.5175232887268066,
+            "char_start": 19,
+            "char_end": 21
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 455,
+        "total_tokens": 456,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-9273f5ddfa9c70b7",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "unknown_cause_not_hallucinated",
+      "variant": "long",
+      "kind": "gold",
+      "prefix_tokens": 7295,
+      "prefix_sha256": "cfe352194f7f66a260b9b19ba89304f7553351fcaec72960875e6697d34c605c",
+      "target_text": "{\"root_cause\":null}",
+      "target_ids": [
+        24313,
+        9056,
+        4941,
+        1308,
+        3362,
+        16042,
+        95
+      ],
+      "prompt_sha256": "57365eea8cdaeca1f6300cd6e171a875067acf384967a2bf029c7203acb11986",
+      "wall_s": 4.812000000005355,
+      "score": {
+        "target_tokens": 7,
+        "sum_nll": 0.8995623950147476,
+        "nll_nats_per_token": 0.12850891357353536,
+        "perplexity": 1.137131557151796,
+        "critical_field": "root_cause",
+        "critical_token_count": 1,
+        "critical_sum_nll": 0.8981300592422485,
+        "critical_nll_nats_per_token": 0.8981300592422485,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.0013529442949220538,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 9056,
+            "token": "root",
+            "logprob": -4.291525328881107e-06,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 4941,
+            "token": "_c",
+            "logprob": -2.7418097943154862e-06,
+            "char_start": 6,
+            "char_end": 8
+          },
+          {
+            "index": 3,
+            "token_id": 1308,
+            "token": "ause",
+            "logprob": -1.1920928244535389e-07,
+            "char_start": 8,
+            "char_end": 12
+          },
+          {
+            "index": 4,
+            "token_id": 3362,
+            "token": "\":",
+            "logprob": -6.0437283536884934e-05,
+            "char_start": 12,
+            "char_end": 14
+          },
+          {
+            "index": 5,
+            "token_id": 16042,
+            "token": "null",
+            "logprob": -0.8981300592422485,
+            "char_start": 14,
+            "char_end": 18
+          },
+          {
+            "index": 6,
+            "token_id": 95,
+            "token": "}",
+            "logprob": -1.1801649634435307e-05,
+            "char_start": 18,
+            "char_end": 19
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 7302,
+        "total_tokens": 7303,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-ac9970d12e45c2fc",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    },
+    {
+      "case": "unknown_cause_not_hallucinated",
+      "variant": "long",
+      "kind": "wrong",
+      "prefix_tokens": 7295,
+      "prefix_sha256": "cfe352194f7f66a260b9b19ba89304f7553351fcaec72960875e6697d34c605c",
+      "target_text": "{\"root_cause\":\"disk\"}",
+      "target_ids": [
+        24313,
+        9056,
+        4941,
+        1308,
+        16562,
+        88122,
+        62773
+      ],
+      "prompt_sha256": "45095fca5538e6503dc17236a986fd3ae6338e7eaf5b77503b8cfe0eb54567bc",
+      "wall_s": 4.75,
+      "score": {
+        "target_tokens": 7,
+        "sum_nll": 13.42669590642776,
+        "nll_nats_per_token": 1.9180994152039657,
+        "perplexity": 6.808006970938702,
+        "critical_field": "root_cause",
+        "critical_token_count": 3,
+        "critical_sum_nll": 13.425335809588432,
+        "critical_nll_nats_per_token": 4.475111936529477,
+        "tokens": [
+          {
+            "index": 0,
+            "token_id": 24313,
+            "token": "{\"",
+            "logprob": -0.0013529442949220538,
+            "char_start": 0,
+            "char_end": 2
+          },
+          {
+            "index": 1,
+            "token_id": 9056,
+            "token": "root",
+            "logprob": -4.291525328881107e-06,
+            "char_start": 2,
+            "char_end": 6
+          },
+          {
+            "index": 2,
+            "token_id": 4941,
+            "token": "_c",
+            "logprob": -2.7418097943154862e-06,
+            "char_start": 6,
+            "char_end": 8
+          },
+          {
+            "index": 3,
+            "token_id": 1308,
+            "token": "ause",
+            "logprob": -1.1920928244535389e-07,
+            "char_start": 8,
+            "char_end": 12
+          },
+          {
+            "index": 4,
+            "token_id": 16562,
+            "token": "\":\"",
+            "logprob": -9.750060081481934,
+            "char_start": 12,
+            "char_end": 15
+          },
+          {
+            "index": 5,
+            "token_id": 88122,
+            "token": "disk",
+            "logprob": -3.448763847351074,
+            "char_start": 15,
+            "char_end": 19
+          },
+          {
+            "index": 6,
+            "token_id": 62773,
+            "token": "\"}",
+            "logprob": -0.2265118807554245,
+            "char_start": 19,
+            "char_end": 21
+          }
+        ]
+      },
+      "usage": {
+        "prompt_tokens": 7302,
+        "total_tokens": 7303,
+        "completion_tokens": 1,
+        "prompt_tokens_details": null,
+        "completion_tokens_details": null
+      },
+      "response_id": "cmpl-ae597bf509cee261",
+      "system_fingerprint": "vllm-0.1.dev20904+g179dd0fa9-tp4-98fc2673"
+    }
+  ],
+  "corpus": [
+    {
+      "id": "failed_test_vs_stale_summary",
+      "goal": "Determine the test result from the latest actual tool output. A scratch summary is not authoritative.",
+      "result": {
+        "command": "pytest -q",
+        "exit_code": 1,
+        "stdout": "FAILED test_session_expiry"
+      },
+      "scratch": "Earlier scratch note: all tests passed.",
+      "gold": {
+        "status": "failed",
+        "exit_code": 1
+      },
+      "wrong": {
+        "status": "passed",
+        "exit_code": 0
+      },
+      "critical": "status"
+    },
+    {
+      "id": "exact_path_after_search",
+      "goal": "Read the exact file that the search tool found. Copy the path exactly; do not normalize underscores or dashes.",
+      "result": {
+        "matches": [
+          {
+            "path": "/srv/app/cache_config.py",
+            "line": 18,
+            "text": "def load_cache_settings():"
+          }
+        ]
+      },
+      "scratch": "Old plan referred to /srv/app/cache-config.py; search results supersede this spelling.",
+      "gold": {
+        "tool": "read_file",
+        "path": "/srv/app/cache_config.py"
+      },
+      "wrong": {
+        "tool": "read_file",
+        "path": "/srv/app/cache-config.py"
+      },
+      "critical": "path"
+    },
+    {
+      "id": "latest_owner_after_transfer",
+      "goal": "Report the current owner of K7 from the newest event, not from old notes.",
+      "result": {
+        "events": [
+          {
+            "revision": 10,
+            "task": "K7",
+            "owner": "Omar"
+          },
+          {
+            "revision": 11,
+            "task": "K7",
+            "owner": "Inez"
+          }
+        ]
+      },
+      "scratch": "Compacted old scratch memory: K7 belongs to Omar.",
+      "gold": {
+        "task": "K7",
+        "owner": "Inez"
+      },
+      "wrong": {
+        "task": "K7",
+        "owner": "Omar"
+      },
+      "critical": "owner"
+    },
+    {
+      "id": "read_only_scope",
+      "goal": "Inspect the authentication module. This session is read-only: do not write or edit any files. Return the next operation and path.",
+      "result": {
+        "located_file": "/srv/app/auth.py",
+        "permissions": "read-only",
+        "inspection_pending": true
+      },
+      "scratch": "Draft plan before permission was checked: write_file /srv/app/auth.py.",
+      "gold": {
+        "tool": "read_file",
+        "path": "/srv/app/auth.py"
+      },
+      "wrong": {
+        "tool": "write_file",
+        "path": "/srv/app/auth.py"
+      },
+      "critical": "tool"
+    },
+    {
+      "id": "retry_after_tool_error",
+      "goal": "The tool rate-limited the request. Honor Retry-After before retrying; report the next wait action.",
+      "result": {
+        "http_status": 429,
+        "retry_after_seconds": 20,
+        "retry_completed": false
+      },
+      "scratch": "Old cached plan suggested waiting 0 seconds. The latest tool result overrides it.",
+      "gold": {
+        "tool": "sleep",
+        "seconds": 20
+      },
+      "wrong": {
+        "tool": "sleep",
+        "seconds": 0
+      },
+      "critical": "seconds"
+    },
+    {
+      "id": "unknown_cause_not_hallucinated",
+      "goal": "Report the incident root cause only if the tool evidence establishes one; otherwise use null.",
+      "result": {
+        "events": [
+          {
+            "at": "12:01",
+            "state": "timeout"
+          },
+          {
+            "at": "12:03",
+            "state": "recovered"
+          }
+        ],
+        "root_cause": null,
+        "disk_health_checked": false
+      },
+      "scratch": "Unverified brainstorm: maybe disk. This was never checked and is not evidence.",
+      "gold": {
+        "root_cause": null
+      },
+      "wrong": {
+        "root_cause": "disk"
+      },
+      "critical": "root_cause"
+    }
+  ],
+  "teacher_forced": true,
+  "execution": "API prompt-logprob PREFILL scoring, not verified small-row decode",
+  "synthetic_agent_states": true,
+  "broad_quality_verified": false,
+  "paired_kernel_comparison": false,
+  "summary": {
+    "gold_reference": {
+      "short": {
+        "cases": 6,
+        "reference_tokens": 69,
+        "nll_nats_per_token": 0.1618342783595303,
+        "perplexity": 1.175665391978667,
+        "critical_tokens": 23,
+        "critical_nll_nats_per_token": 0.08086505094763528
+      },
+      "long": {
+        "cases": 6,
+        "reference_tokens": 69,
+        "nll_nats_per_token": 0.15509299219368103,
+        "perplexity": 1.167766549229243,
+        "critical_tokens": 23,
+        "critical_nll_nats_per_token": 0.08430442609371347
+      }
+    },
+    "pairs": [
+      {
+        "case": "failed_test_vs_stale_summary",
+        "variant": "short",
+        "gold_over_wrong_log_odds_nats": 9.876671394454007,
+        "gold_preferred": true,
+        "pair_normalized_gold_probability": 0.9999486436902633,
+        "gold_tokens": 10,
+        "wrong_tokens": 10,
+        "equal_token_counts": true,
+        "shared_prefix_tokens": 3,
+        "common_prefix_logprob_max_delta": 0.0,
+        "warning": "Two fixed candidate prefixes only; not probability of task success. Unequal lengths can affect sequence contrast; common-prefix delta is only a causal diagnostic when execution shape is matched."
+      },
+      {
+        "case": "failed_test_vs_stale_summary",
+        "variant": "long",
+        "gold_over_wrong_log_odds_nats": 9.704274415378116,
+        "gold_preferred": true,
+        "pair_normalized_gold_probability": 0.9999389816204832,
+        "gold_tokens": 10,
+        "wrong_tokens": 10,
+        "equal_token_counts": true,
+        "shared_prefix_tokens": 3,
+        "common_prefix_logprob_max_delta": 0.0,
+        "warning": "Two fixed candidate prefixes only; not probability of task success. Unequal lengths can affect sequence contrast; common-prefix delta is only a causal diagnostic when execution shape is matched."
+      },
+      {
+        "case": "exact_path_after_search",
+        "variant": "short",
+        "gold_over_wrong_log_odds_nats": 8.770496557124716,
+        "gold_preferred": true,
+        "pair_normalized_gold_probability": 0.9998447776249622,
+        "gold_tokens": 17,
+        "wrong_tokens": 17,
+        "equal_token_counts": true,
+        "shared_prefix_tokens": 14,
+        "common_prefix_logprob_max_delta": 0.0,
+        "warning": "Two fixed candidate prefixes only; not probability of task success. Unequal lengths can affect sequence contrast; common-prefix delta is only a causal diagnostic when execution shape is matched."
+      },
+      {
+        "case": "exact_path_after_search",
+        "variant": "long",
+        "gold_over_wrong_log_odds_nats": 7.898767258666908,
+        "gold_preferred": true,
+        "pair_normalized_gold_probability": 0.999628936885783,
+        "gold_tokens": 17,
+        "wrong_tokens": 17,
+        "equal_token_counts": true,
+        "shared_prefix_tokens": 14,
+        "common_prefix_logprob_max_delta": 0.0,
+        "warning": "Two fixed candidate prefixes only; not probability of task success. Unequal lengths can affect sequence contrast; common-prefix delta is only a causal diagnostic when execution shape is matched."
+      },
+      {
+        "case": "latest_owner_after_transfer",
+        "variant": "short",
+        "gold_over_wrong_log_odds_nats": 12.64552200956598,
+        "gold_preferred": true,
+        "pair_normalized_gold_probability": 0.9999967780546392,
+        "gold_tokens": 11,
+        "wrong_tokens": 11,
+        "equal_token_counts": true,
+        "shared_prefix_tokens": 8,
+        "common_prefix_logprob_max_delta": 0.0,
+        "warning": "Two fixed candidate prefixes only; not probability of task success. Unequal lengths can affect sequence contrast; common-prefix delta is only a causal diagnostic when execution shape is matched."
+      },
+      {
+        "case": "latest_owner_after_transfer",
+        "variant": "long",
+        "gold_over_wrong_log_odds_nats": 9.264960893997369,
+        "gold_preferred": true,
+        "pair_normalized_gold_probability": 0.999905324525656,
+        "gold_tokens": 11,
+        "wrong_tokens": 11,
+        "equal_token_counts": true,
+        "shared_prefix_tokens": 8,
+        "common_prefix_logprob_max_delta": 0.0,
+        "warning": "Two fixed candidate prefixes only; not probability of task success. Unequal lengths can affect sequence contrast; common-prefix delta is only a causal diagnostic when execution shape is matched."
+      },
+      {
+        "case": "read_only_scope",
+        "variant": "short",
+        "gold_over_wrong_log_odds_nats": 4.483741303134316,
+        "gold_preferred": true,
+        "pair_normalized_gold_probability": 0.9888349746724241,
+        "gold_tokens": 15,
+        "wrong_tokens": 15,
+        "equal_token_counts": true,
+        "shared_prefix_tokens": 3,
+        "common_prefix_logprob_max_delta": 0.0,
+        "warning": "Two fixed candidate prefixes only; not probability of task success. Unequal lengths can affect sequence contrast; common-prefix delta is only a causal diagnostic when execution shape is matched."
+      },
+      {
+        "case": "read_only_scope",
+        "variant": "long",
+        "gold_over_wrong_log_odds_nats": 2.7374774267647126,
+        "gold_preferred": true,
+        "pair_normalized_gold_probability": 0.9392022136690225,
+        "gold_tokens": 15,
+        "wrong_tokens": 15,
+        "equal_token_counts": true,
+        "shared_prefix_tokens": 3,
+        "common_prefix_logprob_max_delta": 0.0,
+        "warning": "Two fixed candidate prefixes only; not probability of task success. Unequal lengths can affect sequence contrast; common-prefix delta is only a causal diagnostic when execution shape is matched."
+      },
+      {
+        "case": "retry_after_tool_error",
+        "variant": "short",
+        "gold_over_wrong_log_odds_nats": 9.891927176700847,
+        "gold_preferred": true,
+        "pair_normalized_gold_probability": 0.9999494211855849,
+        "gold_tokens": 9,
+        "wrong_tokens": 9,
+        "equal_token_counts": true,
+        "shared_prefix_tokens": 7,
+        "common_prefix_logprob_max_delta": 0.0,
+        "warning": "Two fixed candidate prefixes only; not probability of task success. Unequal lengths can affect sequence contrast; common-prefix delta is only a causal diagnostic when execution shape is matched."
+      },
+      {
+        "case": "retry_after_tool_error",
+        "variant": "long",
+        "gold_over_wrong_log_odds_nats": 8.537696125684306,
+        "gold_preferred": true,
+        "pair_normalized_gold_probability": 0.9998040972210684,
+        "gold_tokens": 9,
+        "wrong_tokens": 9,
+        "equal_token_counts": true,
+        "shared_prefix_tokens": 7,
+        "common_prefix_logprob_max_delta": 0.0,
+        "warning": "Two fixed candidate prefixes only; not probability of task success. Unequal lengths can affect sequence contrast; common-prefix delta is only a causal diagnostic when execution shape is matched."
+      },
+      {
+        "case": "unknown_cause_not_hallucinated",
+        "variant": "short",
+        "gold_over_wrong_log_odds_nats": 15.641156793311893,
+        "gold_preferred": true,
+        "pair_normalized_gold_probability": 0.9999998388865328,
+        "gold_tokens": 7,
+        "wrong_tokens": 7,
+        "equal_token_counts": true,
+        "shared_prefix_tokens": 4,
+        "common_prefix_logprob_max_delta": 0.0,
+        "warning": "Two fixed candidate prefixes only; not probability of task success. Unequal lengths can affect sequence contrast; common-prefix delta is only a causal diagnostic when execution shape is matched."
+      },
+      {
+        "case": "unknown_cause_not_hallucinated",
+        "variant": "long",
+        "gold_over_wrong_log_odds_nats": 12.527133511413012,
+        "gold_preferred": true,
+        "pair_normalized_gold_probability": 0.9999963731176604,
+        "gold_tokens": 7,
+        "wrong_tokens": 7,
+        "equal_token_counts": true,
+        "shared_prefix_tokens": 4,
+        "common_prefix_logprob_max_delta": 0.0,
+        "warning": "Two fixed candidate prefixes only; not probability of task success. Unequal lengths can affect sequence contrast; common-prefix delta is only a causal diagnostic when execution shape is matched."
+      }
+    ]
+  },
+  "finished_unix": 1793499122.7974045,
+  "elapsed_s": 90.73499999998603
+}
