@@ -4,7 +4,7 @@ This update keeps our optimized serving stack, integrates selected GNmac target
 and drafter paths through qualified A/B/C arms, and completes integer prefill
 fusion across **all 40 target layers**. It is experimental and opt-in; the
 normal public launcher is unchanged. The source and qualification are pinned
-to [this kernel commit](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/4844d485868ee69e10ff3d0019e28dc7431bbc68/experiments/ds1017-bf16-full-fusion).
+to [this kernel commit](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/036f62398e32689e5cfa8bc6bd0255d602597dac/experiments/ds1017-bf16-full-fusion).
 
 The best-supported common settings are **BF16 KV + full integer fusion + Marlin
 dense prefill**. No arm proved best on every speed and quality measure. A leads
@@ -186,12 +186,12 @@ FP8 draft head and fused Markov implementation. Our integration retains the
 earlier optimized expert/attention/collective paths, adds qualification and
 sampling/graph guards, and completes full integer prefill fusion. Morrowmake's
 MoE foundations and the vLLM/ExLlamaV3 lineages remain separately credited in
-[the component notice](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/4844d485868ee69e10ff3d0019e28dc7431bbc68/experiments/ds1017-bf16-full-fusion/NOTICE.md).
+[the component notice](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/036f62398e32689e5cfa8bc6bd0255d602597dac/experiments/ds1017-bf16-full-fusion/NOTICE.md).
 
 The main measured arm used five draft tokens with the confidence gate off.
 It did **not** test GNmac's full adaptive 3/5 verification policy or 0.10 gate.
 The loaded bank cannot enable uncaptured arms with an environment toggle.
-[The next drafter ablation](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/4844d485868ee69e10ff3d0019e28dc7431bbc68/experiments/ds1017-bf16-full-fusion/DRAFTING-ABLATION.md) isolates widths,
+[The next drafter ablation](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/036f62398e32689e5cfa8bc6bd0255d602597dac/experiments/ds1017-bf16-full-fusion/DRAFTING-ABLATION.md) isolates widths,
 gate and proposal policy, measures local costs without donor interpolation,
 and checks greedy IDs plus sampled rejection/RNG correctness before promotion.
 
@@ -234,3 +234,11 @@ No single decode arm proved globally optimal. Keep BF16 KV/full fusion/Marlin as
 the supported common kernel settings; choose A for accuracy-first use or C for
 the measured speed option. B needs a fresh full SPARK comparison before being called
 the best balance. No default rollout or live model reload accompanies this update.
+
+## Publication privacy
+
+The span metadata endpoint is a sanitized loopback example. No private LAN
+endpoint, personal home path or site-specific Docker socket is required to
+interpret the measurements. All scores, token IDs and measured timings remain
+unchanged. The source manifest distinguishes the six privacy-edited offline
+helpers from the unchanged tested inference runtime/native code.

@@ -16,8 +16,8 @@
   },
   {
     "path": "fixtures/MANIFEST.json",
-    "bytes": 498,
-    "sha256": "8801a7caa01d879c57a601263f1836a0619ebcbfb8a34a4d3ae1b29df7aa3626"
+    "bytes": 540,
+    "sha256": "edd35c01f487f386a50409b7126e68334e32d7198e6fac7891fb665510ba31c9"
   },
   {
     "path": "fixtures/README.md",
@@ -26,8 +26,8 @@
   },
   {
     "path": "fixtures/target-spans.json",
-    "bytes": 102360,
-    "sha256": "b70875596dd35b85743d344db2c9dc66f8bbaae355f72ba44adf653b8e3d1171"
+    "bytes": 102356,
+    "sha256": "7b9affe54abce94540dd9d2be22ff85445929243dd8503385d79f7bf462a8274"
   },
   {
     "path": "fixtures/teacher-data.json.gz",
@@ -61,8 +61,8 @@
   },
   {
     "path": "README.md",
-    "bytes": 14033,
-    "sha256": "fc87c2ce5f8edc97597980568b61436546e58b3af104badc0cf102121995eb18"
+    "bytes": 14427,
+    "sha256": "12fcc802ba894c6281bf1405a0829932ab5449616ca3d938064030b627bb0cca"
   },
   {
     "path": "request-timings.jsonl",
@@ -72,7 +72,7 @@
   {
     "path": "SNAPSHOT.json",
     "bytes": 1315,
-    "sha256": "365e7a41379e99d5df9cbbff6c777962a7a1266a5e5499fc6e2dc4fc35e5bdec"
+    "sha256": "11d39a4bd5e2be1497d32b0eacebd6339fe1b96dabacf3f73bf25dcfc146b5b4"
   },
   {
     "path": "SPARK-T1-CATEGORY-WALLS.csv",

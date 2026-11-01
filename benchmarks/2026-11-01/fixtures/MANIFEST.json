@@ -5,5 +5,6 @@
   "cases": 24,
   "gold_tokens_per_pass": 138,
   "histories": "approximately0.4K/7.3K",
-  "target_span_sha256": "b70875596dd35b85743d344db2c9dc66f8bbaae355f72ba44adf653b8e3d1171"
+  "target_span_sha256": "7b9affe54abce94540dd9d2be22ff85445929243dd8503385d79f7bf462a8274",
+  "target_span_endpoint_sanitized": true
 }

@@ -1,7 +1,7 @@
 {
   "schema": "star.agentic.loss.v1",
   "started_unix": 1793499032.058726,
-  "endpoint": "http://192.168.1.252:8095",
+  "endpoint": "http://127.0.0.1:8095",
   "model": "deepseek-v4.1-flash",
   "rows": [
     {

@@ -21,5 +21,5 @@
   "scope": "Effective imported code/native objects plus exact image/launch pins; no modelweights,mutableKV,or fullcontainerfilesystem. Requires retained baseimage/model mounts to restore. Not a claim of one universally optimal decode arm.",
   "snapshot_archive_sha256": "010378117f7d7d19745f1936f87ef8ac655ddbf64f3e9f6c5a4f8170333de999",
   "snapshot_archive_bytes": 12833287,
-  "kernel_source_commit": "4844d485868ee69e10ff3d0019e28dc7431bbc68"
+  "kernel_source_commit": "036f62398e32689e5cfa8bc6bd0255d602597dac"
 }
