@@ -1,0 +1,9 @@
+{
+  "morrow_raw_sha256": "48cbc835ce239fa79badce94146cfbac706ee64cbe7846616b2dc3d4e9b11789",
+  "teacher_raw_sha256": "5b398cda15a1e737dda7c5239e9109551a54b9f98ec09ff10cf32045ef448fdb",
+  "spark_raw_sha256": "c7c9e92bb7f984b67cdabbbf9600b1474e3cd445c3d235812bb40590cbafe69e",
+  "prefill_raw_sha256": "5511f86b6ddbad5b6543b48e539d0d9bc052e51d7138d3559a8f422d33a9fd12",
+  "private_raw_archive_sha256": "b726a8327304b182a9f6f9e4111c6d77f21b62aa8b5eee6ada87366d7210bc47",
+  "exact_seed_identity_passed": false,
+  "measurement_integrity_passed": true
+}

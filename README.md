@@ -13,77 +13,28 @@ Measured on 4× CMP 170HX at 140 W.
 This repository is that weight selection and these measurements. It does
 not contain the weight files. Licenses are in [NOTICE.md](NOTICE.md).
 
-## BF16 cache and full prefill fusion — November 1, 2026
+## Balanced BF16 recipe — November 2, 2026
 
-We kept our optimized expert, attention and communication paths, integrated
-selected GNmac target/drafter kernels, and completed integer prefill fusion
-across all 40 target layers. The measured build uses **BF16 KV cache** and
-Marlin dense prefill. Existing launcher defaults and weights are unchanged.
+We kept our specialized expert shapes, split attention and communication paths, integrated selected GNmac dense/expert and fast draft-head/sampler paths, and retained BF16 KV and output projection with full integer prefill fusion and Marlin prefill. The selected recipe uses fixed-five verification and keeps the existing serving proposal split; adaptive width, confidence gating and the new greedy-proposal override remain optional experiments.
 
-### Morrow benchmark headline
+### Morrow headline: per-user streaming and full request wall
 
-Original means our optimized target/decode paths; updated means the selected
-GNmac-derived short-row target and draft-head/selection paths integrated with
-our retained expert, attention and collective optimizations. Both use BF16 KV
-on the same loaded model at 140 W. These figures compare the complete selected
-stacks, not the prefill fusion in isolation.
+| Users | Prompt | Original tok/s | Balanced tok/s | Original wall s | Balanced wall s | Wall cut | Original TTFT s | Balanced TTFT s |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | count | 223.15 | 262.38 | 2.1134 | 1.7611 | +16.67% | 0.3247 | 0.2393 |
+| 1 | code | 200.61 | 238.05 | 2.2958 | 1.8899 | +17.68% | 0.3056 | 0.2123 |
+| 1 | prose | 115.28 | 135.18 | 3.7765 | 3.1943 | +15.42% | 0.3153 | 0.2348 |
+| 8 | count | 87.48 | 97.35 | 5.2888 | 4.5958 | +13.10% | 0.7691 | 0.5103 |
+| 8 | code | 74.72 | 84.70 | 6.3977 | 5.4223 | +15.25% | 0.8433 | 0.5214 |
+| 8 | prose | 39.49 | 45.26 | 11.2018 | 9.5752 | +14.52% | 0.7904 | 0.5118 |
 
-Morrow prompts, temperature 0, thinking off, output cap 400; one measured batch
-per cell on this load, at one and eight concurrent users. Decode tok/s is per
-user after the first token, `(completion_tokens - 1) / (end - first_token)`;
-request wall includes the first-token wait. Positive wall reduction means
-faster completion; a negative value means a longer wait. This is a limited
-control, not a new three-repeat 1–8-user sweep.
+Fresh same-boot BF16-cache controls,972 measured requests plus324 separately retained first-use requests, users1..8, three batches/cell. Original controls bracket the balanced pass. One regression remains: three-user code wall is4.60% slower. All eligible graph shapes were observed on all four ranks. Rates exclude TTFT; wall includes it.
 
-| Users | Prompt | Original decode tok/s | Updated decode tok/s | Decode change | Request wall reduction |
-| ---: | --- | ---: | ---: | ---: | ---: |
-| 1 | Count | 221.93 | 271.77 | +22.46% | +15.39% |
-| 1 | Code | 196.99 | 245.96 | +24.86% | +17.84% |
-| 1 | Prose | 116.68 | 149.54 | +28.17% | +20.44% |
-| 8 | Count | 88.10 | 81.12 | -7.92% | -40.35% |
-| 8 | Code | 76.90 | 81.53 | +6.02% | +1.60% |
-| 8 | Prose | 39.10 | 43.89 | +12.24% | +11.74% |
+Fresh128K prefill fell95.380→87.480s versus original prefill. The earlier isolated integer-fusion gain was91.585→87.615s beyond the MoE-only baseline. Historical GNmac was86.333s with FP8KV on another boot; no matched standalone victory or20–30% lead is claimed.
 
-Single-user count/code/prose request walls fell **15.39% / 17.84% / 20.44%**.
-Eight-user code/prose improved, but counting took **7.250s versus 5.166s**,
-with TTFT **2.514s versus 0.659s**. That regression remains part of the result.
-The [complete Morrow timing table](benchmarks/2026-11-01/README.md#morrow-benchmark-headline)
-includes wall/TTFT and the separate earlier full sweep.
+The original ranks numerically best on the fresh small quality fixture: PPL1.166442 vs balanced1.168604. The difference is smaller than repeat variation, so this is a speed/quality tradeoff, not a demonstrated accuracy gain or equivalence. All48 correct/incorrect likelihood preferences passed. Seeded-output variation, a separator-token change and multiuser delivery stalls remain documented.
 
-### Prefill, quality and attribution
-
-Holding the selected target paths and BF16 cache fixed, full integer fusion
-reduced 2K–128K request walls by **4.3–6.7% beyond MoE-only prefill**; at 128K,
-**91.585 → 87.615 seconds**. This is the isolated new prefill gain.
-Current SPARK full-wall rates are **112.02 tokens/s at one user and 281.48 at
-eight**, close to the earlier updated-stack results of 111.28 and 280.25;
-intermediate-user regressions remain in the full report.
-
-The original target paths led long-history and critical-field likelihood in
-the small synthetic quality screen. Overall perplexity was **1.166656 for
-the original paths versus 1.167468 for the speed-focused updated stack**,
-about **0.07% higher**, within the scale of observed repeat variation. These
-are expected-token scores, not agent task-success percentages. The full report
-retains the other target-path comparison and short-history results.
-
-The [benchmark and likelihood report](benchmarks/2026-11-01/README.md) includes
-previous baselines, measured drafting-component benefits, latency exceptions
-and GNmac attribution. The complete adaptive width/gate policy remains untested.
-The [source update](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/main/experiments/ds1017-bf16-full-fusion)
-contains qualification, source hashes and GNmac/Morrowmake/vLLM/EXL3 credits.
-Its approximately 62,000 added lines include retained dependencies, tests and
-reference copies; the runtime map identifies five integration edits and 22
-new files. The public export uses sanitized endpoint/socket examples.
-
-### Earlier reference measurements
-
-The comparison measures Morrowmake's repo run on this Broadwell. Those figures are our measurements, not numbers published by Morrowmake.
-[This Broadwell serve versus Morrowmake's repo run here](benchmarks/2026-10-24/broadwell-vs-morrowmake.md).
-The same charts: [broadwell-vs-morrowmake.html](https://curtisaccelerate.github.io/DeepSeekv41-Flash-1017-EXL3-CMP170HX/benchmarks/2026-10-24/broadwell-vs-morrowmake.html).
-
-The October 17 measurements were 180.4 tok/s structured, 137.1 code,
-96.6 prose; eight users aggregate 621, 376, and 283. The latest controlled kernel, P2P and four-Spark measurements are linked
-under [Kernel improvements](#kernel-improvements--october-22-2026).
+The [complete benchmark, perplexity, drafting and attribution report](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-1017-EXL3-CMP170HX/blob/main/benchmarks/2026-11-02/README.md) contains the full1..8 table, optional-proposal SPARK results, prefill/TTFT/wall data and retained regressions. Source updates modify the existing export in place rather than adding another complete source copy. The [selected private recipe and client](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/main/experiments/ds1017-bf16-full-fusion/defaults) use the actual qualified private protocol; ordinary serving/Hermes has not been repointed.
 
 ## Expert gates for 2–6 users — October 28, 2026
 
@@ -393,7 +344,7 @@ a new measurement. Their corpus was not rerun here.
 
 ## Credits
 
-Curtis White ([CurtisAccelerate](https://github.com/CurtisAccelerate))
+CurtisAccelerate ([CurtisAccelerate](https://github.com/CurtisAccelerate))
 implemented and published the DeepSeek V4.1 Flash EXL3 MoE
 port and serving build, the 1017 weight recipe, six-row transpose/native-mixed
 optimizations, Engram retention/reattachment, and resident A/B workflow.

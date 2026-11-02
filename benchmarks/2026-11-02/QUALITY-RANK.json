@@ -1,0 +1,1589 @@
+{
+  "passed": true,
+  "measurement_integrity_passed": true,
+  "repeat_candidate_nll": [
+    0.15682803720667743,
+    0.15479155554287677
+  ],
+  "repeat_candidate_spread": 0.00203648166380066,
+  "quality_risk_flags": [],
+  "winner_note": "Toward/away describes agreement with one frozen answer token. Separator changes can admit valid alternative continuations; no semantic tool-call failure is inferred. Teacher does not test sampled distribution or agent success.",
+  "scope": "96 synthetic matched teacher requests; original/referenceprefill brackets two balanced/fullfusion passes on the same BF16KV boot,138goldtokens perrun at0.4K/7.3K. Whole-stack target/prefill comparison; teacher bypasses both drafter policies. Teacher bypasses draft generation/greedyhead shortcut; no generalaccuracy,128Kquality,oragent-success proof.",
+  "groups": [
+    {
+      "profile": "A",
+      "history": "short",
+      "runs": 2,
+      "gold_tokens": 138,
+      "nll": 0.15686010277789572,
+      "perplexity": 1.169831946213249,
+      "critical_nll": 0.07534819063932999
+    },
+    {
+      "profile": "A",
+      "history": "long",
+      "runs": 2,
+      "gold_tokens": 138,
+      "nll": 0.1510567181352256,
+      "perplexity": 1.163062622954225,
+      "critical_nll": 0.0932782214620839
+    },
+    {
+      "profile": "A",
+      "history": "all",
+      "runs": 2,
+      "gold_tokens": 276,
+      "nll": 0.15395841045656067,
+      "perplexity": 1.166442373963852,
+      "critical_nll": 0.08431320605070694
+    },
+    {
+      "profile": "GN-BALANCED-WIDE",
+      "history": "short",
+      "runs": 2,
+      "gold_tokens": 138,
+      "nll": 0.15810164852418762,
+      "perplexity": 1.1712852480736369,
+      "critical_nll": 0.0817727627961532
+    },
+    {
+      "profile": "GN-BALANCED-WIDE",
+      "history": "long",
+      "runs": 2,
+      "gold_tokens": 138,
+      "nll": 0.15351794422536658,
+      "perplexity": 1.1659287086219106,
+      "critical_nll": 0.09290396648904552
+    },
+    {
+      "profile": "GN-BALANCED-WIDE",
+      "history": "all",
+      "runs": 2,
+      "gold_tokens": 276,
+      "nll": 0.1558097963747771,
+      "perplexity": 1.1686039092500031,
+      "critical_nll": 0.08733836464259935
+    }
+  ],
+  "numerical_rank": {
+    "short": [
+      {
+        "profile": "A",
+        "history": "short",
+        "runs": 2,
+        "gold_tokens": 138,
+        "nll": 0.15686010277789572,
+        "perplexity": 1.169831946213249,
+        "critical_nll": 0.07534819063932999
+      },
+      {
+        "profile": "GN-BALANCED-WIDE",
+        "history": "short",
+        "runs": 2,
+        "gold_tokens": 138,
+        "nll": 0.15810164852418762,
+        "perplexity": 1.1712852480736369,
+        "critical_nll": 0.0817727627961532
+      }
+    ],
+    "long": [
+      {
+        "profile": "A",
+        "history": "long",
+        "runs": 2,
+        "gold_tokens": 138,
+        "nll": 0.1510567181352256,
+        "perplexity": 1.163062622954225,
+        "critical_nll": 0.0932782214620839
+      },
+      {
+        "profile": "GN-BALANCED-WIDE",
+        "history": "long",
+        "runs": 2,
+        "gold_tokens": 138,
+        "nll": 0.15351794422536658,
+        "perplexity": 1.1659287086219106,
+        "critical_nll": 0.09290396648904552
+      }
+    ],
+    "all": [
+      {
+        "profile": "A",
+        "history": "all",
+        "runs": 2,
+        "gold_tokens": 276,
+        "nll": 0.15395841045656067,
+        "perplexity": 1.166442373963852,
+        "critical_nll": 0.08431320605070694
+      },
+      {
+        "profile": "GN-BALANCED-WIDE",
+        "history": "all",
+        "runs": 2,
+        "gold_tokens": 276,
+        "nll": 0.1558097963747771,
+        "perplexity": 1.1686039092500031,
+        "critical_nll": 0.08733836464259935
+      }
+    ]
+  },
+  "repeat_A_nll": [
+    0.15284380705460257,
+    0.15507301385851874
+  ],
+  "repeat_A_spread": 0.002229206803916167,
+  "winner_directions": [
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "compared": 126,
+      "unchanged": 124,
+      "toward_gold": 1,
+      "away_from_gold": 1,
+      "both_non_gold": 0
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "compared": 126,
+      "unchanged": 126,
+      "toward_gold": 0,
+      "away_from_gold": 0,
+      "both_non_gold": 0
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "compared": 126,
+      "unchanged": 126,
+      "toward_gold": 0,
+      "away_from_gold": 0,
+      "both_non_gold": 0
+    }
+  ],
+  "changed_winners": [
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "exact_path_after_search-long-gold",
+      "index": 2,
+      "gold": 16562,
+      "old": 16562,
+      "new": 3362,
+      "direction": "away_from_gold",
+      "char_start": 6,
+      "char_end": 9,
+      "frozen_text": "\":\""
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "exact_path_after_search-long-gold",
+      "index": 3,
+      "gold": 1795,
+      "old": 261,
+      "new": 1795,
+      "direction": "toward_gold",
+      "char_start": 9,
+      "char_end": 13,
+      "frozen_text": "read"
+    }
+  ],
+  "preferences": [
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "failed_test_vs_stale_summary-short-gold",
+      "gold_preferred": true,
+      "log_odds": 10.249671936035156
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "failed_test_vs_stale_summary-long-gold",
+      "gold_preferred": true,
+      "log_odds": 9.548974990844727
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "exact_path_after_search-short-gold",
+      "gold_preferred": true,
+      "log_odds": 8.927112579345703
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "exact_path_after_search-long-gold",
+      "gold_preferred": true,
+      "log_odds": 7.807512283325195
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "latest_owner_after_transfer-short-gold",
+      "gold_preferred": true,
+      "log_odds": 12.291210174560547
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "latest_owner_after_transfer-long-gold",
+      "gold_preferred": true,
+      "log_odds": 9.14645004272461
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "read_only_scope-short-gold",
+      "gold_preferred": true,
+      "log_odds": 4.236042022705078
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "read_only_scope-long-gold",
+      "gold_preferred": true,
+      "log_odds": 2.8195743560791016
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "retry_after_tool_error-short-gold",
+      "gold_preferred": true,
+      "log_odds": 9.735771179199219
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "retry_after_tool_error-long-gold",
+      "gold_preferred": true,
+      "log_odds": 8.657079696655273
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "unknown_cause_not_hallucinated-short-gold",
+      "gold_preferred": true,
+      "log_odds": 15.928829193115234
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "unknown_cause_not_hallucinated-long-gold",
+      "gold_preferred": true,
+      "log_odds": 11.698015213012695
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "failed_test_vs_stale_summary-short-gold",
+      "gold_preferred": true,
+      "log_odds": 10.023754119873047
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "failed_test_vs_stale_summary-long-gold",
+      "gold_preferred": true,
+      "log_odds": 9.645736694335938
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "exact_path_after_search-short-gold",
+      "gold_preferred": true,
+      "log_odds": 8.634363174438477
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "exact_path_after_search-long-gold",
+      "gold_preferred": true,
+      "log_odds": 7.608308792114258
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "latest_owner_after_transfer-short-gold",
+      "gold_preferred": true,
+      "log_odds": 12.161199569702148
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "latest_owner_after_transfer-long-gold",
+      "gold_preferred": true,
+      "log_odds": 9.007204055786133
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "read_only_scope-short-gold",
+      "gold_preferred": true,
+      "log_odds": 4.240610122680664
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "read_only_scope-long-gold",
+      "gold_preferred": true,
+      "log_odds": 2.9329471588134766
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "retry_after_tool_error-short-gold",
+      "gold_preferred": true,
+      "log_odds": 9.798185348510742
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "retry_after_tool_error-long-gold",
+      "gold_preferred": true,
+      "log_odds": 8.163045883178711
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "unknown_cause_not_hallucinated-short-gold",
+      "gold_preferred": true,
+      "log_odds": 15.381647109985352
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "unknown_cause_not_hallucinated-long-gold",
+      "gold_preferred": true,
+      "log_odds": 11.377321243286133
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "failed_test_vs_stale_summary-short-gold",
+      "gold_preferred": true,
+      "log_odds": 10.222341537475586
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "failed_test_vs_stale_summary-long-gold",
+      "gold_preferred": true,
+      "log_odds": 9.713129043579102
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "exact_path_after_search-short-gold",
+      "gold_preferred": true,
+      "log_odds": 8.886251449584961
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "exact_path_after_search-long-gold",
+      "gold_preferred": true,
+      "log_odds": 7.9762725830078125
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "latest_owner_after_transfer-short-gold",
+      "gold_preferred": true,
+      "log_odds": 12.371183395385742
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "latest_owner_after_transfer-long-gold",
+      "gold_preferred": true,
+      "log_odds": 9.260663986206055
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "read_only_scope-short-gold",
+      "gold_preferred": true,
+      "log_odds": 4.159526824951172
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "read_only_scope-long-gold",
+      "gold_preferred": true,
+      "log_odds": 3.0939273834228516
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "retry_after_tool_error-short-gold",
+      "gold_preferred": true,
+      "log_odds": 10.162622451782227
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "retry_after_tool_error-long-gold",
+      "gold_preferred": true,
+      "log_odds": 8.232511520385742
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "unknown_cause_not_hallucinated-short-gold",
+      "gold_preferred": true,
+      "log_odds": 15.334680557250977
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "unknown_cause_not_hallucinated-long-gold",
+      "gold_preferred": true,
+      "log_odds": 11.512001037597656
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "failed_test_vs_stale_summary-short-gold",
+      "gold_preferred": true,
+      "log_odds": 9.980337142944336
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "failed_test_vs_stale_summary-long-gold",
+      "gold_preferred": true,
+      "log_odds": 9.417556762695312
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "exact_path_after_search-short-gold",
+      "gold_preferred": true,
+      "log_odds": 8.661825180053711
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "exact_path_after_search-long-gold",
+      "gold_preferred": true,
+      "log_odds": 7.751628875732422
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "latest_owner_after_transfer-short-gold",
+      "gold_preferred": true,
+      "log_odds": 12.402257919311523
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "latest_owner_after_transfer-long-gold",
+      "gold_preferred": true,
+      "log_odds": 9.269281387329102
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "read_only_scope-short-gold",
+      "gold_preferred": true,
+      "log_odds": 3.9912071228027344
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "read_only_scope-long-gold",
+      "gold_preferred": true,
+      "log_odds": 2.730043411254883
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "retry_after_tool_error-short-gold",
+      "gold_preferred": true,
+      "log_odds": 10.146059036254883
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "retry_after_tool_error-long-gold",
+      "gold_preferred": true,
+      "log_odds": 8.531932830810547
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "unknown_cause_not_hallucinated-short-gold",
+      "gold_preferred": true,
+      "log_odds": 15.721065521240234
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "unknown_cause_not_hallucinated-long-gold",
+      "gold_preferred": true,
+      "log_odds": 11.747102737426758
+    }
+  ],
+  "cases": [
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "failed_test_vs_stale_summary-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 10,
+      "loss": 0.36163902282714844,
+      "critical_tokens": 3,
+      "critical_loss": 0.3491058349609375
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "failed_test_vs_stale_summary-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 10,
+      "loss": 10.611310958862305,
+      "critical_tokens": 3,
+      "critical_loss": 8.987714767456055
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "failed_test_vs_stale_summary-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 10,
+      "loss": 0.268829345703125,
+      "critical_tokens": 3,
+      "critical_loss": 0.2634601593017578
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "failed_test_vs_stale_summary-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 10,
+      "loss": 9.817804336547852,
+      "critical_tokens": 3,
+      "critical_loss": 9.113845825195312
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "exact_path_after_search-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 17,
+      "loss": 2.7138309478759766,
+      "critical_tokens": 10,
+      "critical_loss": 0.0016536712646484375
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "exact_path_after_search-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 17,
+      "loss": 11.64094352722168,
+      "critical_tokens": 10,
+      "critical_loss": 8.660179138183594
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "exact_path_after_search-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 17,
+      "loss": 1.2397918701171875,
+      "critical_tokens": 10,
+      "critical_loss": 0.0012664794921875
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "exact_path_after_search-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 17,
+      "loss": 9.047304153442383,
+      "critical_tokens": 10,
+      "critical_loss": 7.767541885375977
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "latest_owner_after_transfer-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 11,
+      "loss": 0.12103652954101562,
+      "critical_tokens": 4,
+      "critical_loss": 0.00048065185546875
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "latest_owner_after_transfer-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 11,
+      "loss": 12.412246704101562,
+      "critical_tokens": 4,
+      "critical_loss": 12.277576446533203
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "latest_owner_after_transfer-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 11,
+      "loss": 0.05704689025878906,
+      "critical_tokens": 4,
+      "critical_loss": 0.0011501312255859375
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "latest_owner_after_transfer-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 11,
+      "loss": 9.203496932983398,
+      "critical_tokens": 4,
+      "critical_loss": 9.13266372680664
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "read_only_scope-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 15,
+      "loss": 0.38330650329589844,
+      "critical_tokens": 4,
+      "critical_loss": 0.3613853454589844
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "read_only_scope-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 15,
+      "loss": 4.619348526000977,
+      "critical_tokens": 4,
+      "critical_loss": 4.587131500244141
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "read_only_scope-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 15,
+      "loss": 0.9543437957763672,
+      "critical_tokens": 4,
+      "critical_loss": 0.9041271209716797
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "read_only_scope-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 15,
+      "loss": 3.7739181518554688,
+      "critical_tokens": 4,
+      "critical_loss": 3.7205448150634766
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "retry_after_tool_error-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 9,
+      "loss": 6.039487838745117,
+      "critical_tokens": 1,
+      "critical_loss": 0.00022125244140625
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "retry_after_tool_error-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 9,
+      "loss": 15.775259017944336,
+      "critical_tokens": 1,
+      "critical_loss": 9.750232696533203
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "retry_after_tool_error-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 9,
+      "loss": 6.836799621582031,
+      "critical_tokens": 1,
+      "critical_loss": 0.000560760498046875
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "retry_after_tool_error-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 9,
+      "loss": 15.493879318237305,
+      "critical_tokens": 1,
+      "critical_loss": 8.500495910644531
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "unknown_cause_not_hallucinated-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 7,
+      "loss": 1.140615463256836,
+      "critical_tokens": 1,
+      "critical_loss": 1.1368789672851562
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "unknown_cause_not_hallucinated-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 7,
+      "loss": 17.06944465637207,
+      "critical_tokens": 3,
+      "critical_loss": 17.065765380859375
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "unknown_cause_not_hallucinated-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 7,
+      "loss": 0.9757175445556641,
+      "critical_tokens": 1,
+      "critical_loss": 0.9740829467773438
+    },
+    {
+      "run": 0,
+      "profile": "A",
+      "label": "unknown_cause_not_hallucinated-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 7,
+      "loss": 12.67373275756836,
+      "critical_tokens": 3,
+      "critical_loss": 12.67215347290039
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "failed_test_vs_stale_summary-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 10,
+      "loss": 0.36600685119628906,
+      "critical_tokens": 3,
+      "critical_loss": 0.353485107421875
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "failed_test_vs_stale_summary-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 10,
+      "loss": 10.389760971069336,
+      "critical_tokens": 3,
+      "critical_loss": 8.958938598632812
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "failed_test_vs_stale_summary-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 10,
+      "loss": 0.25470542907714844,
+      "critical_tokens": 3,
+      "critical_loss": 0.2493457794189453
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "failed_test_vs_stale_summary-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 10,
+      "loss": 9.900442123413086,
+      "critical_tokens": 3,
+      "critical_loss": 9.062034606933594
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "exact_path_after_search-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 17,
+      "loss": 2.921518325805664,
+      "critical_tokens": 10,
+      "critical_loss": 0.001827239990234375
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "exact_path_after_search-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 17,
+      "loss": 11.55588150024414,
+      "critical_tokens": 10,
+      "critical_loss": 8.649755477905273
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "exact_path_after_search-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 17,
+      "loss": 1.4348869323730469,
+      "critical_tokens": 10,
+      "critical_loss": 0.001239776611328125
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "exact_path_after_search-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 17,
+      "loss": 9.043195724487305,
+      "critical_tokens": 10,
+      "critical_loss": 7.765544891357422
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "latest_owner_after_transfer-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 11,
+      "loss": 0.12097740173339844,
+      "critical_tokens": 4,
+      "critical_loss": 0.0004291534423828125
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "latest_owner_after_transfer-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 11,
+      "loss": 12.282176971435547,
+      "critical_tokens": 4,
+      "critical_loss": 12.147512435913086
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "latest_owner_after_transfer-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 11,
+      "loss": 0.06652641296386719,
+      "critical_tokens": 4,
+      "critical_loss": 0.00128173828125
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "latest_owner_after_transfer-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 11,
+      "loss": 9.07373046875,
+      "critical_tokens": 4,
+      "critical_loss": 9.008493423461914
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "read_only_scope-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 15,
+      "loss": 0.37876129150390625,
+      "critical_tokens": 4,
+      "critical_loss": 0.3568458557128906
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "read_only_scope-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 15,
+      "loss": 4.61937141418457,
+      "critical_tokens": 4,
+      "critical_loss": 4.587121963500977
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "read_only_scope-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 15,
+      "loss": 0.8885707855224609,
+      "critical_tokens": 4,
+      "critical_loss": 0.8384456634521484
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "read_only_scope-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 15,
+      "loss": 3.8215179443359375,
+      "critical_tokens": 4,
+      "critical_loss": 3.7681541442871094
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "retry_after_tool_error-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 9,
+      "loss": 6.008625030517578,
+      "critical_tokens": 1,
+      "critical_loss": 0.00016021728515625
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "retry_after_tool_error-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 9,
+      "loss": 15.80681037902832,
+      "critical_tokens": 1,
+      "critical_loss": 9.750247955322266
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "retry_after_tool_error-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 9,
+      "loss": 7.0057373046875,
+      "critical_tokens": 1,
+      "critical_loss": 0.00045013427734375
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "retry_after_tool_error-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 9,
+      "loss": 15.168783187866211,
+      "critical_tokens": 1,
+      "critical_loss": 8.250553131103516
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "unknown_cause_not_hallucinated-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 7,
+      "loss": 1.1406116485595703,
+      "critical_tokens": 1,
+      "critical_loss": 1.1368789672851562
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "unknown_cause_not_hallucinated-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 7,
+      "loss": 16.522258758544922,
+      "critical_tokens": 3,
+      "critical_loss": 16.518579483032227
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "unknown_cause_not_hallucinated-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 7,
+      "loss": 1.0553417205810547,
+      "critical_tokens": 1,
+      "critical_loss": 1.0537071228027344
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "unknown_cause_not_hallucinated-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 7,
+      "loss": 12.432662963867188,
+      "critical_tokens": 3,
+      "critical_loss": 12.431083679199219
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "failed_test_vs_stale_summary-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 10,
+      "loss": 0.3616466522216797,
+      "critical_tokens": 3,
+      "critical_loss": 0.3491096496582031
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "failed_test_vs_stale_summary-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 10,
+      "loss": 10.583988189697266,
+      "critical_tokens": 3,
+      "critical_loss": 9.058052062988281
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "failed_test_vs_stale_summary-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 10,
+      "loss": 0.3172931671142578,
+      "critical_tokens": 3,
+      "critical_loss": 0.311920166015625
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "failed_test_vs_stale_summary-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 10,
+      "loss": 10.03042221069336,
+      "critical_tokens": 3,
+      "critical_loss": 9.192737579345703
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "exact_path_after_search-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 17,
+      "loss": 2.8103370666503906,
+      "critical_tokens": 10,
+      "critical_loss": 0.0022487640380859375
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "exact_path_after_search-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 17,
+      "loss": 11.696588516235352,
+      "critical_tokens": 10,
+      "critical_loss": 8.65635871887207
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "exact_path_after_search-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 17,
+      "loss": 1.3458251953125,
+      "critical_tokens": 10,
+      "critical_loss": 0.00125885009765625
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "exact_path_after_search-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 17,
+      "loss": 9.322097778320312,
+      "critical_tokens": 10,
+      "critical_loss": 7.640714645385742
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "latest_owner_after_transfer-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 11,
+      "loss": 0.13509750366210938,
+      "critical_tokens": 4,
+      "critical_loss": 0.0004367828369140625
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "latest_owner_after_transfer-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 11,
+      "loss": 12.506280899047852,
+      "critical_tokens": 4,
+      "critical_loss": 12.398351669311523
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "latest_owner_after_transfer-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 11,
+      "loss": 0.06670379638671875,
+      "critical_tokens": 4,
+      "critical_loss": 0.00145721435546875
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "latest_owner_after_transfer-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 11,
+      "loss": 9.327367782592773,
+      "critical_tokens": 4,
+      "critical_loss": 9.256534576416016
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "read_only_scope-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 15,
+      "loss": 0.44536399841308594,
+      "critical_tokens": 4,
+      "critical_loss": 0.42302894592285156
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "read_only_scope-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 15,
+      "loss": 4.604890823364258,
+      "critical_tokens": 4,
+      "critical_loss": 4.571680068969727
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "read_only_scope-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 15,
+      "loss": 0.8899402618408203,
+      "critical_tokens": 4,
+      "critical_loss": 0.8398056030273438
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "read_only_scope-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 15,
+      "loss": 3.983867645263672,
+      "critical_tokens": 4,
+      "critical_loss": 3.9302501678466797
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "retry_after_tool_error-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 9,
+      "loss": 5.98846435546875,
+      "critical_tokens": 1,
+      "critical_loss": 0.000217437744140625
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "retry_after_tool_error-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 9,
+      "loss": 16.151086807250977,
+      "critical_tokens": 1,
+      "critical_loss": 9.875232696533203
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "retry_after_tool_error-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 9,
+      "loss": 6.884222030639648,
+      "critical_tokens": 1,
+      "critical_loss": 0.00058746337890625
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "retry_after_tool_error-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 9,
+      "loss": 15.11673355102539,
+      "critical_tokens": 1,
+      "critical_loss": 8.250553131103516
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "unknown_cause_not_hallucinated-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 7,
+      "loss": 1.1406173706054688,
+      "critical_tokens": 1,
+      "critical_loss": 1.1368789672851562
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "unknown_cause_not_hallucinated-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 7,
+      "loss": 16.475297927856445,
+      "critical_tokens": 3,
+      "critical_loss": 16.47161865234375
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "unknown_cause_not_hallucinated-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 7,
+      "loss": 0.9757232666015625,
+      "critical_tokens": 1,
+      "critical_loss": 0.9740829467773438
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "unknown_cause_not_hallucinated-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 7,
+      "loss": 12.487724304199219,
+      "critical_tokens": 3,
+      "critical_loss": 12.48614501953125
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "failed_test_vs_stale_summary-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 10,
+      "loss": 0.3225822448730469,
+      "critical_tokens": 3,
+      "critical_loss": 0.31006431579589844
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "failed_test_vs_stale_summary-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 10,
+      "loss": 10.302919387817383,
+      "critical_tokens": 3,
+      "critical_loss": 8.965267181396484
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "failed_test_vs_stale_summary-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 10,
+      "loss": 0.3172874450683594,
+      "critical_tokens": 3,
+      "critical_loss": 0.3119239807128906
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "failed_test_vs_stale_summary-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 10,
+      "loss": 9.734844207763672,
+      "critical_tokens": 3,
+      "critical_loss": 9.092447280883789
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "exact_path_after_search-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 17,
+      "loss": 2.679250717163086,
+      "critical_tokens": 10,
+      "critical_loss": 0.0020198822021484375
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "exact_path_after_search-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 17,
+      "loss": 11.341075897216797,
+      "critical_tokens": 10,
+      "critical_loss": 8.535205841064453
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "exact_path_after_search-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 17,
+      "loss": 1.28375244140625,
+      "critical_tokens": 10,
+      "critical_loss": 0.0012454986572265625
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "exact_path_after_search-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 17,
+      "loss": 9.035381317138672,
+      "critical_tokens": 10,
+      "critical_loss": 7.644634246826172
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "latest_owner_after_transfer-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 11,
+      "loss": 0.1508941650390625,
+      "critical_tokens": 4,
+      "critical_loss": 0.00048065185546875
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "latest_owner_after_transfer-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 11,
+      "loss": 12.553152084350586,
+      "critical_tokens": 4,
+      "critical_loss": 12.402730941772461
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "latest_owner_after_transfer-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 11,
+      "loss": 0.06660270690917969,
+      "critical_tokens": 4,
+      "critical_loss": 0.0013580322265625
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "latest_owner_after_transfer-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 11,
+      "loss": 9.335884094238281,
+      "critical_tokens": 4,
+      "critical_loss": 9.258750915527344
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "read_only_scope-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 15,
+      "loss": 0.4275932312011719,
+      "critical_tokens": 4,
+      "critical_loss": 0.4053802490234375
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "read_only_scope-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 15,
+      "loss": 4.418800354003906,
+      "critical_tokens": 4,
+      "critical_loss": 4.385646820068359
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "read_only_scope-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 15,
+      "loss": 0.9832134246826172,
+      "critical_tokens": 4,
+      "critical_loss": 0.9329986572265625
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "read_only_scope-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 15,
+      "loss": 3.7132568359375,
+      "critical_tokens": 4,
+      "critical_loss": 3.659914016723633
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "retry_after_tool_error-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 9,
+      "loss": 6.404584884643555,
+      "critical_tokens": 1,
+      "critical_loss": 0.000213623046875
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "retry_after_tool_error-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 9,
+      "loss": 16.550643920898438,
+      "critical_tokens": 1,
+      "critical_loss": 10.250175476074219
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "retry_after_tool_error-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 9,
+      "loss": 6.962684631347656,
+      "critical_tokens": 1,
+      "critical_loss": 0.00049591064453125
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "retry_after_tool_error-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 9,
+      "loss": 15.494617462158203,
+      "critical_tokens": 1,
+      "critical_loss": 8.500484466552734
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "unknown_cause_not_hallucinated-short-gold",
+      "history": "short",
+      "kind": "gold",
+      "tokens": 7,
+      "loss": 0.9018726348876953,
+      "critical_tokens": 1,
+      "critical_loss": 0.89813232421875
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "unknown_cause_not_hallucinated-short-wrong",
+      "history": "short",
+      "kind": "wrong",
+      "tokens": 7,
+      "loss": 16.62293815612793,
+      "critical_tokens": 3,
+      "critical_loss": 16.619258880615234
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "unknown_cause_not_hallucinated-long-gold",
+      "history": "long",
+      "kind": "gold",
+      "tokens": 7,
+      "loss": 0.8997573852539062,
+      "critical_tokens": 1,
+      "critical_loss": 0.8981285095214844
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "label": "unknown_cause_not_hallucinated-long-wrong",
+      "history": "long",
+      "kind": "wrong",
+      "tokens": 7,
+      "loss": 12.646860122680664,
+      "critical_tokens": 3,
+      "critical_loss": 12.645280838012695
+    }
+  ],
+  "raw_sha256": "5b398cda15a1e737dda7c5239e9109551a54b9f98ec09ff10cf32045ef448fdb"
+}

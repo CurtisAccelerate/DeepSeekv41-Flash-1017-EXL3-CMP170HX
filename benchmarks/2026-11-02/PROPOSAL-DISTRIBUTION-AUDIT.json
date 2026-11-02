@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "cpu_analytic_cases": 15,
+  "max_error": 1.1102230246251565e-16,
+  "source_sha256": "368168dcdec15de3b6ccff114d6f24794e32876acc67a7066ade49a5204ad6f2",
+  "source_lines": {
+    "acceptance": [
+      824,
+      838
+    ],
+    "residual": [
+      909,
+      933
+    ]
+  },
+  "interpretation": "For deterministic greedy proposal d, q(d)=1: accept with target probability p(d); rejection samples target p renormalized excluding d. The resulting ideal arithmetic marginal is p. Draft FP8 can change d/acceptance/speed without changing ideal target marginal. T0 instead verifies target argmax. Both statements assume the correct target probabilities and correct implementation.",
+  "limitations": [
+    "Analytic/source audit, not empirical GPU distribution, RNG independence or agent-success proof.",
+    "Actual sampled target math still includes selected short-row dense FP8 and quantized expert weights; BF16 cache/output does not make it a BF16 model.",
+    "A fixed seed does not guarantee identical outputs across proposal schedules; this run also observed variation in flag-off repeat controls. Strict seed identity remained failed, not waived.",
+    "Full verification-width changes can alter target floating math/shape dispatch, so deterministic-proposal theorem does not prove cross-width target parity. Narrow is excluded."
+  ],
+  "primary_source": "https://proceedings.mlr.press/v202/leviathan23a.html",
+  "actual_gpu_evidence": "CONTROLLED-T1-INTEGRITY.json binds actual all-rank q=None/rs mapped=None/passed=None, greedy tq0 and unchanged T1 target sampling. It establishes the observed path and timings, not general model quality."
+}

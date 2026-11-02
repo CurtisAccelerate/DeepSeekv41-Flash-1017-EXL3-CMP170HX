@@ -1,0 +1,164 @@
+{
+  "reviewed": true,
+  "raw_sha256": "5b398cda15a1e737dda7c5239e9109551a54b9f98ec09ff10cf32045ef448fdb",
+  "analysis_sha256": "0c89cd14e782afbf92523cff335161500150489fb62df3be592f84976816b8a2",
+  "numerically_best": "Original optimized target/reference prefill on the matched BF16KV boot",
+  "general_accuracy_or_equivalence_established": false,
+  "allow_finite_speed_confirmation": true,
+  "promotion_pending": true,
+  "scope": "Explicit quality review, not reclassification of old failed guards. Whole-stack original-vs-balanced teacher fixture, not sampled-distribution or agent-success proof.",
+  "rows": [
+    {
+      "history": "short",
+      "original_ppl": 1.169831946213249,
+      "balanced_ppl": 1.1712852480736369,
+      "balanced_relative_ppl_percent": 0.12423167832715798,
+      "delta_nll": 0.0012415457462919,
+      "delta_critical_nll": 0.006424572156823211,
+      "repeat_original_nll_spread": 0.0018385735110960089,
+      "repeat_balanced_nll_spread": 0.0007967188738394471,
+      "repeat_original_critical_spread": 0.010149333788001022,
+      "per_run": {
+        "0": {
+          "nll": 0.15594081602234772,
+          "critical_nll": 0.0804228575333305
+        },
+        "1": {
+          "nll": 0.15850000796110733,
+          "critical_nll": 0.08041854526685632
+        },
+        "2": {
+          "nll": 0.15770328908726788,
+          "critical_nll": 0.08312698032545007
+        },
+        "3": {
+          "nll": 0.15777938953344373,
+          "critical_nll": 0.07027352374532948
+        }
+      }
+    },
+    {
+      "history": "long",
+      "original_ppl": 1.163062622954225,
+      "balanced_ppl": 1.1659287086219106,
+      "balanced_relative_ppl_percent": 0.24642573934718914,
+      "delta_nll": 0.002461226090140989,
+      "delta_critical_nll": -0.0003742549730383765,
+      "repeat_original_nll_spread": 0.002619840096736298,
+      "repeat_balanced_nll_spread": 0.003276244453761873,
+      "repeat_original_critical_spread": 6.534742272419625e-05,
+      "per_run": {
+        "0": {
+          "nll": 0.14974679808685745,
+          "critical_nll": 0.0932455477507218
+        },
+        "1": {
+          "nll": 0.1551560664522475,
+          "critical_nll": 0.09323783542798914
+        },
+        "2": {
+          "nll": 0.15187982199848563,
+          "critical_nll": 0.0925700975501019
+        },
+        "3": {
+          "nll": 0.15236663818359375,
+          "critical_nll": 0.093310895173446
+        }
+      }
+    },
+    {
+      "history": "all",
+      "original_ppl": 1.166442373963852,
+      "balanced_ppl": 1.1686039092500031,
+      "balanced_relative_ppl_percent": 0.18531007912594433,
+      "delta_nll": 0.0018513859182164305,
+      "delta_critical_nll": 0.00302515859189241,
+      "repeat_original_nll_spread": 0.002229206803916167,
+      "repeat_balanced_nll_spread": 0.00203648166380066,
+      "repeat_original_critical_spread": 0.005041993182638413,
+      "per_run": {
+        "0": {
+          "nll": 0.15284380705460257,
+          "critical_nll": 0.08683420264202615
+        },
+        "1": {
+          "nll": 0.15682803720667743,
+          "critical_nll": 0.08682819034742273
+        },
+        "2": {
+          "nll": 0.15479155554287677,
+          "critical_nll": 0.08784853893777599
+        },
+        "3": {
+          "nll": 0.15507301385851874,
+          "critical_nll": 0.08179220945938774
+        }
+      }
+    }
+  ],
+  "winner_directions": [
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "compared": 126,
+      "unchanged": 124,
+      "toward_gold": 1,
+      "away_from_gold": 1,
+      "both_non_gold": 0
+    },
+    {
+      "run": 2,
+      "profile": "GN-BALANCED-WIDE",
+      "compared": 126,
+      "unchanged": 126,
+      "toward_gold": 0,
+      "away_from_gold": 0,
+      "both_non_gold": 0
+    },
+    {
+      "run": 3,
+      "profile": "A",
+      "compared": 126,
+      "unchanged": 126,
+      "toward_gold": 0,
+      "away_from_gold": 0,
+      "both_non_gold": 0
+    }
+  ],
+  "changed_winners": [
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "exact_path_after_search-long-gold",
+      "index": 2,
+      "gold": 16562,
+      "old": 16562,
+      "new": 3362,
+      "direction": "away_from_gold",
+      "char_start": 6,
+      "char_end": 9,
+      "frozen_text": "\":\""
+    },
+    {
+      "run": 1,
+      "profile": "GN-BALANCED-WIDE",
+      "label": "exact_path_after_search-long-gold",
+      "index": 3,
+      "gold": 1795,
+      "old": 261,
+      "new": 1795,
+      "direction": "toward_gold",
+      "char_start": 9,
+      "char_end": 13,
+      "frozen_text": "read"
+    }
+  ],
+  "interpretation": [
+    "Overall balanced deltaNLL+.00185139 is smaller than both original .00222921 and candidate .00203648 repeat spread; this is descriptive repeat context, not a significance interval.",
+    "Short critical loss is worse by .00642457, larger than the ordinary .005 all-token NLL screen threshold, which does not apply to this separate metric. Original short-critical repeat spread .01014933 is larger; retain this sensitivity rather than declaring quality equality.",
+    "One balanced pass has one away-gold JSON separator and one toward-gold read token; second balanced and closing original have zero changes vs opening original. Frozen-token changes alone do not grade free-generated JSON/tool semantics.",
+    "All48 gold-vs-wrong likelihood preferences passed. No new claim about long agent chains or128Kquality.",
+    "The narrow and exact-seed failures stay failed/preserved. Only fixedfive/wide tests continue; no narrow/adaptive/gate default and no T1override promotion from this teacher screen."
+  ],
+  "selection_implication": "Balanced is a tangible speed/quality tradeoff candidate with BF16KV/output projection and small inconclusive likelihood differences, not the demonstrated accuracy winner. Keep original target available. Existing serving proposal split remains default candidate; greedy override stays explicit opt-in after mixed speed results."
+}
