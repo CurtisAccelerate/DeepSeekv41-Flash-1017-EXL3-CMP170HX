@@ -13,28 +13,32 @@ Measured on 4× CMP 170HX at 140 W.
 This repository is that weight selection and these measurements. It does
 not contain the weight files. Licenses are in [NOTICE.md](NOTICE.md).
 
-## Balanced BF16 recipe — November 2, 2026
+## Tentative speed and quality leaders - November 2, 2026
 
-We kept our specialized expert shapes, split attention and communication paths, integrated selected GNmac dense/expert and fast draft-head/sampler paths, and retained BF16 KV and output projection with full integer prefill fusion and Marlin prefill. The selected recipe uses fixed-five verification and keeps the existing serving proposal split; adaptive width, confidence gating and the new greedy-proposal override remain optional experiments.
+Our specialized expert, attention and communication kernels remain, with selected GNmac integration. **No overall winner is established: choose speed, likelihood or the BF16-projection alternative.**
 
-### Morrow headline: per-user streaming and full request wall
+### Tentative speed winner
 
-| Users | Prompt | Original tok/s | Balanced tok/s | Original wall s | Balanced wall s | Wall cut | Original TTFT s | Balanced TTFT s |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | count | 223.15 | 262.38 | 2.1134 | 1.7611 | +16.67% | 0.3247 | 0.2393 |
-| 1 | code | 200.61 | 238.05 | 2.2958 | 1.8899 | +17.68% | 0.3056 | 0.2123 |
-| 1 | prose | 115.28 | 135.18 | 3.7765 | 3.1943 | +15.42% | 0.3153 | 0.2348 |
-| 8 | count | 87.48 | 97.35 | 5.2888 | 4.5958 | +13.10% | 0.7691 | 0.5103 |
-| 8 | code | 74.72 | 84.70 | 6.3977 | 5.4223 | +15.25% | 0.8433 | 0.5214 |
-| 8 | prose | 39.49 | 45.26 | 11.2018 | 9.5752 | +14.52% | 0.7904 | 0.5118 |
+| Configuration | Count tok/s | Code tok/s | Prose tok/s | Prose full wall s |
+| --- | --- | --- | --- | --- |
+| Tentative speed leader: earlier FP8 output projection | 277.97 | 248.87 | 143.06 | 3.0519 |
+| BF16 output-projection option: latest confirmation | 262.38 | 238.05 | 135.18 | 3.1943 |
+| Tentative quality leader: original target, latest confirmation | 223.15 | 200.61 | 115.28 | 3.7765 |
 
-Fresh same-boot BF16-cache controls,972 measured requests plus324 separately retained first-use requests, users1..8, three batches/cell. Original controls bracket the balanced pass. One regression remains: three-user code wall is4.60% slower. All eligible graph shapes were observed on all four ranks. Rates exclude TTFT; wall includes it.
+One-user Morrow, 400 tokens at 140 W; decode excludes TTFT and prose wall includes it. Both integration options use BF16 KV. The 143.06 result is a three-batch median from an earlier boot; the 135.18 result is the latest confirmation. This is not a matched projection-only comparison. A separate 149.54 single-pass observation is not used as the repeated headline.
 
-Fresh128K prefill fell95.380→87.480s versus original prefill. The earlier isolated integer-fusion gain was91.585→87.615s beyond the MoE-only baseline. Historical GNmac was86.333s with FP8KV on another boot; no matched standalone victory or20–30% lead is claimed.
+### Tentative quality winner: latest matched fixture
 
-The original ranks numerically best on the fresh small quality fixture: PPL1.166442 vs balanced1.168604. The difference is smaller than repeat variation, so this is a speed/quality tradeoff, not a demonstrated accuracy gain or equivalence. All48 correct/incorrect likelihood preferences passed. Seeded-output variation, a separator-token change and multiuser delivery stalls remain documented.
+| Latest same-boot quality fixture | Overall PPL | Short PPL | Long PPL | Critical-token NLL |
+| --- | --- | --- | --- | --- |
+| Tentative quality leader: original target | 1.166442374 | 1.169831946 | 1.163062623 | 0.084313206 |
+| BF16 output-projection option | 1.168603909 | 1.171285248 | 1.165928709 | 0.087338365 |
 
-The [complete benchmark, perplexity, drafting and attribution report](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-1017-EXL3-CMP170HX/blob/main/benchmarks/2026-11-02/README.md) contains the full1..8 table, optional-proposal SPARK results, prefill/TTFT/wall data and retained regressions. Source updates modify the existing export in place rather than adding another complete source copy. The [selected private recipe and client](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/main/experiments/ds1017-bf16-full-fusion/defaults) use the actual qualified private protocol; ordinary serving/Hermes has not been repointed.
+Lower PPL/NLL is better. The original ranks numerically best in the latest 96-request synthetic fixture, but the difference is smaller than repeat variation; no general accuracy win or equivalence is established. An earlier target-only study favored BF16 projection (PPL 1.165453 vs 1.170190 for FP8 projection), but those are not quality scores for the complete 143/135 tok/s recipes.
+
+The packaged 135 tok/s option is a precision-conservative alternative, not a proven quality winner or blanket recommendation. Published snapshots identify that option; users decide their preferred tradeoff.
+
+[Full November 2 report, all-user timing, perplexity, caveats and attribution](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-1017-EXL3-CMP170HX/blob/main/benchmarks/2026-11-02/README.md).
 
 ## Expert gates for 2–6 users — October 28, 2026
 

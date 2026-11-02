@@ -1,8 +1,29 @@
-# Balanced BF16 recipe and finite target/drafting study — November 2, 2026
+# Tentative speed and quality leaders - November 2, 2026
 
-We retained our specialized expert shapes, split attention, host/collective paths and Engram integration, combined selected GNmac short-row dense/expert and draft-head/sampler paths, and kept BF16 KV, BF16 output projection and Marlin prefill with integer preparation fused across all 40 target layers. Fixed-five verification and the existing serving proposal split are the selected default recipe. Adaptive width, confidence gating and the request-scoped greedy proposal override are not defaults.
+We retain our specialized expert shapes, split attention, communication and Engram work while evaluating selected GNmac target/drafter paths and full integer prefill fusion. **Choose the tradeoff that fits your workload; we have not established one overall speed-and-quality winner.** All listed options use BF16 KV. The two integrated options differ in output-projection precision.
 
-This is a measured speed/quality tradeoff, not an established accuracy improvement or a demonstrated lead over standalone GNmac. The desired 20–30% gain over GNmac was not achieved in a fresh matched standalone comparison.
+### Tentative speed winner: earlier FP8 output-projection integration
+
+| Configuration | Count tok/s | Code tok/s | Prose tok/s | Prose full wall s |
+| --- | --- | --- | --- | --- |
+| Tentative speed leader: earlier FP8 output projection | 277.97 | 248.87 | 143.06 | 3.0519 |
+| BF16 output-projection option: latest confirmation | 262.38 | 238.05 | 135.18 | 3.1943 |
+| Tentative quality leader: original target, latest confirmation | 223.15 | 200.61 | 115.28 | 3.7765 |
+
+These are one-user Morrow streaming rates at 140 W and 400 generated tokens, with full request wall shown for prose. Streaming excludes time to first token; wall includes it. The earlier speed configuration is the median of three batches in a prior boot; the latest confirmation is a different boot, with three batches/cell and bracketing original controls. **These rows are not a matched projection-only ablation.** The full 143-to-135 tok/s difference has not been isolated. A later single-pass control reached 149.54 prose tok/s; that is retained as a one-pass observation, not substituted for the repeated headline. See the [earlier speed measurements](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-1017-EXL3-CMP170HX/blob/main/benchmarks/2026-11-01/MORROW-PREVIOUS-FULL.csv).
+
+### Tentative quality winner: original target in the latest matched fixture
+
+| Latest same-boot quality fixture | Overall PPL | Short PPL | Long PPL | Critical-token NLL |
+| --- | --- | --- | --- | --- |
+| Tentative quality leader: original target | 1.166442374 | 1.169831946 | 1.163062623 | 0.084313206 |
+| BF16 output-projection option | 1.168603909 | 1.171285248 | 1.165928709 | 0.087338365 |
+
+**Lower perplexity (PPL) and NLL are better.** The original is the numerical leader in this latest fixture; the 135 tok/s BF16-projection option is not its quality winner. Its overall PPL is about 0.19% higher than original. Delta NLL 0.00185139 is smaller than the original 0.00222921 and BF16-option 0.00203648 repeat spreads, so this does not establish a reliable general accuracy difference or equivalence. All 48 correct-vs-incorrect likelihood contrasts preferred the correct answer. These are 96 teacher requests on six synthetic investigation states at roughly 0.4K/7.3K, not an agent-success or 128K quality test.
+
+An **earlier matched target-isolation** screen instead favored BF16 projection: overall PPL 1.165453 versus 1.170190 for FP8 projection (original 1.168664). That was the limited evidence motivating the conservative recipe. It used the original drafter and is a different experiment: **do not assign those PPL scores to the complete 143/135 tok/s recipes or combine them into a matched frontier.** The earlier prose wall cost of BF16 projection was about 2.6%; it does not explain the entire cross-boot speed difference. No fully matched quality comparison of the complete earlier 143 tok/s recipe against the latest 135 tok/s recipe is available.
+
+**Reader choice:** the earlier FP8-projection integration is the tentative repeated single-user speed leader; the original target is the tentative latest-fixture quality leader; the 135 tok/s BF16-projection integration is a precision-conservative alternative with a different speed/likelihood tradeoff. Quality rankings vary by run and metric. Existing snapshot filenames and the packaged client/image record the BF16-projection option; they do not establish it as the best choice for every user. The earlier speed recipe requires its matching qualified source/capture configuration and is not an in-session switch in the packaged BF16-output-projection target bank.
 
 ## Final Morrow: decode and actual wall time
 
@@ -60,7 +81,7 @@ The fusion replaces repeated integer row/index preparation and packing with a di
 
 396 measured requests, users 1/2/8, two reverse-ordered passes per configuration, original eight categories plus a separately retained counting ceiling. The table is the mean of two pass means of the eight category full-wall aggregate rates; ceiling excluded. It is not suite-total tokens divided by suite-total time. Per-user decode uses the original SPARK `(tokens-1)/(close-first)` rule, which differs from Morrow's last-token rule.
 
-Balanced in this particular comparison explicitly requests greedy proposals. At one user this differs from the selected default's existing sampled-proposal split; at multiuser the existing split is already greedy. Label these as optional-proposal results, not default single-user performance. Target temperature remains one. Actual output lengths and content vary, so these rates do not establish equal-work wall reductions or quality improvement.
+Balanced in this particular comparison explicitly requests greedy proposals. At one user this differs from the packaged BF16 option's existing sampled-proposal split; at multiuser the existing split is already greedy. Label these as optional-proposal results, not packaged single-user performance. Target temperature remains one. Actual output lengths and content vary, so these rates do not establish equal-work wall reductions or quality improvement.
 
 | Users | Original aggregate tok/s | Balanced + optional greedy tok/s | Rate change | Original per-user decode | Balanced per-user decode | Original TTFT s | Balanced TTFT s |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -104,7 +125,7 @@ The early target-component removal tests identified the alternate one-user exper
 
 Our optimized expert shapes at users2..6, original pinned six-row/cooperative binaries, split attention, collective routes and Engram work remain. The integration selects alternate expert paths at1/7/8 rather than replacing every shape. It does not adopt the 96-whole-experts-per-rank layout. BF16 output projection trades a small measured cost against full-import FP8 projection; the final policy avoids a wholesale port. Prefill uses the separately qualified expert operator plus our full integer preparation fusion, with Marlin dense and existing floating attention.
 
-## Reproducibility, default recipe and boundaries
+## Reproducibility, packaged recipe and boundaries
 
 The source/default client is in the companion [kernel repository](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/main/experiments/ds1017-bf16-full-fusion). The supported client explicitly selects the measured profile through the existing qualified private control protocol; it does not invent a production env flag. Existing ordinary launch commands and old production-control paths are not silently repointed. The model remains private; no Hermes change. An actual400-token client smoke observed the selected target graph on all four ranks.
 
@@ -117,7 +138,7 @@ All measurements retain140W limits, thermal protections,1152MiB capture cap,1GiB
 
 ## Attribution and licenses
 
-GNmac's short-row FP8 dense/projection recipe, selected alternate expert setup, FP8 draft head, fused Markov sampler and acceptance controller informed this integration. BF16 projection remains selected; the FP8 projection path is retained as an experiment. The actual controller was tested and rejected as a general default gain, not omitted from study. GNmac-lab MIT notices and pinned donor lineage remain in the kernel repository.
+GNmac's short-row FP8 dense/projection recipe, selected alternate expert setup, FP8 draft head, fused Markov sampler and acceptance controller informed this integration. The packaged option uses BF16 projection; the earlier FP8-projection integration is the tentative speed leader, with the comparison limits above. The actual controller was tested and rejected as a general default gain, not omitted from study. GNmac-lab MIT notices and pinned donor lineage remain in the kernel repository.
 
 Morrowmake supplies foundational tensor-core MoE/prefill and adaptive-depth work; ExLlamaV3/Turboderp supplies expert/codec foundations; vLLM and its named ROCm/SM80 attention contributors retain their notices. CurtisAccelerate contributes the retained specialized shapes, serving integration, integer fusion, finite capture/ownership/admission guards, local calibration, component isolation and measured validation described here. See the kernel NOTICE for exact component/commit boundaries. No model weights or private credentials are redistributed.
 
