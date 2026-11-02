@@ -2,6 +2,8 @@
 
 We extended our optimized DeepSeek serving stack with prefill fusion across all 40 target layers, faster target execution and integrated draft sampling, while preserving our specialized expert shapes, split attention and communication paths. We compared FP8 and BF16 output projection with BF16 KV, measuring decode speed, full request wall time and perplexity.
 
+Special thanks to [GNmac](https://github.com/GNmac-lab/deepseek-v41-flash-1017-cmp170hx) for the FP8 and draft-sampling work adapted in this update; see the [existing attribution document](../../NOTICE.md).
+
 ### Tentative speed winner: earlier FP8 output-projection integration
 
 | Configuration | Count tok/s | Code tok/s | Prose tok/s | Prose full wall s |
@@ -136,9 +138,9 @@ Final private raw archive SHA256:`b726a8327304b182a9f6f9e4111c6d77f21b62aa8b5eee
 
 All measurements retain140W limits, thermal protections,1152MiB capture cap,1GiB startup free-memory floor and one GPU job at a time. The first narrow-graph load failed the retained-memory floor and was preserved; serialized scratch pooling with retained-output ownership tests corrected it without reducing the floor. Startup passed32 sampler interleave cases/rank in addition to existing gates. CPU tests are not GPU qualification; both scopes are recorded separately.
 
-## Attribution - Special Thanks!
+## Attribution and licenses
 
-Special thanks to [GNmac](https://github.com/GNmac-lab/deepseek-v41-flash-1017-cmp170hx) for sharing the short-row FP8 dense/projection kernels, alternate expert recipe, FP8 draft head, fused Markov sampler and adaptive acceptance controller we adapted and tested in our existing optimized stack. The packaged option uses BF16 projection; the earlier FP8-projection integration is the tentative speed leader, with the comparison limits above. The actual controller was tested and rejected as a general default gain, not omitted from study. GNmac-lab MIT notices and pinned donor lineage remain in the kernel repository.
+Special thanks to [GNmac](https://github.com/GNmac-lab/deepseek-v41-flash-1017-cmp170hx) for the FP8 target/draft kernels, fused sampler, alternate expert recipe and adaptive controller adapted and tested here. The [existing attribution document](../../NOTICE.md) records the source lineage and licenses.
 
 Morrowmake supplies foundational tensor-core MoE/prefill and adaptive-depth work; ExLlamaV3/Turboderp supplies expert/codec foundations; vLLM and its named ROCm/SM80 attention contributors retain their notices. CurtisAccelerate contributes the retained specialized shapes, serving integration, integer fusion, finite capture/ownership/admission guards, local calibration, component isolation and measured validation described here. See the kernel NOTICE for exact component/commit boundaries. No model weights or private credentials are redistributed.
 

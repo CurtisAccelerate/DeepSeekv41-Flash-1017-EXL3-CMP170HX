@@ -57,3 +57,10 @@ and the retained Morrowmake/vLLM/ExLlamaV3 foundations. The complete adaptive
 GNmac drafter policy was not tested by the main run.
 See the [pinned component attribution and included licenses](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/tree/4844d485868ee69e10ff3d0019e28dc7431bbc68/experiments/ds1017-bf16-full-fusion/NOTICE.md)
 and the [measured benchmark/quality report](benchmarks/2026-11-01/README.md).
+
+
+The November 2 follow-up also adapted and tested GNmac's acceptance controller
+with all 16 locally measured width costs. Its source lineage and the retained
+GNmac MIT notice are covered by the component attribution above; see the
+[November 2 results](benchmarks/2026-11-02/README.md) for the measured policy
+comparison.
