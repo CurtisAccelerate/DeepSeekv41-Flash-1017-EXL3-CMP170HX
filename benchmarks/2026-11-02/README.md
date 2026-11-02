@@ -25,7 +25,7 @@ These are one-user Morrow streaming rates at 140 W and 400 generated tokens, wit
 
 An **earlier matched target-isolation** screen instead favored BF16 projection: overall PPL 1.165453 versus 1.170190 for FP8 projection (original 1.168664). That was the limited evidence motivating the conservative recipe. It used the original drafter and is a different experiment: **do not assign those PPL scores to the complete 143/135 tok/s recipes or combine them into a matched frontier.** The earlier prose wall cost of BF16 projection was about 2.6%; it does not explain the entire cross-boot speed difference. No fully matched quality comparison of the complete earlier 143 tok/s recipe against the latest 135 tok/s recipe is available.
 
-**Reader choice:** the earlier FP8-projection integration is the tentative repeated single-user speed leader; the original target is the tentative latest-fixture quality leader; the 135 tok/s BF16-projection integration is a precision-conservative alternative with a different speed/likelihood tradeoff. Quality rankings vary by run and metric. Existing snapshot filenames and the packaged client/image record the BF16-projection option; they do not establish it as the best choice for every user. The earlier speed recipe requires its matching qualified source/capture configuration and is not an in-session switch in the packaged BF16-output-projection target bank.
+**Reader choice:** the earlier FP8-projection integration is the tentative repeated single-user speed leader; the original target is the tentative latest-fixture quality leader; the 135 tok/s BF16-projection integration is a precision-conservative alternative with a different speed/likelihood tradeoff. Quality rankings vary by run and metric. Existing snapshot filenames and the packaged client/image record the BF16-projection option; they do not establish it as the best choice for every user. The new speed-default Docker can prepare the speed or BF16-projection bank using an explicit lane setting. Switching projection banks requires a cold load and the retained all-rank qualification; the earlier143tok/s figure has not been remeasured on this packaging.
 
 ## Final Morrow: decode and actual wall time
 
@@ -145,4 +145,19 @@ Special thanks to [GNmac](https://github.com/GNmac-lab/deepseek-v41-flash-1017-c
 Morrowmake supplies foundational tensor-core MoE/prefill and adaptive-depth work; ExLlamaV3/Turboderp supplies expert/codec foundations; vLLM and its named ROCm/SM80 attention contributors retain their notices. CurtisAccelerate contributes the retained specialized shapes, serving integration, integer fusion, finite capture/ownership/admission guards, local calibration, component isolation and measured validation described here. See the kernel NOTICE for exact component/commit boundaries. No model weights or private credentials are redistributed.
 
 
-Versioned Docker packaging is built and CPU/native/source verified: `star-ds1017:2026.11.02-balanced-k5`, immutable `sha256:16d47d8d6059f8d4abfa159268bc9f3d65f9fc3b65311a481cd15991c572ee7c`. See [build receipt](DOCKER-BUILD-VERIFIED.json) and [default snapshot](DEFAULT-SNAPSHOT.json). The healthy measured owner was not restarted; no registry upload or new GPU boot is claimed.
+The archived BF16-only packaging is `star-ds1017:2026.11.02-balanced-k5`, immutable `sha256:16d47d8d6059f8d4abfa159268bc9f3d65f9fc3b65311a481cd15991c572ee7c`. Its [build receipt](BF16-DOCKER-BUILD-VERIFIED-20261102.json) and [snapshot](BF16-DEFAULT-SNAPSHOT-20261102.json) remain preserved. The new speed-default public image is a separate artifact, linked below.
+
+
+## Speed-default Docker settings
+
+The user-selected Docker default is now `speed` (FP8 output projection with BF16 KV), with `bf16` and original-target `quality` presets. This changes the packaged default, not the historical benchmark or likelihood measurements above. See the [settings guide](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-EXL3-TC-MoE/blob/main/experiments/ds1017-bf16-full-fusion/release/speed-default/README.md). The former BF16-only image/snapshot remains an archived artifact.
+
+[Download Docker](https://github.com/CurtisAccelerate/DeepSeekv41-Flash-1017-EXL3-CMP170HX/releases/tag/2026.11.02-speed-k5) · [Build and validation receipt](PUBLIC-IMAGE-VERIFIED.json) · [Current default snapshot](DEFAULT-SNAPSHOT.json) · [Architecture and tradeoffs](BUILD-DECISIONS-OURS-VS-GNMAC.png).
+
+The public image is distributed as a checksum-verified split Docker archive. It defaults to speed, with BF16 projection and original-target quality settings. It excludes model weights and private build history. CPU/source/native/settings checks passed; a fresh GPU cold boot of this packaging is not claimed. The headline speeds are earlier measurements of the corresponding recipe families.
+
+## Architecture and tradeoffs
+
+![Confirmed architecture differences and recorded prose speed](BUILD-DECISIONS-OURS-VS-GNMAC.png)
+
+[Text version](BUILD-DECISIONS-OURS-VS-GNMAC.md). Only confirmed decisions are included. The headline rates are separate-boot historical measurements, not a fresh matched comparison with GNmac.
