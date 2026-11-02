@@ -51,8 +51,8 @@
   },
   {
     "path": "DOCKER-BUILD-VERIFIED.json",
-    "sha256": "e391118d1fa60684bab9ba257e3542d1e008d8b39aba0a51b75e94455c51262c",
-    "bytes": 8870
+    "sha256": "89d06503002c5a2e6064b0dea5b5d98fce5b52e4e99f95700b97682151c32517",
+    "bytes": 8674
   },
   {
     "path": "DOCKER-DOWNLOAD.md",
@@ -111,18 +111,13 @@
   },
   {
     "path": "PUBLIC-IMAGE-VERIFIED.json",
-    "sha256": "abe9a1df35efb0535b7feb94683f699b287513e0fad2c58ee2c6690ade049c9d",
-    "bytes": 3625
+    "sha256": "5d21638db1e0d09d13a9657f29d188149bfcc74cb8317e0897387369ff94b85a",
+    "bytes": 3532
   },
   {
     "path": "PUBLIC-MOUNT-CHECK.json",
     "sha256": "cfdd7c15f05086de3b57a3b42c11b03553ec8368474883298eef1338b87ccbb3",
     "bytes": 98
-  },
-  {
-    "path": "PUBLIC-SANITIZATION-SUMMARY.json",
-    "sha256": "61a43fe35e2de419744671e867aac7a710c15f6209e113ba70d2cd374df861c1",
-    "bytes": 2748
   },
   {
     "path": "QUALITY-RANK.json",
